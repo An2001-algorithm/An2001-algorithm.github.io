@@ -1,0 +1,371 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  
+  <title>Android面试题单 | Hexo</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta name="description" content="Android面试题单 Service 与 IntentService 的区别。Link Android 应用的结构是什么？ Android 应用中如何保存数据。 如何在 Android 应用中执行耗时操作。 两个 Fragment 之间如何通信。 阐述一下 Android 的通知系统。 两个不同的 app 之间如何交互。 什么是 Fragment？ 为什么建议只使用默认的构造方法来创建 Frag">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Android面试题单">
+<meta property="og:url" content="http://example.com/2023/02/10/Android%E9%9D%A2%E8%AF%95%E9%A2%98%E5%8D%95/index.html">
+<meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="Android面试题单 Service 与 IntentService 的区别。Link Android 应用的结构是什么？ Android 应用中如何保存数据。 如何在 Android 应用中执行耗时操作。 两个 Fragment 之间如何通信。 阐述一下 Android 的通知系统。 两个不同的 app 之间如何交互。 什么是 Fragment？ 为什么建议只使用默认的构造方法来创建 Frag">
+<meta property="og:locale" content="en_US">
+<meta property="article:published_time" content="2023-02-10T06:26:44.295Z">
+<meta property="article:modified_time" content="2022-12-05T08:03:50.000Z">
+<meta property="article:author" content="John Doe">
+<meta name="twitter:card" content="summary">
+  
+    <link rel="alternate" href="/atom.xml" title="Hexo" type="application/atom+xml">
+  
+  
+    <link rel="shortcut icon" href="/favicon.png">
+  
+  
+    
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/typeface-source-code-pro@0.0.71/index.min.css">
+
+  
+  
+<link rel="stylesheet" href="/css/style.css">
+
+  
+    
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.min.css">
+
+  
+<meta name="generator" content="Hexo 6.3.0"></head>
+
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">Hexo</a>
+      </h1>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="Search"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://example.com"></form>
+      </div>
+    </div>
+  </div>
+</header>
+
+      <div class="outer">
+        <section id="main"><article id="post-Android面试题单" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-meta">
+    <a href="/2023/02/10/Android%E9%9D%A2%E8%AF%95%E9%A2%98%E5%8D%95/" class="article-date">
+  <time class="dt-published" datetime="2023-02-10T06:26:44.295Z" itemprop="datePublished">2023-02-10</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="p-name article-title" itemprop="headline name">
+      Android面试题单
+    </h1>
+  
+
+      </header>
+    
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <h1 id="Android面试题单"><a href="#Android面试题单" class="headerlink" title="Android面试题单"></a>Android面试题单</h1><ul>
+<li>Service 与 IntentService 的区别。<a target="_blank" rel="noopener" href="https://stackoverflow.com/a/15772151/5153275">Link</a></li>
+<li>Android 应用的结构是什么？</li>
+<li>Android 应用中如何保存数据。</li>
+<li>如何在 Android 应用中执行耗时操作。</li>
+<li>两个 Fragment 之间如何通信。</li>
+<li>阐述一下 Android 的通知系统。</li>
+<li>两个不同的 app 之间如何交互。</li>
+<li>什么是 Fragment？</li>
+<li>为什么建议只使用默认的构造方法来创建 Fragment？<a target="_blank" rel="noopener" href="https://stackoverflow.com/a/16042750/2809326">Link</a></li>
+<li>为什么 Bundle 被用来传递数据，为什么不能使用简单的 Map 数据结构？</li>
+<li>阐述一下 Fragment 的生命周期。<a target="_blank" rel="noopener" href="https://www.techsfo.com/blog/wp-content/uploads/2014/08/complete_android_fragment_lifecycle.png">Link</a></li>
+<li>如何理解 Android 的 Dialog ？</li>
+<li>解释下 Android 的 View 。</li>
+<li>你能创建自定义 View 吗？具体是如何创建的？</li>
+<li>什么是 ViewGroup ，它与 View 的区别在哪里？</li>
+<li>Fragment 和 Activity 有什么区别？它们之间又有什么关系？</li>
+<li>谈谈 Serializable 接口和 Parcelable 接口的区别。在 Android 中最好使用哪种接口？</li>
+<li>Activity 的启动模式有哪些？<a target="_blank" rel="noopener" href="https://blog.mindorks.com/android-activity-launchmode-explained-cbc6cf996802">Link</a></li>
+<li>解释一下 Android 中的 Intent 。<a target="_blank" rel="noopener" href="https://stackoverflow.com/questions/6578051/what-is-an-intent-in-android">Link</a></li>
+<li>什么是隐式 Intent ？</li>
+<li>什么是显式 Intent ？</li>
+<li>解释一下 AsyncTask 。</li>
+<li>如何理解 Android 中的广播。<a target="_blank" rel="noopener" href="https://stackoverflow.com/questions/5296987/what-is-broadcastreceiver-and-when-we-use-it">Link</a></li>
+<li>如何理解 Android 的 LocalBroadcastManager 。<a target="_blank" rel="noopener" href="https://developer.android.com/reference/android/support/v4/content/LocalBroadcastManager.html">Link</a></li>
+<li>什么是 JobScheduler ？<a target="_blank" rel="noopener" href="http://www.vogella.com/tutorials/AndroidTaskScheduling/article.html">Link</a></li>
+<li>什么是 DDMS ？你可以用它来做什么？</li>
+<li>解释一下什么是 support libary ，以及为什么要引入 support library ？<a target="_blank" rel="noopener" href="http://martiancraft.com/blog/2015/06/android-support-library/">Link</a></li>
+<li>如何理解 Android 中的 ContentProvider 。它通常用来干什么？</li>
+<li>什么是 Data Binding ？<a target="_blank" rel="noopener" href="https://developer.android.com/topic/libraries/data-binding/index.html">Link</a></li>
+<li>Android 的核心组件具体都有什么？<a target="_blank" rel="noopener" href="https://developer.android.com/topic/libraries/architecture/index.html">Link</a></li>
+<li>什么是 ADB ？</li>
+<li>什么是 ANR ？如何避免发生 ANR ？</li>
+<li>AndroidManifest.xml 是什么？</li>
+<li>解释一下 broadcast 和 intent 在 app 内传递消息的工作流程。</li>
+<li>当 Bitmap 占用较多内存时，你是怎么处理的？</li>
+<li>Android 应用有哪些不同的存储数据的方式？</li>
+<li>什么是 Dalvik 虚拟机？</li>
+<li>AsyncTask 的生命周期和(它所属的) Activity 的生命周期有什么关系？这种关系可能会导致什么样的问题？ 如何避免这些问题发生？</li>
+<li>Intent filter 是用来做什么的？</li>
+<li>什么是 Sticky Intent？<a target="_blank" rel="noopener" href="http://www.androidinterview.com/what-is-a-sticky-intent/">Link</a></li>
+<li>什么是 AIDL ？列举一下通过 AIDL 创建被绑定的服务（bounded service）的步骤。</li>
+<li>Android 的权限有多少个不同的保护等级？</li>
+<li>在转屏时你如何保存 Activity 的状态？<a target="_blank" rel="noopener" href="https://stackoverflow.com/questions/3915952/how-to-save-state-during-orientation-change-in-android-if-the-state-is-made-of-m">Link</a></li>
+<li>相对布局和线性布局的区别。</li>
+<li>如何实现 XML 命名空间？</li>
+<li>View.GONE 和 View.INVISIBLE 之间的区别。</li>
+<li>Bitmap 和 .9（nine-patch）图片之间有什么区别？</li>
+<li>谈谈位图池。<a target="_blank" rel="noopener" href="https://blog.mindorks.com/how-to-use-bitmap-pool-in-android-56c71a55533c">Link</a></li>
+<li>在 Android 中如何避免内存泄漏？</li>
+<li>Android 桌面的小部件是什么？</li>
+<li>什么是 AAPT ？</li>
+<li>你是如何在 Android 应用程序中发现内存泄漏的？</li>
+<li>你如何排查应用崩溃的原因？</li>
+<li>为什么你应该避免在主线程上运行非用户界面相关的代码？</li>
+<li>你是如何适配不同分辨率的手机的？</li>
+<li>如何理解 Doze 模式。如何理解应用程序待机模式（App Standby）。</li>
+<li>在 Android 中，你可以使用什么来进行后台操作?</li>
+<li>什么是 ORM ？它是如何工作的？</li>
+<li>什么是 Loader ？</li>
+<li>什么是 NDK ，为什么它是有用的？</li>
+<li>如何理解严格模式（StrictMode）。 <a target="_blank" rel="noopener" href="https://blog.mindorks.com/use-strictmode-to-find-things-you-did-by-accident-in-android-development-4cf0e7c8d997">Link</a></li>
+<li>什么是 Lint ？它的用途是什么？</li>
+<li>什么是 SurfaceView ？</li>
+<li>ListView 和 RecyclerView 有什么区别？</li>
+<li>什么是 ViewHolder 模式？为什么我们应该使用它？</li>
+<li>什么是 PendingIntent ？</li>
+<li>你能手动调用垃圾回收吗？</li>
+<li>周期地更新页面的最好方式是什么？</li>
+<li>有哪些类型的广播？</li>
+<li>你开发过组件吗？请描述一下。<a target="_blank" rel="noopener" href="https://blog.mindorks.com/android-widgets-ad3d166458d3">Link</a></li>
+<li>如何理解上下文（Context）。怎么使用它？<a target="_blank" rel="noopener" href="https://medium.com/p/understanding-context-in-android-application-330913e32514">Link</a></li>
+<li>你知道什么是视图树(View Tree)吗？怎样优化它的深度？</li>
+<li>onTrimMemory() 方法是什么？</li>
+<li>Android 应用可以使用多进程吗？怎样使用？</li>
+<li>内存溢出（OutOfMemory）是怎么发生的？</li>
+<li>文本样式接口（Spannable）是什么？</li>
+<li>什么是过度绘制（overdraw）？</li>
+<li>什么是渲染脚本（renderscript）？<a target="_blank" rel="noopener" href="https://blog.mindorks.com/comparing-android-ndk-and-renderscript-1a718c01f6fe">Link</a></li>
+<li>Dalvik 虚拟机模式和 ART（Android Runtime）虚拟机模式的区别。</li>
+<li>FlatBuffers 和 JSON 的区别。<a target="_blank" rel="noopener" href="https://blog.mindorks.com/why-consider-flatbuffer-over-json-2e4aa8d4ed07">Link</a></li>
+<li>谈谈 Android 的注解。<a target="_blank" rel="noopener" href="https://blog.mindorks.com/creating-custom-annotations-in-android-a855c5b43ed9">Link1</a>, <a target="_blank" rel="noopener" href="https://blog.mindorks.com/improve-your-android-coding-through-annotations-26b3273c137a">Link2</a></li>
+<li>描述一下约束布局（Constraint Layout）。<a target="_blank" rel="noopener" href="https://blog.mindorks.com/using-constraint-layout-in-android-531e68019cd">Link</a></li>
+<li>阐述一下 Android 中的 HashMap , ArrayMap 和 SparseArray 。<a target="_blank" rel="noopener" href="https://blog.mindorks.com/android-app-optimization-using-arraymap-and-sparsearray-f2b4e2e3dc47">Link</a></li>
+<li>阐述一下 Looper, Handler 和 HandlerThread 。<a target="_blank" rel="noopener" href="https://blog.mindorks.com/android-core-looper-handler-and-handlerthread-bd54d69fe91a">Link</a></li>
+<li>如何降低 Android 应用的耗电量？<a target="_blank" rel="noopener" href="https://blog.mindorks.com/battery-optimization-for-android-apps-f4ef6170ff70">Link</a></li>
+<li>SnapHelper 是什么？<a target="_blank" rel="noopener" href="https://blog.mindorks.com/using-snaphelper-in-recyclerview-fc616b6833e8">Link</a></li>
+<li>在 Android 中怎么处理多点触控？<a target="_blank" rel="noopener" href="https://arjun-sna.github.io/android/2016/07/20/multi-touch-android/">link</a></li>
+</ul>
+<h3 id="架构"><a href="#架构" class="headerlink" title="架构"></a>架构</h3><ul>
+<li>请介绍一下你做的上一个 App 的架构。</li>
+<li>请介绍一下 MVP。 <a target="_blank" rel="noopener" href="https://blog.mindorks.com/essential-guide-for-designing-your-android-app-architecture-mvp-part-1-74efaf1cda40">Link</a></li>
+<li>Presenter 是什么？</li>
+<li>什么是模型？</li>
+<li>请介绍一下 MVC。</li>
+<li>Controller 是什么？</li>
+<li>请介绍一下 MVVM。 <a target="_blank" rel="noopener" href="https://github.com/MindorksOpenSource/android-mvvm-architecture">Link</a></li>
+<li>谈谈你对代码整洁之道（clean code）的理解。<a target="_blank" rel="noopener" href="https://blog.mindorks.com/every-programmer-should-read-this-book-6755dedec78d">Link</a></li>
+</ul>
+<h3 id="设计问题"><a href="#设计问题" class="headerlink" title="设计问题"></a>设计问题</h3><ul>
+<li>请设计 Uber App。</li>
+<li>请设计 Facebook App。</li>
+<li>请设计 Facebook Near-By Friends App。</li>
+<li>请设计 WhatsApp。</li>
+<li>请设计 SnapChat。</li>
+<li>基于地理位置 App 的设计问题。</li>
+</ul>
+<h3 id="工具和技能"><a href="#工具和技能" class="headerlink" title="工具和技能"></a>工具和技能</h3><ul>
+<li>Git. <a target="_blank" rel="noopener" href="https://github.com/git-tips/tips">Link</a></li>
+<li>RxJava. <a target="_blank" rel="noopener" href="https://blog.mindorks.com/a-complete-guide-to-learn-rxjava-b55c0cea3631">Link</a></li>
+<li>Dagger 2. <a target="_blank" rel="noopener" href="https://medium.com/p/a-complete-guide-to-learn-dagger-2-b4c7a570d99c">Link</a></li>
+<li>Android 开发实用工具。 <a target="_blank" rel="noopener" href="https://blog.mindorks.com/android-development-useful-tools-fd73283e82e3">Link</a></li>
+<li>Firebase. <a target="_blank" rel="noopener" href="https://firebase.google.com/">Link</a></li>
+</ul>
+<h3 id="Android-测试驱动开发"><a href="#Android-测试驱动开发" class="headerlink" title="Android 测试驱动开发"></a>Android 测试驱动开发</h3><ul>
+<li>Espresso 是什么？ <a target="_blank" rel="noopener" href="https://developer.android.com/training/testing/ui-testing/espresso-testing.html">Link</a></li>
+<li>Robolectric 是什么？ <a target="_blank" rel="noopener" href="http://robolectric.org/">Link</a></li>
+<li>UI-Automator 是什么？ <a target="_blank" rel="noopener" href="https://developer.android.com/training/testing/ui-testing/uiautomator-testing.html">Link</a></li>
+<li>请解释一下单元测试。</li>
+<li>请解释一下设备化测试。</li>
+<li>你是否做过单元测试或者自动测试？</li>
+<li>为什么要使用 Mockito？ <a target="_blank" rel="noopener" href="http://site.mockito.org/">Link</a></li>
+<li>请描述一下 JUnit 测试。</li>
+</ul>
+<h3 id="其他"><a href="#其他" class="headerlink" title="其他"></a>其他</h3><ul>
+<li>描述一下 REST APIs 如何工作 ？</li>
+<li>描述一下 SQLite 。</li>
+<li>描述一下 数据库 。</li>
+<li>项目管理工具 - trello ，basecamp ，kanban ，jira ，asana 。</li>
+<li>关于构建系统 - gradle , ant , buck 。</li>
+<li>APK 逆向工程 。</li>
+<li>混淆器用于什么 ？</li>
+<li>什么是混淆？ 用于什么？ 如何压缩 ？</li>
+<li>如何构建你的发布版本的 APP ？</li>
+<li>如何面向特定用户群体更新应用程序版本 ？</li>
+<li>可以识别卸载我们的应用程序的用户吗 ？</li>
+<li>缩小 APK 的体积 。<a target="_blank" rel="noopener" href="https://blog.mindorks.com/how-to-reduce-apk-size-in-android-2f3713d2d662">Link</a></li>
+<li>Android 开发最佳实践 。<a target="_blank" rel="noopener" href="https://blog.mindorks.com/android-development-best-practices-83c94b027fd3">Link</a></li>
+<li>Android 代码风格和指南 。<a target="_blank" rel="noopener" href="https://blog.mindorks.com/android-code-style-and-guidelines-d5f80453d5c7">Link</a></li>
+<li>你尝试使用过 Kotlin 吗 ？<a target="_blank" rel="noopener" href="https://blog.mindorks.com/why-you-must-try-kotlin-for-android-development-e14d00c8084b">Link</a></li>
+<li>开发 Android 应用程序时应该连续测量哪些指标 ？<a target="_blank" rel="noopener" href="https://blog.mindorks.com/android-app-performance-metrics-a1176334186e">Link</a></li>
+</ul>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://example.com/2023/02/10/Android%E9%9D%A2%E8%AF%95%E9%A2%98%E5%8D%95/" data-id="cldy5bogb0003h0w93tas9g88" data-title="Android面试题单" class="article-share-link">Share</a>
+      
+      
+      
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2023/02/10/HashMap/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Newer</strong>
+      <div class="article-nav-title">
+        
+          HashMap
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2023/02/10/Android%20Studio%20%E4%BD%BF%E7%94%A8/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">Android Studio 使用</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+
+  
+    
+
+  
+    
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Archives</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/02/">February 2023</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/10/">October 2022</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Recent Posts</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2023/02/10/%E5%BC%80%E5%8F%91%E7%9A%84%E9%81%87%E5%88%B0%E7%9A%84bug/">开发的遇到的bug</a>
+          </li>
+        
+          <li>
+            <a href="/2023/02/10/%E5%85%B3%E4%BA%8Eitem%E7%82%B9%E5%87%BB%E4%BA%8B%E4%BB%B6%E5%A4%8D%E7%94%A8%E7%9A%84%E9%97%AE%E9%A2%98/">关于item点击事件复用的问题</a>
+          </li>
+        
+          <li>
+            <a href="/2023/02/10/%E5%85%B3%E4%BA%8EAndroid-View%E7%BB%98%E5%88%B6%E7%9A%84%E4%B8%80%E4%BA%9B%E9%97%AE%E9%A2%98/">关于Android View绘制的一些问题</a>
+          </li>
+        
+          <li>
+            <a href="/2023/02/10/%E5%8D%95%E4%BE%8B%E6%A8%A1%E5%BC%8F/">单例模式</a>
+          </li>
+        
+          <li>
+            <a href="/2023/02/10/UML%E7%B1%BB%E5%9B%BE%E5%92%8C%E7%B1%BB%E4%B8%8E%E7%B1%BB%E4%B9%8B%E9%97%B4%E7%9A%84%E5%85%B3%E7%B3%BB/">UML类图和类与类之间的关系</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      
+      &copy; 2023 John Doe<br>
+      Powered by <a href="https://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+
+<script src="/js/jquery-3.4.1.min.js"></script>
+
+
+
+  
+<script src="/fancybox/jquery.fancybox.min.js"></script>
+
+
+
+
+<script src="/js/script.js"></script>
+
+
+
+
+
+  </div>
+</body>
+</html>

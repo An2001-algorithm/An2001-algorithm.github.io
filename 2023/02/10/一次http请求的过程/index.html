@@ -1,0 +1,409 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  
+  <title>一次http请求的过程 | Hexo</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta name="description" content="一次http请求的过程 使用DNS域名解析 发起TCP的3次握手 建立TCP连接后发起http请求； 服务器响应http请求，浏览器得到返回response；  七层模型和五层模型七层模型  使用DNS域名解析使用域名的原因: 类比于用变量名代替地址, 使之有意义, 方便管理和记忆 域名服务器的分级ex: www.cs.android.com. .: 根域名  com: 顶级域名  android">
+<meta property="og:type" content="article">
+<meta property="og:title" content="一次http请求的过程">
+<meta property="og:url" content="http://example.com/2023/02/10/%E4%B8%80%E6%AC%A1http%E8%AF%B7%E6%B1%82%E7%9A%84%E8%BF%87%E7%A8%8B/index.html">
+<meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="一次http请求的过程 使用DNS域名解析 发起TCP的3次握手 建立TCP连接后发起http请求； 服务器响应http请求，浏览器得到返回response；  七层模型和五层模型七层模型  使用DNS域名解析使用域名的原因: 类比于用变量名代替地址, 使之有意义, 方便管理和记忆 域名服务器的分级ex: www.cs.android.com. .: 根域名  com: 顶级域名  android">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="https://pic1.zhimg.com/v2-2d62ba265be486cb94ab531912aa3b9c_r.jpg">
+<meta property="og:image" content="https://pic2.zhimg.com/80/v2-436927a69a3574532059a78623d3095d_720w.webp">
+<meta property="article:published_time" content="2023-02-10T06:26:44.287Z">
+<meta property="article:modified_time" content="2022-12-04T09:21:04.000Z">
+<meta property="article:author" content="John Doe">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://pic1.zhimg.com/v2-2d62ba265be486cb94ab531912aa3b9c_r.jpg">
+  
+    <link rel="alternate" href="/atom.xml" title="Hexo" type="application/atom+xml">
+  
+  
+    <link rel="shortcut icon" href="/favicon.png">
+  
+  
+    
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/typeface-source-code-pro@0.0.71/index.min.css">
+
+  
+  
+<link rel="stylesheet" href="/css/style.css">
+
+  
+    
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.min.css">
+
+  
+<meta name="generator" content="Hexo 6.3.0"></head>
+
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">Hexo</a>
+      </h1>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="Search"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://example.com"></form>
+      </div>
+    </div>
+  </div>
+</header>
+
+      <div class="outer">
+        <section id="main"><article id="post-一次http请求的过程" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-meta">
+    <a href="/2023/02/10/%E4%B8%80%E6%AC%A1http%E8%AF%B7%E6%B1%82%E7%9A%84%E8%BF%87%E7%A8%8B/" class="article-date">
+  <time class="dt-published" datetime="2023-02-10T06:26:44.287Z" itemprop="datePublished">2023-02-10</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="p-name article-title" itemprop="headline name">
+      一次http请求的过程
+    </h1>
+  
+
+      </header>
+    
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <h1 id="一次http请求的过程"><a href="#一次http请求的过程" class="headerlink" title="一次http请求的过程"></a>一次http请求的过程</h1><ul>
+<li>使用DNS域名解析</li>
+<li>发起TCP的3次握手</li>
+<li>建立TCP连接后发起<strong>http请求</strong>；</li>
+<li>服务器响应<strong>http请求</strong>，浏览器得到返回response；</li>
+</ul>
+<h2 id="七层模型和五层模型"><a href="#七层模型和五层模型" class="headerlink" title="七层模型和五层模型"></a>七层模型和五层模型</h2><h3 id="七层模型"><a href="#七层模型" class="headerlink" title="七层模型"></a>七层模型</h3><p><img src="https://pic1.zhimg.com/v2-2d62ba265be486cb94ab531912aa3b9c_r.jpg" alt="img"></p>
+<p><img src="https://pic2.zhimg.com/80/v2-436927a69a3574532059a78623d3095d_720w.webp" alt="img"></p>
+<h2 id="使用DNS域名解析"><a href="#使用DNS域名解析" class="headerlink" title="使用DNS域名解析"></a>使用DNS域名解析</h2><p>使用域名的原因: 类比于用变量名代替地址, 使之有意义, 方便管理和记忆</p>
+<h3 id="域名服务器的分级"><a href="#域名服务器的分级" class="headerlink" title="域名服务器的分级"></a>域名服务器的分级</h3><h4 id="ex-www-cs-android-com"><a href="#ex-www-cs-android-com" class="headerlink" title="ex: www.cs.android.com."></a>ex: <a target="_blank" rel="noopener" href="http://www.cs.android.com/">www.cs.android.com</a>.</h4><ul>
+<li><p>.: 根域名</p>
+</li>
+<li><p>com: 顶级域名</p>
+</li>
+<li><p>android: 一级域名</p>
+</li>
+<li><p>cs: 二级域名</p>
+</li>
+<li><p>www: 主机名</p>
+</li>
+</ul>
+<h3 id="解析的过程"><a href="#解析的过程" class="headerlink" title="解析的过程"></a>解析的过程</h3><ul>
+<li><p>非递归服务器只用来查询下一级域名的 IP 地址，然后返回给发起查询的服务器, 由发起查询的服务器进行下一步操作</p>
+</li>
+<li><p>递归 DNS 服务器则把分步骤的查询过程自动化，方便用户一次性得到结果</p>
+<p>它内部有缓存，可以保存以前查询的结果，下次再有人查询，就直接返回缓存里面的结果。所以它能加快查询，减轻源头 DNS 服务器的负担</p>
+</li>
+</ul>
+<h2 id="TCP的3次握手和4次挥手"><a href="#TCP的3次握手和4次挥手" class="headerlink" title="TCP的3次握手和4次挥手"></a>TCP的3次握手和4次挥手</h2><h3 id="三次握手"><a href="#三次握手" class="headerlink" title="三次握手"></a>三次握手</h3><h4 id="原因"><a href="#原因" class="headerlink" title="原因"></a>原因</h4><p>这个问题的本质是, 信道不可靠, 但是通信双发需要就某个问题达成一致. 而要解决这个问题, 无论你在消息中包含什么信息, 三次通信是理论上的最小值. 所以三次握手不是TCP本身的要求, 而是为了满足”在不可靠信道上可靠地传输信息”这一需求所导致的. </p>
+<p>客户端和服务端通信前要进行连接，“3次握手”的作用就是<code>双方都能明确自己和对方的收、发能力是正常的</code>。</p>
+<p><code>第一次握手</code>：客户端发送网络包，服务端收到了。这样服务端就能得出结论：客户端的发送能力、服务端的接收能力是正常的。</p>
+<p><code>第二次握手</code>：服务端发包，客户端收到了。这样客户端就能得出结论：服务端的接收、发送能力，客户端的接收、发送能力是正常的。 从客户端的视角来看，我接到了服务端发送过来的响应数据包，说明服务端接收到了我在第一次握手时发送的网络包，并且成功发送了响应数据包，这就说明，服务端的接收、发送能力正常。而另一方面，我收到了服务端的响应数据包，说明我第一次发送的网络包成功到达服务端，这样，我自己的发送和接收能力也是正常的。</p>
+<p><code>第三次握手</code>：客户端发包，服务端收到了。这样服务端就能得出结论：客户端的接收、发送能力，服务端的发送、接收能力是正常的。 第一、二次握手后，服务端并不知道客户端的接收能力以及自己的发送能力是否正常。而在第三次握手时，服务端收到了客户端对第二次握手作的回应。从服务端的角度，我在第二次握手时的响应数据发送出去了，客户端接收到了。所以，我的发送能力是正常的。而客户端的接收能力也是正常的。</p>
+<p>经历了上面的三次握手过程，客户端和服务端都确认了自己的接收、发送能力是正常的。之后就可以正常通信了。</p>
+<p>打电话: </p>
+<ol>
+<li>A-&gt;B: 歪, 可以听到吗</li>
+<li>B-&gt;A: 歪, 可以听到, 你可以听到吗</li>
+<li>A-&gt;B: 歪, 我也可以听到 </li>
+<li>开始交流</li>
+</ol>
+<h4 id="具体数据"><a href="#具体数据" class="headerlink" title="具体数据"></a>具体数据</h4><ol>
+<li>刚开始客户端和服务端都是处于关闭的状态，而且服务端一直处于监听的状态，时刻监听是否有建立连接的请求；</li>
+<li>当有客户端需要建立连接的时候就会发送一个确定连接的报文，此报文是同步报文SYN &#x3D; 1，并且会生成一个随机的序号 seq &#x3D; x，这是第一次握手；</li>
+<li>当服务端接收到请求连接报文的时候，会发送一个同步报文确认报文，此报文 SYN &#x3D; 1，并且 ACK &#x3D; 1，同时服务端也会随机生成一个 seq &#x3D; y，并将 ack 设置成 x + 1，回传给客户端，这是第二次握手；</li>
+<li>当客户端接收到服务端的 ACK 报文后，会回复一个 ACK 确认报文，用于确认确认报文已经收到，此报文 ACK &#x3D; 1，seq &#x3D; x + 1, ack &#x3D; y + 1，这是第三次握手；</li>
+</ol>
+<h3 id="四次挥手"><a href="#四次挥手" class="headerlink" title="四次挥手"></a>四次挥手</h3><h4 id="原因-1"><a href="#原因-1" class="headerlink" title="原因"></a>原因</h4><p>打电话: </p>
+<ol>
+<li>A-&gt;B: 我说完了, 我想挂了</li>
+<li>B-&gt;A: 好的, 我知道了,你别说了,  等我说完</li>
+<li>B-&gt;A: 好的, 我说完了, 可以挂了</li>
+<li>A-&gt;B: 我知道了, 挂了</li>
+<li>嘀嘀嘀~</li>
+</ol>
+<p>第一次挥手: 客户端发起关闭连接的请求给服务端；</p>
+<p>第二次挥手: 服务端收到关闭请求的时候可能这个时候数据还没发送完，所以服务端会先回复一个确认报文，表示自己知道客户端想要关闭连接了，但是因为数据还没传输完，所以还需要等待；</p>
+<p>第三次挥手: 当数据传输完了，服务端会主动发送一个 FIN 报文，告诉客户端，表示数据已经发送完了，服务端这边准备关闭连接了.</p>
+<p>第四次挥手: 当客户端收到服务端的 FIN 报文过后，会回复一个 ACK 报文，告诉服务端自己知道了，再等待一会就关闭连接。</p>
+<p>为什么握手要三次，挥手却要四次呢？</p>
+<ul>
+<li>那是因为握手的时候并没有数据传输，所以服务端的 SYN 和 ACK 报文可以一起发送，但是挥手的时候有数据在传输，所以 ACK 和 FIN 报文不能同时发送，需要分两步，所以会比握手多一步。</li>
+</ul>
+<h4 id="具体数据-1"><a href="#具体数据-1" class="headerlink" title="具体数据"></a>具体数据</h4><ol>
+<li>客户端发起 FIN 断开连接的报文，携带随机生成的 seq 值 u，发送给服务端，并且自己处于 FIN-WSIT 状态，这是第一次挥手；</li>
+<li>服务端接收到 FIN 报文后，回复一个确认报文，其中 ACK &#x3D; 1，随机生成一个 seq，以及 ack &#x3D; u + 1，这是第二次挥手；</li>
+<li>当服务端数据发送完了过后，再发送一个 FIN 报文给客户端，通知客户端，服务端准备关闭连接了，此报文 FIN &#x3D; 1，ACK &#x3D; 1，ack &#x3D; u + 1，seq &#x3D; w，这是第三次挥手；</li>
+<li>当客户端收到 FIN 确认报文时再发送一个FIN 的确认报文，其中 ACK &#x3D; 1，seq &#x3D; u + 1，ack &#x3D; w + 1，并进入 TIME-WAIT 状态，当等待 2MSL 后关闭连接，这是第四次挥手。</li>
+</ol>
+<h2 id="TCP和UDP的区别"><a href="#TCP和UDP的区别" class="headerlink" title="TCP和UDP的区别"></a>TCP和UDP的区别</h2><table>
+<thead>
+<tr>
+<th align="left"></th>
+<th align="left">UDP</th>
+<th align="left">TCP</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left">是否连接</td>
+<td align="left">无连接</td>
+<td align="left">面向连接</td>
+</tr>
+<tr>
+<td align="left">是否可靠</td>
+<td align="left">不可靠传输，不使用流量控制和拥塞控制</td>
+<td align="left">可靠传输，使用流量控制和拥塞控制</td>
+</tr>
+<tr>
+<td align="left">连接对象个数</td>
+<td align="left">支持一对一，一对多，多对一和多对多交互通信</td>
+<td align="left">只能是一对一通信</td>
+</tr>
+<tr>
+<td align="left">传输方式</td>
+<td align="left">面向报文</td>
+<td align="left">面向字节流</td>
+</tr>
+<tr>
+<td align="left">首部开销</td>
+<td align="left">首部开销小，仅8字节</td>
+<td align="left">首部最小20字节，最大60字节</td>
+</tr>
+<tr>
+<td align="left">适用场景</td>
+<td align="left">适用于实时应用（IP电话、视频会议、直播等）</td>
+<td align="left">适用于要求可靠传输的应用，例如文件传输</td>
+</tr>
+</tbody></table>
+<h2 id="路由协议有哪些"><a href="#路由协议有哪些" class="headerlink" title="路由协议有哪些"></a>路由协议有哪些</h2><h3 id="RIP"><a href="#RIP" class="headerlink" title="RIP"></a>RIP</h3><h3 id="OSPF"><a href="#OSPF" class="headerlink" title="OSPF"></a>OSPF</h3><h3 id="BGP"><a href="#BGP" class="headerlink" title="BGP"></a>BGP</h3><h2 id="Http协议概念"><a href="#Http协议概念" class="headerlink" title="Http协议概念"></a>Http协议概念</h2><h3 id="1-0"><a href="#1-0" class="headerlink" title="1.0"></a>1.0</h3><h3 id="1-1"><a href="#1-1" class="headerlink" title="1.1"></a>1.1</h3><h3 id="2-0"><a href="#2-0" class="headerlink" title="2.0"></a>2.0</h3><h3 id="3-0"><a href="#3-0" class="headerlink" title="3.0"></a>3.0</h3><h2 id="Socket的概念"><a href="#Socket的概念" class="headerlink" title="Socket的概念"></a>Socket的概念</h2><h2 id="WebSocket的概念"><a href="#WebSocket的概念" class="headerlink" title="WebSocket的概念"></a>WebSocket的概念</h2><h2 id="ARP协议"><a href="#ARP协议" class="headerlink" title="ARP协议"></a>ARP协议</h2><ol>
+<li>实现了局域网内ip到mac的映射</li>
+<li>不同局域网之间的主机通信, 使用host A—&gt;router,  …,  router—&gt;host B</li>
+<li>通过发送广播实现, 信息为目的ip, 局域网内符合与之吻合的主机回应, 返回mac地址, 源主机做本地缓存</li>
+</ol>
+<h2 id="NAT协议"><a href="#NAT协议" class="headerlink" title="NAT协议"></a>NAT协议</h2><ol>
+<li>实现了(公网ip, port) 到 (内网ip, port)的映射</li>
+<li>目的是解决ipv4地址不足的问题</li>
+</ol>
+<h3 id="问题"><a href="#问题" class="headerlink" title="问题"></a>问题</h3><ol>
+<li>NAT 无法从外部向内部服务器建立连接</li>
+<li>路由器应该只处理第3层功能</li>
+<li>违背端到端通信原则</li>
+</ol>
+<h2 id="面向连接和面向无连接"><a href="#面向连接和面向无连接" class="headerlink" title="面向连接和面向无连接"></a>面向连接和面向无连接</h2><ul>
+<li><p>无连接协议中的分组被称为数据报（datagram），每个分组都是独立寻址，并由应用程序发送的。从协议的角度来看，每个数据报都是一个独立的实体，与在两个相同的对等实体之间传送的任何其他数据报都没有关系</p>
+</li>
+<li><p>面向连接的协议则维护了分组之间的状态，使用这种协议的应用程序通常都会进行长期的对话。记住这些状态，协议就可以提供可靠的传输</p>
+</li>
+<li><p>典型的面向连接协议有三个阶段。第一阶段，在对等实体间<strong>建立连接</strong>。接下来是数据传输阶段，在这个阶段中，<strong>数据在对等实体间传输</strong>。最后，当对等实体完成数据传输时，<strong>连接被拆除</strong>。</p>
+</li>
+<li><p>一种标准的类比是：使用无连接协议就像寄信，而使用面向连接的协议就像打电话。</p>
+</li>
+</ul>
+<h2 id="HTTP-状态码"><a href="#HTTP-状态码" class="headerlink" title="HTTP 状态码"></a>HTTP 状态码</h2><p>响应分为五类：信息响应(100–199)，成功响应(200–299)，重定向(300–399)，客户端错误(400–499)和服务器错误 (500–599)</p>
+<table>
+<thead>
+<tr>
+<th>100</th>
+<th>Continue</th>
+<th>继续。客户端应继续其请求</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>200</td>
+<td>OK</td>
+<td>请求成功。一般用于GET与POST请求</td>
+</tr>
+<tr>
+<td>400</td>
+<td>Bad Request</td>
+<td>客户端请求的语法错误，服务器无法理解</td>
+</tr>
+<tr>
+<td>403</td>
+<td>Forbidden</td>
+<td>服务器理解请求客户端的请求，但是拒绝执行此请求</td>
+</tr>
+<tr>
+<td>404</td>
+<td>Not Found</td>
+<td>服务器无法根据客户端的请求找到资源（网页）</td>
+</tr>
+<tr>
+<td>408</td>
+<td>Request Time-out</td>
+<td>服务器等待客户端发送的请求时间过长，超时</td>
+</tr>
+<tr>
+<td>500</td>
+<td>Internal Server Error</td>
+<td>服务器内部错误，无法完成请求</td>
+</tr>
+<tr>
+<td>502</td>
+<td>Bad Gateway</td>
+<td>作为网关或者代理工作的服务器尝试执行请求时，从远程服务器接收到了一个无效的响应</td>
+</tr>
+</tbody></table>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://example.com/2023/02/10/%E4%B8%80%E6%AC%A1http%E8%AF%B7%E6%B1%82%E7%9A%84%E8%BF%87%E7%A8%8B/" data-id="cldy5bogg000ah0w925oi6qbk" data-title="一次http请求的过程" class="article-share-link">Share</a>
+      
+      
+      
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2023/02/10/%E7%BB%84%E5%86%85%E8%B6%A3%E4%BA%8B/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Newer</strong>
+      <div class="article-nav-title">
+        
+          组内趣事
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2023/02/10/%E4%BA%8B%E4%BB%B6%E5%88%86%E5%8F%91%E6%9C%BA%E5%88%B6/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">事件分发机制</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+
+  
+    
+
+  
+    
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Archives</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/02/">February 2023</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/10/">October 2022</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Recent Posts</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2023/02/10/%E5%BC%80%E5%8F%91%E7%9A%84%E9%81%87%E5%88%B0%E7%9A%84bug/">开发的遇到的bug</a>
+          </li>
+        
+          <li>
+            <a href="/2023/02/10/%E5%85%B3%E4%BA%8Eitem%E7%82%B9%E5%87%BB%E4%BA%8B%E4%BB%B6%E5%A4%8D%E7%94%A8%E7%9A%84%E9%97%AE%E9%A2%98/">关于item点击事件复用的问题</a>
+          </li>
+        
+          <li>
+            <a href="/2023/02/10/%E5%85%B3%E4%BA%8EAndroid-View%E7%BB%98%E5%88%B6%E7%9A%84%E4%B8%80%E4%BA%9B%E9%97%AE%E9%A2%98/">关于Android View绘制的一些问题</a>
+          </li>
+        
+          <li>
+            <a href="/2023/02/10/%E5%8D%95%E4%BE%8B%E6%A8%A1%E5%BC%8F/">单例模式</a>
+          </li>
+        
+          <li>
+            <a href="/2023/02/10/UML%E7%B1%BB%E5%9B%BE%E5%92%8C%E7%B1%BB%E4%B8%8E%E7%B1%BB%E4%B9%8B%E9%97%B4%E7%9A%84%E5%85%B3%E7%B3%BB/">UML类图和类与类之间的关系</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      
+      &copy; 2023 John Doe<br>
+      Powered by <a href="https://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+
+<script src="/js/jquery-3.4.1.min.js"></script>
+
+
+
+  
+<script src="/fancybox/jquery.fancybox.min.js"></script>
+
+
+
+
+<script src="/js/script.js"></script>
+
+
+
+
+
+  </div>
+</body>
+</html>

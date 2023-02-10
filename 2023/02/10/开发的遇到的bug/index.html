@@ -1,0 +1,254 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  
+  <title>开发的遇到的bug | Hexo</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta name="description" content="开发的遇到的bug设置lottie播放流程监听导致的bug用户反馈: 动画播放完成之后, 不能响应任何操作前置条件: 产品需求为动画播放完成之后才能响应用户操作解决流程: 查看用户反馈日志和截图, 显示用户在动画播放的界面显示之后没有任何操作  推断此时app不能响应用户操作  查看设备为huawei  ELE-AL00 Android 10  尝试复现, 未果  查看bugly, 该版本此界面确">
+<meta property="og:type" content="article">
+<meta property="og:title" content="开发的遇到的bug">
+<meta property="og:url" content="http://example.com/2023/02/10/%E5%BC%80%E5%8F%91%E7%9A%84%E9%81%87%E5%88%B0%E7%9A%84bug/index.html">
+<meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="开发的遇到的bug设置lottie播放流程监听导致的bug用户反馈: 动画播放完成之后, 不能响应任何操作前置条件: 产品需求为动画播放完成之后才能响应用户操作解决流程: 查看用户反馈日志和截图, 显示用户在动画播放的界面显示之后没有任何操作  推断此时app不能响应用户操作  查看设备为huawei  ELE-AL00 Android 10  尝试复现, 未果  查看bugly, 该版本此界面确">
+<meta property="og:locale" content="en_US">
+<meta property="article:published_time" content="2023-02-10T06:26:44.313Z">
+<meta property="article:modified_time" content="2022-10-28T04:52:46.000Z">
+<meta property="article:author" content="John Doe">
+<meta name="twitter:card" content="summary">
+  
+    <link rel="alternate" href="/atom.xml" title="Hexo" type="application/atom+xml">
+  
+  
+    <link rel="shortcut icon" href="/favicon.png">
+  
+  
+    
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/typeface-source-code-pro@0.0.71/index.min.css">
+
+  
+  
+<link rel="stylesheet" href="/css/style.css">
+
+  
+    
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.min.css">
+
+  
+<meta name="generator" content="Hexo 6.3.0"></head>
+
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">Hexo</a>
+      </h1>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="Search"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://example.com"></form>
+      </div>
+    </div>
+  </div>
+</header>
+
+      <div class="outer">
+        <section id="main"><article id="post-开发的遇到的bug" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-meta">
+    <a href="/2023/02/10/%E5%BC%80%E5%8F%91%E7%9A%84%E9%81%87%E5%88%B0%E7%9A%84bug/" class="article-date">
+  <time class="dt-published" datetime="2023-02-10T06:26:44.313Z" itemprop="datePublished">2023-02-10</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="p-name article-title" itemprop="headline name">
+      开发的遇到的bug
+    </h1>
+  
+
+      </header>
+    
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <h1 id="开发的遇到的bug"><a href="#开发的遇到的bug" class="headerlink" title="开发的遇到的bug"></a>开发的遇到的bug</h1><h2 id="设置lottie播放流程监听导致的bug"><a href="#设置lottie播放流程监听导致的bug" class="headerlink" title="设置lottie播放流程监听导致的bug"></a>设置lottie播放流程监听导致的bug</h2><h3 id="用户反馈-动画播放完成之后-不能响应任何操作"><a href="#用户反馈-动画播放完成之后-不能响应任何操作" class="headerlink" title="用户反馈: 动画播放完成之后, 不能响应任何操作"></a>用户反馈: 动画播放完成之后, 不能响应任何操作</h3><h3 id="前置条件-产品需求为动画播放完成之后才能响应用户操作"><a href="#前置条件-产品需求为动画播放完成之后才能响应用户操作" class="headerlink" title="前置条件: 产品需求为动画播放完成之后才能响应用户操作"></a>前置条件: 产品需求为动画播放完成之后才能响应用户操作</h3><h3 id="解决流程"><a href="#解决流程" class="headerlink" title="解决流程:"></a>解决流程:</h3><ol>
+<li><p>查看用户反馈日志和截图, 显示用户在动画播放的界面显示之后没有任何操作</p>
+</li>
+<li><p>推断此时app不能响应用户操作</p>
+</li>
+<li><p>查看设备为huawei  ELE-AL00 Android 10</p>
+</li>
+<li><p>尝试复现, 未果</p>
+</li>
+<li><p>查看bugly, 该版本此界面确有一个ANR上报, 推断是该ANR导致</p>
+</li>
+<li><p>修复掉该ANR</p>
+</li>
+<li><hr>
+</li>
+<li><p>更新版本之后, 仍有用户反馈</p>
+</li>
+<li><p>重新查看日志, 发现没有用户操作40s后, 又打印了一条日志, 断定不是ANR导致</p>
+</li>
+<li><p>园区饭后散步, 突发奇想是点击事件设定代码未执行, 进而怀疑是lottie监听播放流程的问题</p>
+</li>
+<li><p>回归代码, 对于监听播放完成, 采用的方式是animatedFraction &gt;&#x3D; 0.999999 查看源码</p>
+</li>
+<li><p>&#96;&#96;&#96;java<br> &#x2F;**<br>* Implementors of this interface can add themselves as update listeners<br>* to an <code>ValueAnimator</code> instance to receive callbacks on every  	 	  	  * animation frame, after the current frame’s values have been calculated for<br>* that <code>ValueAnimator</code>.<br>*&#x2F;</p>
+</li>
+</ol>
+<pre><code>```
+</code></pre>
+<ol start="13">
+<li><p>存在最后一帧小于0.999999 且播放完之后未进行回调的可能, 如此导致setOnClickListener未执行</p>
+</li>
+<li><p>改用addAnimatorListener(AnimatorListener) 修复掉该问题</p>
+</li>
+</ol>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://example.com/2023/02/10/%E5%BC%80%E5%8F%91%E7%9A%84%E9%81%87%E5%88%B0%E7%9A%84bug/" data-id="cldy5bogm000eh0w964b884c4" data-title="开发的遇到的bug" class="article-share-link">Share</a>
+      
+      
+      
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+  
+    <a href="/2023/02/10/%E5%85%B3%E4%BA%8Eitem%E7%82%B9%E5%87%BB%E4%BA%8B%E4%BB%B6%E5%A4%8D%E7%94%A8%E7%9A%84%E9%97%AE%E9%A2%98/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">关于item点击事件复用的问题</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+
+  
+    
+
+  
+    
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Archives</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/02/">February 2023</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/10/">October 2022</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Recent Posts</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2023/02/10/%E5%BC%80%E5%8F%91%E7%9A%84%E9%81%87%E5%88%B0%E7%9A%84bug/">开发的遇到的bug</a>
+          </li>
+        
+          <li>
+            <a href="/2023/02/10/%E5%85%B3%E4%BA%8Eitem%E7%82%B9%E5%87%BB%E4%BA%8B%E4%BB%B6%E5%A4%8D%E7%94%A8%E7%9A%84%E9%97%AE%E9%A2%98/">关于item点击事件复用的问题</a>
+          </li>
+        
+          <li>
+            <a href="/2023/02/10/%E5%85%B3%E4%BA%8EAndroid-View%E7%BB%98%E5%88%B6%E7%9A%84%E4%B8%80%E4%BA%9B%E9%97%AE%E9%A2%98/">关于Android View绘制的一些问题</a>
+          </li>
+        
+          <li>
+            <a href="/2023/02/10/%E5%8D%95%E4%BE%8B%E6%A8%A1%E5%BC%8F/">单例模式</a>
+          </li>
+        
+          <li>
+            <a href="/2023/02/10/UML%E7%B1%BB%E5%9B%BE%E5%92%8C%E7%B1%BB%E4%B8%8E%E7%B1%BB%E4%B9%8B%E9%97%B4%E7%9A%84%E5%85%B3%E7%B3%BB/">UML类图和类与类之间的关系</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      
+      &copy; 2023 John Doe<br>
+      Powered by <a href="https://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+
+<script src="/js/jquery-3.4.1.min.js"></script>
+
+
+
+  
+<script src="/fancybox/jquery.fancybox.min.js"></script>
+
+
+
+
+<script src="/js/script.js"></script>
+
+
+
+
+
+  </div>
+</body>
+</html>
