@@ -1,617 +1,886 @@
 <!DOCTYPE html>
-<html lang="cn">
+<html>
 <head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-    <meta name="keywords" content="Hexo Theme Keep">
-    <meta name="description" content="Hexo Theme Keep">
-    <meta name="author" content="Keep Team">
-    
-    <title>
-        
-        Keep Theme
-    </title>
-    
+  <meta charset="utf-8">
+  
+
+  
+  <title>Hexo</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  
+  
+  
+  <meta property="og:type" content="website">
+<meta property="og:title" content="Hexo">
+<meta property="og:url" content="http://example.com/index.html">
+<meta property="og:site_name" content="Hexo">
+<meta property="og:locale">
+<meta property="article:author" content="John Doe">
+<meta name="twitter:card" content="summary">
+  
+    <link rel="alternate" href="/atom.xml" title="Hexo" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/images/default-avatar.jpg">
+  
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  
 <link rel="stylesheet" href="/css/style.css">
 
-    <link rel="shortcut icon" href="/images/logo.svg">
-    
-<link rel="stylesheet" href="/font/css/fontawesome.min.css">
+  
+<link rel="stylesheet" href="/css/highlight.css">
 
-    
-<link rel="stylesheet" href="/font/css/regular.min.css">
-
-    
-<link rel="stylesheet" href="/font/css/solid.min.css">
-
-    
-<link rel="stylesheet" href="/font/css/brands.min.css">
-
-    <script id="hexo-configurations">
-    let KEEP = window.KEEP || {}
-    KEEP.hexo_config = {"hostname":"example.com","root":"/","language":"cn"}
-    KEEP.theme_config = {"toc":{"enable":false,"number":false,"expand_all":false,"init_open":false},"style":{"primary_color":"#0066cc","logo":"/images/logo.svg","favicon":"/images/logo.svg","avatar":"/images/avatar.svg","font_size":null,"font_family":null,"hover":{"shadow":false,"scale":false},"first_screen":{"enable":false,"header_transparent":false,"background_img":"/images/bg.svg","description":"Keep writing and Keep loving.","font_color":null,"hitokoto":false},"scroll":{"progress_bar":false,"percent":false}},"local_search":{"enable":false,"preload":false},"code_copy":{},"code_block":{"tools":{"enable":false,"style":"default"},"highlight_theme":"default"},"side_tools":{},"pjax":{"enable":false},"lazyload":{"enable":false},"comment":{"enable":false,"use":"valine","valine":{"appid":null,"appkey":null,"server_urls":null,"placeholder":null},"gitalk":{"github_id":null,"github_admins":null,"repository":null,"client_id":null,"client_secret":null,"proxy":null},"twikoo":{"env_id":null,"region":null,"version":"1.6.8"},"waline":{"server_url":null,"reaction":false,"version":2}},"post":{"author_label":{"enable":true,"auto":true,"custom_label_list":["Trainee","Engineer","Architect"]},"word_count":{"enable":false,"wordcount":false,"min2read":false},"img_align":"left","copyright_info":false},"version":"3.6.1"}
-    KEEP.language_ago = {"second":"%s seconds ago","minute":"%s minutes ago","hour":"%s hours ago","day":"%s days ago","week":"%s weeks ago","month":"%s months ago","year":"%s years ago"}
-    KEEP.language_code_block = {"copy":"Copy code","copied":"Copied","fold":"Fold code block","folded":"Folded"}
-    KEEP.language_copy_copyright = {"copy":"Copy copyright info","copied":"Copied","title":"Original article title","author":"Original article author","link":"Original article link"}
-  </script>
 <meta name="generator" content="Hexo 6.3.0"></head>
 
-
 <body>
-<div class="progress-bar-container">
+  <div id="fullpage" class="mobile-nav-right">
     
-
+      <div id="wrapper" title="图片来自网络">
     
-</div>
-
-
-<main class="page-container">
-
     
-
-    <div class="page-main-content is-home">
-
-        <div class="page-main-content-top">
-            
-<header class="header-wrapper">
-
-    <div class="header-content">
-        <div class="left">
-            
-                <a class="logo-image" href="/">
-                    <img src="/images/logo.svg">
-                </a>
-            
-            <a class="logo-title" href="/">
-               Keep Theme
-            </a>
-        </div>
-
-        <div class="right">
-            <div class="pc">
-                <ul class="menu-list">
-                    
-                        <li class="menu-item">
-                            <a class="active"
-                               href="/"
-                            >
-                                首頁
-                            </a>
-                        </li>
-                    
-                        <li class="menu-item">
-                            <a class=""
-                               href="/archives"
-                            >
-                                歸檔
-                            </a>
-                        </li>
-                    
-                    
-                </ul>
-            </div>
-            <div class="mobile">
-                
-                <div class="icon-item menu-bar">
-                    <div class="menu-bar-middle"></div>
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <div class="header-drawer">
-        <ul class="drawer-menu-list">
-            
-                <li class="drawer-menu-item flex-center">
-                    <a class="active"
-                       href="/">首頁</a>
-                </li>
-            
-                <li class="drawer-menu-item flex-center">
-                    <a class=""
-                       href="/archives">歸檔</a>
-                </li>
-            
-        </ul>
-    </div>
-
-    <div class="window-mask"></div>
-
+      <header id="header">
+  <div id="nav-toggle" class="nav-toggle"></div>
+  <div class="head-box global-width">
+    <nav class="nav-box nav-right">
+      
+        <a class="nav-item" href="/" title
+        
+        >首页</a>
+      
+        <a class="nav-item" href="/archives" title
+        
+        >归档</a>
+      
+    </nav>
+  </div>
 </header>
+      <div id="middlecontent" title class="global-width sidebar-right">
+        <section id="main">
+  
+    <article id="post-开发的遇到的bug" class="article global-container article-type-post" itemscope itemprop="blogPost">
+  
+    <header class="article-header">
+      
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2023/02/10/%E5%BC%80%E5%8F%91%E7%9A%84%E9%81%87%E5%88%B0%E7%9A%84bug/">开发的遇到的bug</a>
+    </h1>
+  
 
+    </header>
+  
+  <div class="article-meta">
+    <a href="/2023/02/10/%E5%BC%80%E5%8F%91%E7%9A%84%E9%81%87%E5%88%B0%E7%9A%84bug/" class="article-date">
+  <time datetime="2023-02-10T06:26:44.313Z" itemprop="datePublished">2023-02-10</time>
+</a>
+    
+    
+  </div>
+  
 
-        </div>
+  <div class="article-inner">
+    
+    <div class="article-content article-content-cloud" itemprop="articleBody">
+      
+        <h1 id="开发的遇到的bug"><a href="#开发的遇到的bug" class="headerlink" title="开发的遇到的bug"></a>开发的遇到的bug</h1><h2 id="设置lottie播放流程监听导致的bug"><a href="#设置lottie播放流程监听导致的bug" class="headerlink" title="设置lottie播放流程监听导致的bug"></a>设置lottie播放流程监听导致的bug</h2><h3 id="用户反馈-动画播放完成之后-不能响应任何操作"><a href="#用户反馈-动画播放完成之后-不能响应任何操作" class="headerlink" title="用户反馈: 动画播放完成之后, 不能响应任何操作"></a>用户反馈: 动画播放完成之后, 不能响应任何操作</h3><h3 id="前置条件-产品需求为动画播放完成之后才能响应用户操作"><a href="#前置条件-产品需求为动画播放完成之后才能响应用户操作" class="headerlink" title="前置条件: 产品需求为动画播放完成之后才能响应用户操作"></a>前置条件: 产品需求为动画播放完成之后才能响应用户操作</h3><h3 id="解决流程"><a href="#解决流程" class="headerlink" title="解决流程:"></a>解决流程:</h3><ol>
+<li><p>查看用户反馈日志和截图, 显示用户在动画播放的界面显示之后没有任何操作</p>
+</li>
+<li><p>推断此时app不能响应用户操作</p>
+</li>
+<li><p>查看设备为huawei  ELE-AL00 Android 10</p>
+</li>
+<li><p>尝试复现, 未果</p>
+</li>
+<li><p>查看bugly, 该版本此界面确有一个ANR上报, 推断是该ANR导致</p>
+</li>
+<li><p>修复掉该ANR</p>
+</li>
+<li><hr>
+</li>
+<li><p>更新版本之后, 仍有用户反馈</p>
+</li>
+<li><p>重新查看日志, 发现没有用户操作40s后, 又打印了一条日志, 断定不是ANR导致</p>
+</li>
+<li><p>园区饭后散步, 突发奇想是点击事件设定代码未执行, 进而怀疑是lottie监听播放流程的问题</p>
+</li>
+<li><p>回归代码, 对于监听播放完成, 采用的方式是animatedFraction &gt;&#x3D; 0.999999 查看源码</p>
+</li>
+<li><p>&#96;&#96;&#96;java<br> &#x2F;**<br>* Implementors of this interface can add themselves as update listeners<br>* to an <code>ValueAnimator</code> instance to receive callbacks on every  	 	  	  * animation frame, after the current frame’s values have been calculated for<br>* that <code>ValueAnimator</code>.<br>*&#x2F;</p>
+</li>
+</ol>
+<pre><code>```
+</code></pre>
+<ol start="13">
+<li><p>存在最后一帧小于0.999999 且播放完之后未进行回调的可能, 如此导致setOnClickListener未执行</p>
+</li>
+<li><p>改用addAnimatorListener(AnimatorListener) 修复掉该问题</p>
+</li>
+</ol>
 
-        <div class="page-main-content-middle">
-
-            <div class="main-content">
-
-                
-                    <div class="home-content-container fade-in-down-animation">
-    <ul class="home-article-list">
-        
-            <li class="home-article-item">
-
-                
-
-                <h3 class="home-article-title">
-                    <a href="/2023/02/10/%E5%BC%80%E5%8F%91%E7%9A%84%E9%81%87%E5%88%B0%E7%9A%84bug/">
-                        开发的遇到的bug
-                    </a>
-                </h3>
-
-                <div class="home-article-content keep-markdown-body">
-                    
-                        开发的遇到的bug设置lottie播放流程监听导致的bug用户反馈: 动画播放完成之后, 不能响应任何操作前置条件: 产品需求为动画播放完成之后才能响应用户操作解决流程:
-查看用户反馈日志和截图, 显示用户在动画播放的界面显示之后没有任何操作
-
-推断...
-                    
-                </div>
-
-                <div class="home-article-meta-info-container">
-    <div class="home-article-meta-info">
-        <span>
-            <i class="fas fa-history"></i>&nbsp;
-            <span class="home-article-date" data-updated="Fri Oct 28 2022 12:52:46 GMT+0800">
-                2022-10-28
-            </span>
-        </span>
-        
-        
+      
     </div>
+    
+  </div>
+  
+  
+</article>
 
-    <a class="read-more" href="/2023/02/10/%E5%BC%80%E5%8F%91%E7%9A%84%E9%81%87%E5%88%B0%E7%9A%84bug/">繼續閱讀...&nbsp;<i class="fas fa-angle-right"></i></a>
+  
+    <article id="post-关于item点击事件复用的问题" class="article global-container article-type-post" itemscope itemprop="blogPost">
+  
+    <header class="article-header">
+      
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2023/02/10/%E5%85%B3%E4%BA%8Eitem%E7%82%B9%E5%87%BB%E4%BA%8B%E4%BB%B6%E5%A4%8D%E7%94%A8%E7%9A%84%E9%97%AE%E9%A2%98/">关于item点击事件复用的问题</a>
+    </h1>
+  
+
+    </header>
+  
+  <div class="article-meta">
+    <a href="/2023/02/10/%E5%85%B3%E4%BA%8Eitem%E7%82%B9%E5%87%BB%E4%BA%8B%E4%BB%B6%E5%A4%8D%E7%94%A8%E7%9A%84%E9%97%AE%E9%A2%98/" class="article-date">
+  <time datetime="2023-02-10T06:26:44.310Z" itemprop="datePublished">2023-02-10</time>
+</a>
+    
+    
+  </div>
+  
+
+  <div class="article-inner">
+    
+    <div class="article-content article-content-cloud" itemprop="articleBody">
+      
+        <h1 id="关于item点击事件复用的问题"><a href="#关于item点击事件复用的问题" class="headerlink" title="关于item点击事件复用的问题"></a>关于item点击事件复用的问题</h1><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * Obtain a view initialized for the given position.</span></span><br><span class="line"><span class="comment"> *</span></span><br><span class="line"><span class="comment"> * This method should be used by &#123;<span class="doctag">@link</span> LayoutManager&#125; implementations to obtain</span></span><br><span class="line"><span class="comment"> * views to represent data from an &#123;<span class="doctag">@link</span> Adapter&#125;.</span></span><br><span class="line"><span class="comment"> * &lt;p&gt;</span></span><br><span class="line"><span class="comment"> * The Recycler may reuse a scrap or detached view from a shared pool if one is</span></span><br><span class="line"><span class="comment"> * available for the correct view type. If the adapter has not indicated that the</span></span><br><span class="line"><span class="comment"> * data at the given position has changed, the Recycler will attempt to hand back</span></span><br><span class="line"><span class="comment"> * a scrap view that was previously initialized for that data without rebinding.</span></span><br><span class="line"><span class="comment"> *</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@param</span> position Position to obtain a view for</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@return</span> A view representing the data at &lt;code&gt;position&lt;/code&gt; from &lt;code&gt;adapter&lt;/code&gt;</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="meta">@NonNull</span></span><br><span class="line"><span class="keyword">public</span> View <span class="title function_">getViewForPosition</span><span class="params">(<span class="type">int</span> position)</span> &#123;</span><br><span class="line">    <span class="keyword">return</span> getViewForPosition(position, <span class="literal">false</span>);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">View <span class="title function_">getViewForPosition</span><span class="params">(<span class="type">int</span> position, <span class="type">boolean</span> dryRun)</span> &#123;</span><br><span class="line">    <span class="keyword">return</span> tryGetViewHolderForPositionByDeadline(position, dryRun, FOREVER_NS).itemView;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br></pre></td><td class="code"><pre><span class="line">ViewHolder <span class="title function_">tryGetViewHolderForPositionByDeadline</span><span class="params">(<span class="type">int</span> position,</span></span><br><span class="line"><span class="params">                                                   <span class="type">boolean</span> dryRun, <span class="type">long</span> deadlineNs)</span> &#123;</span><br><span class="line"></span><br><span class="line">      <span class="comment">// 0) If there is a changed scrap, try to find from there</span></span><br><span class="line">      <span class="keyword">if</span> (mState.isPreLayout()) &#123;</span><br><span class="line">          holder = getChangedScrapViewForPosition(position);</span><br><span class="line">          fromScrapOrHiddenOrCache = holder != <span class="literal">null</span>;</span><br><span class="line">      &#125;</span><br><span class="line"></span><br><span class="line">      <span class="comment">// 1) Find by position from scrap/hidden list/cache</span></span><br><span class="line">      holder = getScrapOrHiddenOrCachedHolderForPosition(position, dryRun);</span><br><span class="line">      holder = getScrapOrCachedViewForId(mAdapter.getItemId(offsetPosition),</span><br><span class="line">              type, dryRun);</span><br><span class="line">    </span><br><span class="line">    	<span class="comment">// 2)</span></span><br><span class="line">      <span class="keyword">if</span> (holder == <span class="literal">null</span> &amp;&amp; mViewCacheExtension != <span class="literal">null</span>) &#123;</span><br><span class="line">          <span class="keyword">final</span> <span class="type">View</span> <span class="variable">view</span> <span class="operator">=</span> mViewCacheExtension</span><br><span class="line">                  .getViewForPositionAndType(<span class="built_in">this</span>, position, type);</span><br><span class="line">          <span class="keyword">if</span> (view != <span class="literal">null</span>) &#123;</span><br><span class="line">              holder = getChildViewHolder(view);</span><br><span class="line">          &#125;</span><br><span class="line">      &#125;</span><br><span class="line">    </span><br><span class="line">    	<span class="comment">// 3)</span></span><br><span class="line">      <span class="keyword">if</span> (holder == <span class="literal">null</span>) &#123; <span class="comment">// fallback to pool</span></span><br><span class="line">          holder = getRecycledViewPool().getRecycledView(type);</span><br><span class="line">      &#125;</span><br><span class="line">    </span><br><span class="line">    	<span class="comment">// 4)</span></span><br><span class="line">      <span class="keyword">if</span> (holder == <span class="literal">null</span>) &#123;</span><br><span class="line">          <span class="type">long</span> <span class="variable">start</span> <span class="operator">=</span> getNanoTime();</span><br><span class="line">          holder = mAdapter.createViewHolder(RecyclerView.<span class="built_in">this</span>, type);</span><br><span class="line">          <span class="type">long</span> <span class="variable">end</span> <span class="operator">=</span> getNanoTime();</span><br><span class="line">          mRecyclerPool.factorInCreateTime(type, end - start);</span><br><span class="line">      &#125;</span><br><span class="line">  </span><br><span class="line"></span><br><span class="line">      <span class="keyword">return</span> holder;</span><br><span class="line">  &#125;</span><br></pre></td></tr></table></figure>
+
+<ol start="2">
+<li><p>mState.isPreLayout() 在有动画时返回true, 一般为false</p>
+<p>当为true时, 进入getChangedScrapViewForPosition(position) 方法</p>
+</li>
+</ol>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br></pre></td><td class="code"><pre><span class="line">ViewHolder <span class="title function_">getChangedScrapViewForPosition</span><span class="params">(<span class="type">int</span> position)</span> &#123;</span><br><span class="line">    <span class="comment">// If pre-layout, check the changed scrap for an exact match.</span></span><br><span class="line">    <span class="keyword">final</span> <span class="type">int</span> changedScrapSize;</span><br><span class="line">    <span class="keyword">if</span> (mChangedScrap == <span class="literal">null</span> || (changedScrapSize = mChangedScrap.size()) == <span class="number">0</span>) &#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="literal">null</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="comment">// find by position</span></span><br><span class="line">    <span class="keyword">for</span> (<span class="type">int</span> <span class="variable">i</span> <span class="operator">=</span> <span class="number">0</span>; i &lt; changedScrapSize; i++) &#123;</span><br><span class="line">        <span class="keyword">final</span> <span class="type">ViewHolder</span> <span class="variable">holder</span> <span class="operator">=</span> mChangedScrap.get(i);</span><br><span class="line">        <span class="keyword">if</span> (!holder.wasReturnedFromScrap() &amp;&amp; holder.getLayoutPosition() == position) &#123;</span><br><span class="line">            holder.addFlags(ViewHolder.FLAG_RETURNED_FROM_SCRAP);</span><br><span class="line">            <span class="keyword">return</span> holder;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="comment">// find by id</span></span><br><span class="line">    <span class="keyword">if</span> (mAdapter.hasStableIds()) &#123;</span><br><span class="line">        <span class="keyword">final</span> <span class="type">int</span> <span class="variable">offsetPosition</span> <span class="operator">=</span> mAdapterHelper.findPositionOffset(position);</span><br><span class="line">        <span class="keyword">if</span> (offsetPosition &gt; <span class="number">0</span> &amp;&amp; offsetPosition &lt; mAdapter.getItemCount()) &#123;</span><br><span class="line">            <span class="keyword">final</span> <span class="type">long</span> <span class="variable">id</span> <span class="operator">=</span> mAdapter.getItemId(offsetPosition);</span><br><span class="line">            <span class="keyword">for</span> (<span class="type">int</span> <span class="variable">i</span> <span class="operator">=</span> <span class="number">0</span>; i &lt; changedScrapSize; i++) &#123;</span><br><span class="line">                <span class="keyword">final</span> <span class="type">ViewHolder</span> <span class="variable">holder</span> <span class="operator">=</span> mChangedScrap.get(i);</span><br><span class="line">                <span class="keyword">if</span> (!holder.wasReturnedFromScrap() &amp;&amp; holder.getItemId() == id) &#123;</span><br><span class="line">                    holder.addFlags(ViewHolder.FLAG_RETURNED_FROM_SCRAP);</span><br><span class="line">                    <span class="keyword">return</span> holder;</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> <span class="literal">null</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<ol start="3">
+<li>可以看到有两种查找viewHolder的方法, 如果position没有变动,  就可以根据位置找到, 有变动, 需要根据id查找, 都没有返回null</li>
+</ol>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">holder = getScrapOrHiddenOrCachedHolderForPosition(position, dryRun);</span><br><span class="line">holder = getScrapOrCachedViewForId(mAdapter.getItemId(offsetPosition), type, dryRun);</span><br></pre></td></tr></table></figure>
+
+<ol start="4">
+<li><p>这里进入第1种获取viewHolder的方法, 先进入了getScrapOrHiddenOrCachedHolderForPosition(position, dryRun)方法</p>
+<p>大概意思是根据位置从mAttachedScrap中的viewHolder 和 mHiddenViews中的view查找复用</p>
+<p>然后根据id查找复用</p>
+</li>
+</ol>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 2)</span></span><br><span class="line"><span class="keyword">if</span> (holder == <span class="literal">null</span> &amp;&amp; mViewCacheExtension != <span class="literal">null</span>) &#123;</span><br><span class="line">    <span class="keyword">final</span> <span class="type">View</span> <span class="variable">view</span> <span class="operator">=</span> mViewCacheExtension</span><br><span class="line">        .getViewForPositionAndType(<span class="built_in">this</span>, position, type);</span><br><span class="line">    <span class="keyword">if</span> (view != <span class="literal">null</span>) &#123;</span><br><span class="line">        holder = getChildViewHolder(view);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<ol start="5">
+<li>第二级缓存, 判断自定义缓存是否为空, 没有则使用自定义缓存</li>
+</ol>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 3)</span></span><br><span class="line"><span class="keyword">if</span> (holder == <span class="literal">null</span>) &#123; <span class="comment">// fallback to pool</span></span><br><span class="line">    holder = getRecycledViewPool().getRecycledView(type);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<ol start="6">
+<li>三级缓存, 缓存池</li>
+</ol>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 4)</span></span><br><span class="line">       <span class="keyword">if</span> (holder == <span class="literal">null</span>) &#123;</span><br><span class="line">           <span class="type">long</span> <span class="variable">start</span> <span class="operator">=</span> getNanoTime();</span><br><span class="line">           holder = mAdapter.createViewHolder(RecyclerView.<span class="built_in">this</span>, type);</span><br><span class="line">           <span class="type">long</span> <span class="variable">end</span> <span class="operator">=</span> getNanoTime();</span><br><span class="line">           mRecyclerPool.factorInCreateTime(type, end - start);</span><br><span class="line">       &#125;</span><br></pre></td></tr></table></figure>
+
+<ol start="7">
+<li>最后, 都没有, 则使用createViewHolder建立新的viewHolder</li>
+</ol>
+
+      
+    </div>
+    
+  </div>
+  
+  
+</article>
+
+  
+    <article id="post-关于Android-View绘制的一些问题" class="article global-container article-type-post" itemscope itemprop="blogPost">
+  
+    <header class="article-header">
+      
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2023/02/10/%E5%85%B3%E4%BA%8EAndroid-View%E7%BB%98%E5%88%B6%E7%9A%84%E4%B8%80%E4%BA%9B%E9%97%AE%E9%A2%98/">关于Android View绘制的一些问题</a>
+    </h1>
+  
+
+    </header>
+  
+  <div class="article-meta">
+    <a href="/2023/02/10/%E5%85%B3%E4%BA%8EAndroid-View%E7%BB%98%E5%88%B6%E7%9A%84%E4%B8%80%E4%BA%9B%E9%97%AE%E9%A2%98/" class="article-date">
+  <time datetime="2023-02-10T06:26:44.309Z" itemprop="datePublished">2023-02-10</time>
+</a>
+    
+    
+  </div>
+  
+
+  <div class="article-inner">
+    
+    <div class="article-content article-content-cloud" itemprop="articleBody">
+      
+        <h1 id="关于Android-View绘制的一些问题"><a href="#关于Android-View绘制的一些问题" class="headerlink" title="关于Android View绘制的一些问题"></a>关于Android View绘制的一些问题</h1><h2 id="View-getY不准确的问题"><a href="#View-getY不准确的问题" class="headerlink" title="View.getY不准确的问题"></a>View.getY不准确的问题</h2><p>view的getY方法是获取的view相对于父布局的y坐标</p>
+<p>​	</p>
+<h2 id="view-width获取为0的问题"><a href="#view-width获取为0的问题" class="headerlink" title="view.width获取为0的问题"></a>view.width获取为0的问题</h2><ol>
+<li>xml中设置visibility 为 invisible时, 在view.post中可获得width</li>
+<li>xml中设置visibility 为 gone时, 在view.post中不能获得width, 需要在post前, 设置为visible才能获取</li>
+</ol>
+
+      
+    </div>
+    
+  </div>
+  
+  
+</article>
+
+  
+    <article id="post-单例模式" class="article global-container article-type-post" itemscope itemprop="blogPost">
+  
+    <header class="article-header">
+      
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2023/02/10/%E5%8D%95%E4%BE%8B%E6%A8%A1%E5%BC%8F/">单例模式</a>
+    </h1>
+  
+
+    </header>
+  
+  <div class="article-meta">
+    <a href="/2023/02/10/%E5%8D%95%E4%BE%8B%E6%A8%A1%E5%BC%8F/" class="article-date">
+  <time datetime="2023-02-10T06:26:44.307Z" itemprop="datePublished">2023-02-10</time>
+</a>
+    
+    
+  </div>
+  
+
+  <div class="article-inner">
+    
+    <div class="article-content article-content-cloud" itemprop="articleBody">
+      
+        <h1 id="单例模式"><a href="#单例模式" class="headerlink" title="单例模式"></a>单例模式</h1><p>3.静态内部类模式：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">SingleTon</span>&#123;</span><br><span class="line">  <span class="keyword">private</span> <span class="title function_">SingleTon</span><span class="params">()</span>&#123;&#125;</span><br><span class="line"></span><br><span class="line">  <span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">class</span> <span class="title class_">SingleTonHoler</span>&#123;</span><br><span class="line">     <span class="keyword">private</span> <span class="keyword">static</span> <span class="type">SingleTon</span> <span class="variable">INSTANCE</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">SingleTon</span>();</span><br><span class="line"> &#125;</span><br><span class="line"></span><br><span class="line">  <span class="keyword">public</span> <span class="keyword">static</span> SingleTon <span class="title function_">getInstance</span><span class="params">()</span>&#123;</span><br><span class="line">    <span class="keyword">return</span> SingleTonHoler.INSTANCE;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>静态内部类的优点是：外部类加载时并不需要立即加载内部类，内部类不被加载则不去初始化INSTANCE，故而不占内存。即当SingleTon第一次被加载时，并不需要去加载SingleTonHoler，只有当getInstance()方法第一次被调用时，才会去初始化INSTANCE,第一次调用getInstance()方法会导致虚拟机加载SingleTonHoler类，这种方法不仅能确保线程安全，也能保证单例的唯一性，同时也延迟了单例的实例化。</p>
+<p>那么，静态内部类又是如何实现线程安全的呢？首先，我们先了解下类的加载时机。</p>
+<p>类加载时机：JAVA虚拟机在有且仅有的5种场景下会对类进行初始化。<br>1.遇到new、getstatic、setstatic或者invokestatic这4个字节码指令时，对应的java代码场景为：new一个关键字或者一个实例化对象时、读取或设置一个静态字段时(final修饰、已在编译期把结果放入常量池的除外)、调用一个类的静态方法时。<br>2.使用java.lang.reflect包的方法对类进行反射调用的时候，如果类没进行初始化，需要先调用其初始化方法进行初始化。<br>3.当初始化一个类时，如果其父类还未进行初始化，会先触发其父类的初始化。<br>4.当虚拟机启动时，用户需要指定一个要执行的主类(包含main()方法的类)，虚拟机会先初始化这个类。<br>5.当使用JDK 1.7等动态语言支持时，如果一个java.lang.invoke.MethodHandle实例最后的解析结果REF_getStatic、REF_putStatic、REF_invokeStatic的方法句柄，并且这个方法句柄所对应的类没有进行过初始化，则需要先触发其初始化。<br>这5种情况被称为是类的主动引用，注意，这里《虚拟机规范》中使用的限定词是”有且仅有”，那么，除此之外的所有引用类都不会对类进行初始化，称为被动引用。静态内部类就属于被动引用的行列。</p>
+<p>我们再回头看下getInstance()方法，调用的是SingleTonHoler.INSTANCE，取的是SingleTonHoler里的INSTANCE对象，跟上面那个DCL方法不同的是，getInstance()方法并没有多次去new对象，故不管多少个线程去调用getInstance()方法，取的都是同一个INSTANCE对象，而不用去重新创建。当getInstance()方法被调用时，SingleTonHoler才在SingleTon的运行时常量池里，把符号引用替换为直接引用，这时静态对象INSTANCE也真正被创建，然后再被getInstance()方法返回出去，这点同饿汉模式。那么INSTANCE在创建过程中又是如何保证线程安全的呢？在《深入理解JAVA虚拟机》中，有这么一句话:</p>
+<p> <strong>虚拟机会保证一个类的<clinit>()方法在多线程环境中被正确地加锁、同步，如果多个线程同时去初始化一个类，那么只会有一个线程去执行这个类的<clinit>()方法，其他线程都需要阻塞等待，直到活动线程执行<clinit>()方法完毕。如果在一个类的<clinit>()方法中有耗时很长的操作，就可能造成多个进程阻塞(需要注意的是，其他线程虽然会被阻塞，但如果执行<clinit>()方法后，其他线程唤醒之后不会再次进入<clinit>()方法。同一个加载器下，一个类型只会初始化一次。)，在实际应用中，这种阻塞往往是很隐蔽的。</strong></p>
+<p>故而，可以看出INSTANCE在创建过程中是线程安全的，所以说静态内部类形式的单例可保证线程安全，也能保证单例的唯一性，同时也延迟了单例的实例化。</p>
+<p>那么，是不是可以说静态内部类单例就是最完美的单例模式了呢？其实不然，静态内部类也有着一个致命的缺点，就是传参的问题，由于是静态内部类的形式去创建单例的，故外部无法传递参数进去，例如Context这种参数，所以，我们创建单例时，可以在静态内部类与DCL模式里自己斟酌。<br>————————————————<br>版权声明：本文为CSDN博主「走着不语」的原创文章，遵循CC 4.0 BY-SA版权协议，转载请附上原文出处链接及本声明。<br>原文链接：<a target="_blank" rel="noopener" href="https://blog.csdn.net/mnb65482/article/details/80458571">https://blog.csdn.net/mnb65482/article/details/80458571</a></p>
+
+      
+    </div>
+    
+  </div>
+  
+  
+</article>
+
+  
+    <article id="post-UML类图和类与类之间的关系" class="article global-container article-type-post" itemscope itemprop="blogPost">
+  
+    <header class="article-header">
+      
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2023/02/10/UML%E7%B1%BB%E5%9B%BE%E5%92%8C%E7%B1%BB%E4%B8%8E%E7%B1%BB%E4%B9%8B%E9%97%B4%E7%9A%84%E5%85%B3%E7%B3%BB/">UML类图和类与类之间的关系</a>
+    </h1>
+  
+
+    </header>
+  
+  <div class="article-meta">
+    <a href="/2023/02/10/UML%E7%B1%BB%E5%9B%BE%E5%92%8C%E7%B1%BB%E4%B8%8E%E7%B1%BB%E4%B9%8B%E9%97%B4%E7%9A%84%E5%85%B3%E7%B3%BB/" class="article-date">
+  <time datetime="2023-02-10T06:26:44.303Z" itemprop="datePublished">2023-02-10</time>
+</a>
+    
+    
+  </div>
+  
+
+  <div class="article-inner">
+    
+    <div class="article-content article-content-cloud" itemprop="articleBody">
+      
+        <h1 id="UML类图和类与类之间的关系"><a href="#UML类图和类与类之间的关系" class="headerlink" title="UML类图和类与类之间的关系"></a>UML类图和类与类之间的关系</h1><ul>
+<li>继承 : 实线 + 三角</li>
+<li>实现接口: 虚线 + 三角</li>
+<li>聚合: list 和 item 的关系, 空心菱形 + 实线 + 箭头(&gt;)</li>
+<li>组合: 鸟和翅膀的关系, 对象持有对象, 生命周期一致, 实心空心菱形 + 实线 + 箭头(&gt;)</li>
+<li>关联: 对象相关, 有影响即可, 人和手机, 实线 + 箭头(&gt;)</li>
+</ul>
+<img src="C:\Users\anjiaheng01\AppData\Roaming\Typora\typora-user-images\image-20221212174316529.png" alt="image-20221212174316529" style="zoom:67%;" />
+      
+    </div>
+    
+  </div>
+  
+  
+</article>
+
+  
+    <article id="post-TCP可靠性的保证" class="article global-container article-type-post" itemscope itemprop="blogPost">
+  
+    <header class="article-header">
+      
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2023/02/10/TCP%E5%8F%AF%E9%9D%A0%E6%80%A7%E7%9A%84%E4%BF%9D%E8%AF%81/">TCP可靠性的保证</a>
+    </h1>
+  
+
+    </header>
+  
+  <div class="article-meta">
+    <a href="/2023/02/10/TCP%E5%8F%AF%E9%9D%A0%E6%80%A7%E7%9A%84%E4%BF%9D%E8%AF%81/" class="article-date">
+  <time datetime="2023-02-10T06:26:44.301Z" itemprop="datePublished">2023-02-10</time>
+</a>
+    
+    
+  </div>
+  
+
+  <div class="article-inner">
+    
+    <div class="article-content article-content-cloud" itemprop="articleBody">
+      
+        <h1 id="TCP可靠性的保证"><a href="#TCP可靠性的保证" class="headerlink" title="TCP可靠性的保证"></a>TCP可靠性的保证</h1><p><a target="_blank" rel="noopener" href="https://cloud.tencent.com/developer/article/1819844">https://cloud.tencent.com/developer/article/1819844</a></p>
+<p><a target="_blank" rel="noopener" href="https://segmentfault.com/a/1190000022944999">https://segmentfault.com/a/1190000022944999</a></p>
+<p><a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/37379780">https://zhuanlan.zhihu.com/p/37379780</a></p>
+
+      
+    </div>
+    
+  </div>
+  
+  
+</article>
+
+  
+    <article id="post-okHttp3的源码分析" class="article global-container article-type-post" itemscope itemprop="blogPost">
+  
+    <header class="article-header">
+      
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2023/02/10/okHttp3%E7%9A%84%E6%BA%90%E7%A0%81%E5%88%86%E6%9E%90/">okHttp3的源码分析</a>
+    </h1>
+  
+
+    </header>
+  
+  <div class="article-meta">
+    <a href="/2023/02/10/okHttp3%E7%9A%84%E6%BA%90%E7%A0%81%E5%88%86%E6%9E%90/" class="article-date">
+  <time datetime="2023-02-10T06:26:44.299Z" itemprop="datePublished">2023-02-10</time>
+</a>
+    
+    
+  </div>
+  
+
+  <div class="article-inner">
+    
+    <div class="article-content article-content-cloud" itemprop="articleBody">
+      
+        <h1 id="okHttp3的源码分析"><a href="#okHttp3的源码分析" class="headerlink" title="okHttp3的源码分析"></a>okHttp3的源码分析</h1><h2 id="简述"><a href="#简述" class="headerlink" title="简述"></a>简述</h2><p>同步与异步请求, 都在RealCall中实现, 分别描述</p>
+<h2 id="异步请求"><a href="#异步请求" class="headerlink" title="异步请求"></a>异步请求</h2><p>​			入口代码如下</p>
+<figure class="highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">override</span> <span class="function"><span class="keyword">fun</span> <span class="title">enqueue</span><span class="params">(responseCallback: <span class="type">Callback</span>)</span></span> &#123;</span><br><span class="line">  check(executed.compareAndSet(<span class="literal">false</span>, <span class="literal">true</span>)) &#123; <span class="string">&quot;Already Executed&quot;</span> &#125;</span><br><span class="line">  callStart()</span><br><span class="line">    </span><br><span class="line">  client.dispatcher.enqueue(AsyncCall(responseCallback))</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<ol>
+<li>check(executed.compareAndSet(false, true)) { “Already Executed” } 检测是否执行过当前请求, executed is a AtomicBoolean</li>
+<li>callStart()方法调用了eventListener.callStart(this), 实现callStart的监听回调</li>
+<li>调用了enqueue()方法, 将传入的callback, 传入到AsyncCall中, 此类是RealCall的一个内部类, 实现了Runnable接口, 这里先查看enqueue方法</li>
+</ol>
+<figure class="highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">internal</span> <span class="function"><span class="keyword">fun</span> <span class="title">enqueue</span><span class="params">(call: <span class="type">AsyncCall</span>)</span></span> &#123;</span><br><span class="line">  synchronized(<span class="keyword">this</span>) &#123;</span><br><span class="line">    readyAsyncCalls.add(call)</span><br><span class="line"></span><br><span class="line">    <span class="keyword">if</span> (!call.call.forWebSocket) &#123;</span><br><span class="line">      <span class="keyword">val</span> existingCall = findExistingCallWithHost(call.host)</span><br><span class="line">      <span class="keyword">if</span> (existingCall != <span class="literal">null</span>) call.reuseCallsPerHostFrom(existingCall)</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">  promoteAndExecute()</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<ol start="4">
+<li>这里可以看到, 传入的AsyncCall进入了一个队列readyAsyncCalls, 这是已经准备好, 可以开始运行的请求队列</li>
+<li>if代码块, 是对相同host的请求的复用</li>
+<li>promoteAndExecute()是对call的执行, 查看此方法, 这里去除了非重点代码</li>
+</ol>
+<figure class="highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">private</span> <span class="function"><span class="keyword">fun</span> <span class="title">promoteAndExecute</span><span class="params">()</span></span>: <span class="built_in">Boolean</span> &#123;</span><br><span class="line">  <span class="keyword">this</span>.assertThreadDoesntHoldLock()</span><br><span class="line"> <span class="comment">//...  </span></span><br><span class="line">  <span class="keyword">val</span> executableCalls = mutableListOf&lt;AsyncCall&gt;()</span><br><span class="line">  synchronized(<span class="keyword">this</span>) &#123;</span><br><span class="line">    <span class="keyword">val</span> i = readyAsyncCalls.iterator()</span><br><span class="line">    <span class="keyword">while</span> (i.hasNext()) &#123;</span><br><span class="line">      <span class="keyword">val</span> asyncCall = i.next()</span><br><span class="line">      i.remove()</span><br><span class="line">      asyncCall.callsPerHost.incrementAndGet()</span><br><span class="line">      <span class="comment">//...  </span></span><br><span class="line">      executableCalls.add(asyncCall)</span><br><span class="line">      runningAsyncCalls.add(asyncCall)</span><br><span class="line">      <span class="comment">//...   </span></span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="keyword">for</span> (i <span class="keyword">in</span> <span class="number">0</span> until executableCalls.size) &#123;</span><br><span class="line">    <span class="keyword">val</span> asyncCall = executableCalls[i]</span><br><span class="line">    asyncCall.executeOn(executorService)</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="keyword">return</span> isRunning</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<ol start="7">
+<li>主要思路是用迭代器遍历整个readyAsyncCalls队列, 不断取出, 并放入executableCalls列表和runningAsyncCalls队列</li>
+<li>runningAsyncCalls用于记录正在运行的请求</li>
+<li>executableCalls在下方for循环中调用了asyncCall.executeOn(executorService), 调用了线程池的execute方法, 间接执行之前传入的AsyncCall的run方法, run方法实现如下</li>
+</ol>
+<figure class="highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">override</span> <span class="function"><span class="keyword">fun</span> <span class="title">run</span><span class="params">()</span></span> &#123;</span><br><span class="line">  threadName(<span class="string">&quot;OkHttp <span class="subst">$&#123;redactedUrl()&#125;</span>&quot;</span>) &#123;</span><br><span class="line">    <span class="keyword">var</span> signalledCallback = <span class="literal">false</span></span><br><span class="line">    timeout.enter()</span><br><span class="line">    <span class="keyword">try</span> &#123;</span><br><span class="line">      <span class="keyword">val</span> response = getResponseWithInterceptorChain()</span><br><span class="line">      signalledCallback = <span class="literal">true</span></span><br><span class="line">      responseCallback.onResponse(<span class="keyword">this</span><span class="symbol">@RealCall</span>, response)</span><br><span class="line">    &#125; <span class="keyword">catch</span> (e: IOException) &#123;</span><br><span class="line">      <span class="keyword">if</span> (signalledCallback) &#123;</span><br><span class="line">        <span class="comment">// Do not signal the callback twice!</span></span><br><span class="line">        Platform.<span class="keyword">get</span>().log(<span class="string">&quot;Callback failure for <span class="subst">$&#123;toLoggableString()&#125;</span>&quot;</span>, Platform.INFO, e)</span><br><span class="line">      &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">        responseCallback.onFailure(<span class="keyword">this</span><span class="symbol">@RealCall</span>, e)</span><br><span class="line">      &#125;</span><br><span class="line">    &#125; <span class="keyword">catch</span> (t: Throwable) &#123;</span><br><span class="line">      cancel()</span><br><span class="line">      <span class="keyword">if</span> (!signalledCallback) &#123;</span><br><span class="line">        <span class="keyword">val</span> canceledException = IOException(<span class="string">&quot;canceled due to <span class="variable">$t</span>&quot;</span>)</span><br><span class="line">        canceledException.addSuppressed(t)</span><br><span class="line">        responseCallback.onFailure(<span class="keyword">this</span><span class="symbol">@RealCall</span>, canceledException)</span><br><span class="line">      &#125;</span><br><span class="line">      <span class="keyword">throw</span> t</span><br><span class="line">    &#125; <span class="keyword">finally</span> &#123;</span><br><span class="line">      client.dispatcher.finished(<span class="keyword">this</span>)</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<ol start="10">
+<li>执行了getResponseWithInterceptorChain方法获取response, 这里告一段落, 后面分析此方法</li>
+</ol>
+<h2 id="同步请求"><a href="#同步请求" class="headerlink" title="同步请求"></a>同步请求</h2><p>​			入口代码如下</p>
+<figure class="highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">override</span> <span class="function"><span class="keyword">fun</span> <span class="title">execute</span><span class="params">()</span></span>: Response &#123;</span><br><span class="line">  check(executed.compareAndSet(<span class="literal">false</span>, <span class="literal">true</span>)) &#123; <span class="string">&quot;Already Executed&quot;</span> &#125;</span><br><span class="line"></span><br><span class="line">  timeout.enter()</span><br><span class="line">  callStart()</span><br><span class="line">  <span class="keyword">try</span> &#123;</span><br><span class="line">    client.dispatcher.executed(<span class="keyword">this</span>)</span><br><span class="line">    <span class="keyword">return</span> getResponseWithInterceptorChain()</span><br><span class="line">  &#125; <span class="keyword">finally</span> &#123;</span><br><span class="line">    client.dispatcher.finished(<span class="keyword">this</span>)</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<ol>
+<li>check(executed.compareAndSet(false, true)) { “Already Executed” } 和异步请求同样的检测是否执行过</li>
+<li>callStart()与异步请求同样的, 是请求开始的回调</li>
+<li>client.dispatcher.executed(this), 实现如下, 同步请求是直接加入runningSyncCalls队列的</li>
+</ol>
+<figure class="highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/** Used by [Call.execute] to signal it is in-flight. */</span></span><br><span class="line"><span class="meta">@Synchronized</span> <span class="keyword">internal</span> <span class="function"><span class="keyword">fun</span> <span class="title">executed</span><span class="params">(call: <span class="type">RealCall</span>)</span></span> &#123;</span><br><span class="line">  runningSyncCalls.add(call)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<ol start="4">
+<li>最后同样执行了getResponseWithInterceptorChain方法返回response, 与异步请求统一起来, 下面查看此方法</li>
+</ol>
+<h2 id="getResponseWithInterceptorChain的分析"><a href="#getResponseWithInterceptorChain的分析" class="headerlink" title="getResponseWithInterceptorChain的分析"></a>getResponseWithInterceptorChain的分析</h2><figure class="highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Throws(IOException::class)</span></span><br><span class="line"><span class="keyword">internal</span> <span class="function"><span class="keyword">fun</span> <span class="title">getResponseWithInterceptorChain</span><span class="params">()</span></span>: Response &#123;</span><br><span class="line">  <span class="comment">// Build a full stack of interceptors.</span></span><br><span class="line">  <span class="keyword">val</span> interceptors = mutableListOf&lt;Interceptor&gt;()</span><br><span class="line">  interceptors += client.interceptors</span><br><span class="line">  interceptors += RetryAndFollowUpInterceptor(client)</span><br><span class="line">  interceptors += BridgeInterceptor(client.cookieJar)</span><br><span class="line">  interceptors += CacheInterceptor(client.cache)</span><br><span class="line">  interceptors += ConnectInterceptor</span><br><span class="line">  <span class="keyword">if</span> (!forWebSocket) &#123;</span><br><span class="line">    interceptors += client.networkInterceptors</span><br><span class="line">  &#125;</span><br><span class="line">  interceptors += CallServerInterceptor(forWebSocket)</span><br><span class="line"></span><br><span class="line">  <span class="keyword">val</span> chain = RealInterceptorChain(</span><br><span class="line">      call = <span class="keyword">this</span>,</span><br><span class="line">      interceptors = interceptors,</span><br><span class="line">      index = <span class="number">0</span>,</span><br><span class="line">      exchange = <span class="literal">null</span>,</span><br><span class="line">      request = originalRequest,</span><br><span class="line">      connectTimeoutMillis = client.connectTimeoutMillis,</span><br><span class="line">      readTimeoutMillis = client.readTimeoutMillis,</span><br><span class="line">      writeTimeoutMillis = client.writeTimeoutMillis</span><br><span class="line">  )</span><br><span class="line"></span><br><span class="line">  <span class="keyword">var</span> calledNoMoreExchanges = <span class="literal">false</span></span><br><span class="line">  <span class="keyword">try</span> &#123;</span><br><span class="line">    <span class="keyword">val</span> response = chain.proceed(originalRequest)</span><br><span class="line">    <span class="keyword">if</span> (isCanceled()) &#123;</span><br><span class="line">      response.closeQuietly()</span><br><span class="line">      <span class="keyword">throw</span> IOException(<span class="string">&quot;Canceled&quot;</span>)</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> response</span><br><span class="line">  &#125; <span class="keyword">catch</span> (e: IOException) &#123;</span><br><span class="line">    calledNoMoreExchanges = <span class="literal">true</span></span><br><span class="line">    <span class="keyword">throw</span> noMoreExchanges(e) <span class="keyword">as</span> Throwable</span><br><span class="line">  &#125; <span class="keyword">finally</span> &#123;</span><br><span class="line">    <span class="keyword">if</span> (!calledNoMoreExchanges) &#123;</span><br><span class="line">      noMoreExchanges(<span class="literal">null</span>)</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<ol>
+<li>构建了一个Interceptor(拦截器)的ArrayList</li>
+<li>依次添加各种Interceptor</li>
+<li>生成一个RealInterceptorChain</li>
+<li>执行了RealInterceptorChain.proceed方法, 来获取response</li>
+<li>这里是一个责任链模式的典型使用, 下面分析责任链中每一个对象的职责</li>
+</ol>
+<h2 id="ConnectInterceptor分析"><a href="#ConnectInterceptor分析" class="headerlink" title="ConnectInterceptor分析"></a>ConnectInterceptor分析</h2><figure class="highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">object</span> ConnectInterceptor : Interceptor &#123;</span><br><span class="line">  <span class="meta">@Throws(IOException::class)</span></span><br><span class="line">  <span class="keyword">override</span> <span class="function"><span class="keyword">fun</span> <span class="title">intercept</span><span class="params">(chain: <span class="type">Interceptor</span>.<span class="type">Chain</span>)</span></span>: Response &#123;</span><br><span class="line">    <span class="keyword">val</span> realChain = chain <span class="keyword">as</span> RealInterceptorChain</span><br><span class="line">    <span class="keyword">val</span> exchange = realChain.call.initExchange(chain)</span><br><span class="line">    <span class="keyword">val</span> connectedChain = realChain.copy(exchange = exchange)</span><br><span class="line">    <span class="keyword">return</span> connectedChain.proceed(realChain.request)</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<ol>
+<li>initExchange()方法会调用exchangeFinder.find(client, chain), 进而调用以下方法</li>
+</ol>
+<figure class="highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Throws(SocketException::class)</span></span><br><span class="line"><span class="keyword">internal</span> <span class="function"><span class="keyword">fun</span> <span class="title">newCodec</span><span class="params">(client: <span class="type">OkHttpClient</span>, chain: <span class="type">RealInterceptorChain</span>)</span></span>: ExchangeCodec &#123;</span><br><span class="line">  <span class="keyword">val</span> socket = <span class="keyword">this</span>.socket!!</span><br><span class="line">  <span class="keyword">val</span> source = <span class="keyword">this</span>.source!!</span><br><span class="line">  <span class="keyword">val</span> sink = <span class="keyword">this</span>.sink!!</span><br><span class="line">  <span class="keyword">val</span> http2Connection = <span class="keyword">this</span>.http2Connection</span><br><span class="line"></span><br><span class="line">  <span class="keyword">return</span> <span class="keyword">if</span> (http2Connection != <span class="literal">null</span>) &#123;</span><br><span class="line">    Http2ExchangeCodec(client, <span class="keyword">this</span>, chain, http2Connection)</span><br><span class="line">  &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">    socket.soTimeout = chain.readTimeoutMillis()</span><br><span class="line">    source.timeout().timeout(chain.readTimeoutMillis.toLong(), MILLISECONDS)</span><br><span class="line">    sink.timeout().timeout(chain.writeTimeoutMillis.toLong(), MILLISECONDS)</span><br><span class="line">    Http1ExchangeCodec(client, <span class="keyword">this</span>, source, sink)</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<ol start="2">
+<li>这里可以看到,  在不同情况下, 会建立Http2ExchangeCodec 或 Http1ExchangeCodec的对象</li>
+<li>注意这里的source和sink, 这是数据传输的buffer, 在建立连接后, sink用于数据发送, source用于数据获取</li>
+<li>对于Http1ExchangeCodec, 是直接传入了source 和 sink</li>
+<li>对于Http2ExchangeCodec, 传入了http2Connection, 此对象建立过程如下</li>
+</ol>
+<figure class="highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Throws(IOException::class)</span></span><br><span class="line"><span class="keyword">private</span> <span class="function"><span class="keyword">fun</span> <span class="title">startHttp2</span><span class="params">(pingIntervalMillis: <span class="type">Int</span>)</span></span> &#123;</span><br><span class="line">  <span class="keyword">val</span> socket = <span class="keyword">this</span>.socket!!</span><br><span class="line">  <span class="keyword">val</span> source = <span class="keyword">this</span>.source!!</span><br><span class="line">  <span class="keyword">val</span> sink = <span class="keyword">this</span>.sink!!</span><br><span class="line">  socket.soTimeout = <span class="number">0</span> <span class="comment">// HTTP/2 connection timeouts are set per-stream.</span></span><br><span class="line">  <span class="keyword">val</span> http2Connection = Http2Connection.Builder(client = <span class="literal">true</span>, taskRunner = TaskRunner.INSTANCE)</span><br><span class="line">      .socket(socket, route.address.url.host, source, sink)</span><br><span class="line">      .listener(<span class="keyword">this</span>)</span><br><span class="line">      .pingIntervalMillis(pingIntervalMillis)</span><br><span class="line">      .build()</span><br><span class="line">  <span class="keyword">this</span>.http2Connection = http2Connection</span><br><span class="line">  <span class="keyword">this</span>.allocationLimit = Http2Connection.DEFAULT_SETTINGS.getMaxConcurrentStreams()</span><br><span class="line">  http2Connection.start()</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<ol start="6">
+<li>可以看出http2Connection对象的建立过程中也是传入了source 和 sink</li>
+<li>而source 和 sink在connectSocket方法中, 是被rawSocket的source 和 sink的buffer赋值的</li>
+</ol>
+<figure class="highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">private</span> <span class="function"><span class="keyword">fun</span> <span class="title">connectSocket</span><span class="params">(</span></span></span><br><span class="line"><span class="params"><span class="function">  connectTimeout: <span class="type">Int</span>,</span></span></span><br><span class="line"><span class="params"><span class="function">  readTimeout: <span class="type">Int</span>,</span></span></span><br><span class="line"><span class="params"><span class="function">  call: <span class="type">Call</span>,</span></span></span><br><span class="line"><span class="params"><span class="function">  eventListener: <span class="type">EventListener</span></span></span></span><br><span class="line"><span class="params"><span class="function">)</span></span> &#123;</span><br><span class="line">  <span class="keyword">val</span> proxy = route.proxy</span><br><span class="line">  <span class="keyword">val</span> address = route.address</span><br><span class="line"></span><br><span class="line">  <span class="keyword">val</span> rawSocket = <span class="keyword">when</span> (proxy.type()) &#123;</span><br><span class="line">    Proxy.Type.DIRECT, Proxy.Type.HTTP -&gt; address.socketFactory.createSocket()!!</span><br><span class="line">    <span class="keyword">else</span> -&gt; Socket(proxy)</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="keyword">this</span>.rawSocket = rawSocket</span><br><span class="line"></span><br><span class="line">  eventListener.connectStart(call, route.socketAddress, proxy)</span><br><span class="line">  rawSocket.soTimeout = readTimeout</span><br><span class="line">  <span class="keyword">try</span> &#123;</span><br><span class="line">    Platform.<span class="keyword">get</span>().connectSocket(rawSocket, route.socketAddress, connectTimeout)</span><br><span class="line">  &#125; <span class="keyword">catch</span> (e: ConnectException) &#123;</span><br><span class="line">    <span class="keyword">throw</span> ConnectException(<span class="string">&quot;Failed to connect to <span class="subst">$&#123;route.socketAddress&#125;</span>&quot;</span>).apply &#123;</span><br><span class="line">      initCause(e)</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="comment">// The following try/catch block is a pseudo hacky way to get around a crash on Android 7.0</span></span><br><span class="line">  <span class="comment">// More details:</span></span><br><span class="line">  <span class="comment">// https://github.com/square/okhttp/issues/3245</span></span><br><span class="line">  <span class="comment">// https://android-review.googlesource.com/#/c/271775/</span></span><br><span class="line">  <span class="keyword">try</span> &#123;</span><br><span class="line">    source = rawSocket.source().buffer()</span><br><span class="line">    sink = rawSocket.sink().buffer()</span><br><span class="line">  &#125; <span class="keyword">catch</span> (npe: NullPointerException) &#123;</span><br><span class="line">    <span class="keyword">if</span> (npe.message == NPE_THROW_WITH_NULL) &#123;</span><br><span class="line">      <span class="keyword">throw</span> IOException(npe)</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<ol start="8">
+<li>因此, 到这里Http2ExchangeCodec和Http1ExchangeCodec都持有了source 和 sink两个对象</li>
+</ol>
+<h2 id="CallServerInterceptor分析"><a href="#CallServerInterceptor分析" class="headerlink" title="CallServerInterceptor分析"></a>CallServerInterceptor分析</h2><figure class="highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/** This is the last interceptor in the chain. It makes a network call to the server. */</span></span><br><span class="line"><span class="keyword">class</span> <span class="title class_">CallServerInterceptor</span>(<span class="keyword">private</span> <span class="keyword">val</span> forWebSocket: <span class="built_in">Boolean</span>) : Interceptor &#123;</span><br><span class="line">    <span class="keyword">override</span> <span class="function"><span class="keyword">fun</span> <span class="title">intercept</span><span class="params">(chain: <span class="type">Interceptor</span>.<span class="type">Chain</span>)</span></span>: Response &#123;</span><br><span class="line">        <span class="comment">//...</span></span><br><span class="line">        exchange.writeRequestHeaders(request)</span><br><span class="line">        <span class="comment">//...</span></span><br><span class="line">        requestBody.writeTo(bufferedRequestBody)</span><br><span class="line">        <span class="comment">//...</span></span><br><span class="line">        exchange.responseHeadersStart()</span><br><span class="line">        <span class="comment">//...</span></span><br><span class="line">        <span class="keyword">var</span> response = responseBuilder</span><br><span class="line">            .request(request)</span><br><span class="line">            .handshake(exchange.connection.handshake())</span><br><span class="line">            .sentRequestAtMillis(sentRequestMillis)</span><br><span class="line">            .receivedResponseAtMillis(System.currentTimeMillis())</span><br><span class="line">            .build()</span><br><span class="line">        <span class="comment">//...</span></span><br><span class="line">        response.newBuilder()</span><br><span class="line">            .body(exchange.openResponseBody(response))</span><br><span class="line">            .build()</span><br><span class="line">        <span class="comment">//...</span></span><br><span class="line">        <span class="keyword">return</span> response</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<ol>
+<li>CallServerInterceptor是责任链的最后一个拦截器, 实现了请求的发送和数据的获取, 只保留了下面要分析的代码</li>
+<li>exchange.writeRequestHeaders(request)发送headers</li>
+<li>requestBody.writeTo(bufferedRequestBody)发送body</li>
+<li>exchange.responseHeadersStart()在获取返回数据的headers</li>
+<li>exchange.openResponseBody(response)在获取返回数据的body部分</li>
+<li>这里的发送或者读取都是通过source 和 sink对象实现的</li>
+<li>查看openResponseBody的实现</li>
+</ol>
+<h2 id="杂项"><a href="#杂项" class="headerlink" title="杂项"></a>杂项</h2><figure class="highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">internal</span> <span class="keyword">inline</span> <span class="function"><span class="keyword">fun</span> Buffer.<span class="title">commonWrite</span><span class="params">(</span></span></span><br><span class="line"><span class="params"><span class="function">        source: <span class="type">ByteArray</span>, offset: <span class="type">Int</span>, byteCount: <span class="type">Int</span>)</span></span>: Buffer &#123;</span><br><span class="line">    <span class="keyword">var</span> offset = offset</span><br><span class="line">    checkOffsetAndCount(source.size.toLong(), offset.toLong(), byteCount.toLong())</span><br><span class="line"></span><br><span class="line">    <span class="keyword">val</span> limit = offset + byteCount</span><br><span class="line">    <span class="keyword">while</span> (offset &lt; limit) &#123;</span><br><span class="line">        <span class="comment">//这里获取了一个列表, 因此数据是得到保存的</span></span><br><span class="line">        <span class="keyword">val</span> tail = writableSegment(<span class="number">1</span>)</span><br><span class="line"></span><br><span class="line">        <span class="keyword">val</span> toCopy = minOf(limit - offset, Segment.SIZE - tail.limit)</span><br><span class="line">        source.copyInto(destination = tail.<span class="keyword">data</span>, destinationOffset = tail.limit,</span><br><span class="line">                startIndex = offset, endIndex = offset + toCopy)</span><br><span class="line"></span><br><span class="line">        offset += toCopy</span><br><span class="line">        tail.limit += toCopy</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    size += byteCount.toLong()</span><br><span class="line">    <span class="keyword">return</span> <span class="keyword">this</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p><img src="C:\Users\anjiaheng01\AppData\Roaming\Typora\typora-user-images\image-20221118170518051.png" alt="okio中有趣的代码"></p>
+
+      
+    </div>
+    
+  </div>
+  
+  
+</article>
+
+  
+    <article id="post-HashMap" class="article global-container article-type-post" itemscope itemprop="blogPost">
+  
+    <header class="article-header">
+      
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2023/02/10/HashMap/">HashMap</a>
+    </h1>
+  
+
+    </header>
+  
+  <div class="article-meta">
+    <a href="/2023/02/10/HashMap/" class="article-date">
+  <time datetime="2023-02-10T06:26:44.298Z" itemprop="datePublished">2023-02-10</time>
+</a>
+    
+    
+  </div>
+  
+
+  <div class="article-inner">
+    
+    <div class="article-content article-content-cloud" itemprop="articleBody">
+      
+        <h1 id="HashMap"><a href="#HashMap" class="headerlink" title="HashMap"></a>HashMap</h1>
+      
+    </div>
+    
+  </div>
+  
+  
+</article>
+
+  
+    <article id="post-Android面试题单" class="article global-container article-type-post" itemscope itemprop="blogPost">
+  
+    <header class="article-header">
+      
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2023/02/10/Android%E9%9D%A2%E8%AF%95%E9%A2%98%E5%8D%95/">Android面试题单</a>
+    </h1>
+  
+
+    </header>
+  
+  <div class="article-meta">
+    <a href="/2023/02/10/Android%E9%9D%A2%E8%AF%95%E9%A2%98%E5%8D%95/" class="article-date">
+  <time datetime="2023-02-10T06:26:44.295Z" itemprop="datePublished">2023-02-10</time>
+</a>
+    
+    
+  </div>
+  
+
+  <div class="article-inner">
+    
+    <div class="article-content article-content-cloud" itemprop="articleBody">
+      
+        <h1 id="Android面试题单"><a href="#Android面试题单" class="headerlink" title="Android面试题单"></a>Android面试题单</h1><ul>
+<li>Service 与 IntentService 的区别。<a target="_blank" rel="noopener" href="https://stackoverflow.com/a/15772151/5153275">Link</a></li>
+<li>Android 应用的结构是什么？</li>
+<li>Android 应用中如何保存数据。</li>
+<li>如何在 Android 应用中执行耗时操作。</li>
+<li>两个 Fragment 之间如何通信。</li>
+<li>阐述一下 Android 的通知系统。</li>
+<li>两个不同的 app 之间如何交互。</li>
+<li>什么是 Fragment？</li>
+<li>为什么建议只使用默认的构造方法来创建 Fragment？<a target="_blank" rel="noopener" href="https://stackoverflow.com/a/16042750/2809326">Link</a></li>
+<li>为什么 Bundle 被用来传递数据，为什么不能使用简单的 Map 数据结构？</li>
+<li>阐述一下 Fragment 的生命周期。<a target="_blank" rel="noopener" href="https://www.techsfo.com/blog/wp-content/uploads/2014/08/complete_android_fragment_lifecycle.png">Link</a></li>
+<li>如何理解 Android 的 Dialog ？</li>
+<li>解释下 Android 的 View 。</li>
+<li>你能创建自定义 View 吗？具体是如何创建的？</li>
+<li>什么是 ViewGroup ，它与 View 的区别在哪里？</li>
+<li>Fragment 和 Activity 有什么区别？它们之间又有什么关系？</li>
+<li>谈谈 Serializable 接口和 Parcelable 接口的区别。在 Android 中最好使用哪种接口？</li>
+<li>Activity 的启动模式有哪些？<a target="_blank" rel="noopener" href="https://blog.mindorks.com/android-activity-launchmode-explained-cbc6cf996802">Link</a></li>
+<li>解释一下 Android 中的 Intent 。<a target="_blank" rel="noopener" href="https://stackoverflow.com/questions/6578051/what-is-an-intent-in-android">Link</a></li>
+<li>什么是隐式 Intent ？</li>
+<li>什么是显式 Intent ？</li>
+<li>解释一下 AsyncTask 。</li>
+<li>如何理解 Android 中的广播。<a target="_blank" rel="noopener" href="https://stackoverflow.com/questions/5296987/what-is-broadcastreceiver-and-when-we-use-it">Link</a></li>
+<li>如何理解 Android 的 LocalBroadcastManager 。<a target="_blank" rel="noopener" href="https://developer.android.com/reference/android/support/v4/content/LocalBroadcastManager.html">Link</a></li>
+<li>什么是 JobScheduler ？<a target="_blank" rel="noopener" href="http://www.vogella.com/tutorials/AndroidTaskScheduling/article.html">Link</a></li>
+<li>什么是 DDMS ？你可以用它来做什么？</li>
+<li>解释一下什么是 support libary ，以及为什么要引入 support library ？<a target="_blank" rel="noopener" href="http://martiancraft.com/blog/2015/06/android-support-library/">Link</a></li>
+<li>如何理解 Android 中的 ContentProvider 。它通常用来干什么？</li>
+<li>什么是 Data Binding ？<a target="_blank" rel="noopener" href="https://developer.android.com/topic/libraries/data-binding/index.html">Link</a></li>
+<li>Android 的核心组件具体都有什么？<a target="_blank" rel="noopener" href="https://developer.android.com/topic/libraries/architecture/index.html">Link</a></li>
+<li>什么是 ADB ？</li>
+<li>什么是 ANR ？如何避免发生 ANR ？</li>
+<li>AndroidManifest.xml 是什么？</li>
+<li>解释一下 broadcast 和 intent 在 app 内传递消息的工作流程。</li>
+<li>当 Bitmap 占用较多内存时，你是怎么处理的？</li>
+<li>Android 应用有哪些不同的存储数据的方式？</li>
+<li>什么是 Dalvik 虚拟机？</li>
+<li>AsyncTask 的生命周期和(它所属的) Activity 的生命周期有什么关系？这种关系可能会导致什么样的问题？ 如何避免这些问题发生？</li>
+<li>Intent filter 是用来做什么的？</li>
+<li>什么是 Sticky Intent？<a target="_blank" rel="noopener" href="http://www.androidinterview.com/what-is-a-sticky-intent/">Link</a></li>
+<li>什么是 AIDL ？列举一下通过 AIDL 创建被绑定的服务（bounded service）的步骤。</li>
+<li>Android 的权限有多少个不同的保护等级？</li>
+<li>在转屏时你如何保存 Activity 的状态？<a target="_blank" rel="noopener" href="https://stackoverflow.com/questions/3915952/how-to-save-state-during-orientation-change-in-android-if-the-state-is-made-of-m">Link</a></li>
+<li>相对布局和线性布局的区别。</li>
+<li>如何实现 XML 命名空间？</li>
+<li>View.GONE 和 View.INVISIBLE 之间的区别。</li>
+<li>Bitmap 和 .9（nine-patch）图片之间有什么区别？</li>
+<li>谈谈位图池。<a target="_blank" rel="noopener" href="https://blog.mindorks.com/how-to-use-bitmap-pool-in-android-56c71a55533c">Link</a></li>
+<li>在 Android 中如何避免内存泄漏？</li>
+<li>Android 桌面的小部件是什么？</li>
+<li>什么是 AAPT ？</li>
+<li>你是如何在 Android 应用程序中发现内存泄漏的？</li>
+<li>你如何排查应用崩溃的原因？</li>
+<li>为什么你应该避免在主线程上运行非用户界面相关的代码？</li>
+<li>你是如何适配不同分辨率的手机的？</li>
+<li>如何理解 Doze 模式。如何理解应用程序待机模式（App Standby）。</li>
+<li>在 Android 中，你可以使用什么来进行后台操作?</li>
+<li>什么是 ORM ？它是如何工作的？</li>
+<li>什么是 Loader ？</li>
+<li>什么是 NDK ，为什么它是有用的？</li>
+<li>如何理解严格模式（StrictMode）。 <a target="_blank" rel="noopener" href="https://blog.mindorks.com/use-strictmode-to-find-things-you-did-by-accident-in-android-development-4cf0e7c8d997">Link</a></li>
+<li>什么是 Lint ？它的用途是什么？</li>
+<li>什么是 SurfaceView ？</li>
+<li>ListView 和 RecyclerView 有什么区别？</li>
+<li>什么是 ViewHolder 模式？为什么我们应该使用它？</li>
+<li>什么是 PendingIntent ？</li>
+<li>你能手动调用垃圾回收吗？</li>
+<li>周期地更新页面的最好方式是什么？</li>
+<li>有哪些类型的广播？</li>
+<li>你开发过组件吗？请描述一下。<a target="_blank" rel="noopener" href="https://blog.mindorks.com/android-widgets-ad3d166458d3">Link</a></li>
+<li>如何理解上下文（Context）。怎么使用它？<a target="_blank" rel="noopener" href="https://medium.com/p/understanding-context-in-android-application-330913e32514">Link</a></li>
+<li>你知道什么是视图树(View Tree)吗？怎样优化它的深度？</li>
+<li>onTrimMemory() 方法是什么？</li>
+<li>Android 应用可以使用多进程吗？怎样使用？</li>
+<li>内存溢出（OutOfMemory）是怎么发生的？</li>
+<li>文本样式接口（Spannable）是什么？</li>
+<li>什么是过度绘制（overdraw）？</li>
+<li>什么是渲染脚本（renderscript）？<a target="_blank" rel="noopener" href="https://blog.mindorks.com/comparing-android-ndk-and-renderscript-1a718c01f6fe">Link</a></li>
+<li>Dalvik 虚拟机模式和 ART（Android Runtime）虚拟机模式的区别。</li>
+<li>FlatBuffers 和 JSON 的区别。<a target="_blank" rel="noopener" href="https://blog.mindorks.com/why-consider-flatbuffer-over-json-2e4aa8d4ed07">Link</a></li>
+<li>谈谈 Android 的注解。<a target="_blank" rel="noopener" href="https://blog.mindorks.com/creating-custom-annotations-in-android-a855c5b43ed9">Link1</a>, <a target="_blank" rel="noopener" href="https://blog.mindorks.com/improve-your-android-coding-through-annotations-26b3273c137a">Link2</a></li>
+<li>描述一下约束布局（Constraint Layout）。<a target="_blank" rel="noopener" href="https://blog.mindorks.com/using-constraint-layout-in-android-531e68019cd">Link</a></li>
+<li>阐述一下 Android 中的 HashMap , ArrayMap 和 SparseArray 。<a target="_blank" rel="noopener" href="https://blog.mindorks.com/android-app-optimization-using-arraymap-and-sparsearray-f2b4e2e3dc47">Link</a></li>
+<li>阐述一下 Looper, Handler 和 HandlerThread 。<a target="_blank" rel="noopener" href="https://blog.mindorks.com/android-core-looper-handler-and-handlerthread-bd54d69fe91a">Link</a></li>
+<li>如何降低 Android 应用的耗电量？<a target="_blank" rel="noopener" href="https://blog.mindorks.com/battery-optimization-for-android-apps-f4ef6170ff70">Link</a></li>
+<li>SnapHelper 是什么？<a target="_blank" rel="noopener" href="https://blog.mindorks.com/using-snaphelper-in-recyclerview-fc616b6833e8">Link</a></li>
+<li>在 Android 中怎么处理多点触控？<a target="_blank" rel="noopener" href="https://arjun-sna.github.io/android/2016/07/20/multi-touch-android/">link</a></li>
+</ul>
+<h3 id="架构"><a href="#架构" class="headerlink" title="架构"></a>架构</h3><ul>
+<li>请介绍一下你做的上一个 App 的架构。</li>
+<li>请介绍一下 MVP。 <a target="_blank" rel="noopener" href="https://blog.mindorks.com/essential-guide-for-designing-your-android-app-architecture-mvp-part-1-74efaf1cda40">Link</a></li>
+<li>Presenter 是什么？</li>
+<li>什么是模型？</li>
+<li>请介绍一下 MVC。</li>
+<li>Controller 是什么？</li>
+<li>请介绍一下 MVVM。 <a target="_blank" rel="noopener" href="https://github.com/MindorksOpenSource/android-mvvm-architecture">Link</a></li>
+<li>谈谈你对代码整洁之道（clean code）的理解。<a target="_blank" rel="noopener" href="https://blog.mindorks.com/every-programmer-should-read-this-book-6755dedec78d">Link</a></li>
+</ul>
+<h3 id="设计问题"><a href="#设计问题" class="headerlink" title="设计问题"></a>设计问题</h3><ul>
+<li>请设计 Uber App。</li>
+<li>请设计 Facebook App。</li>
+<li>请设计 Facebook Near-By Friends App。</li>
+<li>请设计 WhatsApp。</li>
+<li>请设计 SnapChat。</li>
+<li>基于地理位置 App 的设计问题。</li>
+</ul>
+<h3 id="工具和技能"><a href="#工具和技能" class="headerlink" title="工具和技能"></a>工具和技能</h3><ul>
+<li>Git. <a target="_blank" rel="noopener" href="https://github.com/git-tips/tips">Link</a></li>
+<li>RxJava. <a target="_blank" rel="noopener" href="https://blog.mindorks.com/a-complete-guide-to-learn-rxjava-b55c0cea3631">Link</a></li>
+<li>Dagger 2. <a target="_blank" rel="noopener" href="https://medium.com/p/a-complete-guide-to-learn-dagger-2-b4c7a570d99c">Link</a></li>
+<li>Android 开发实用工具。 <a target="_blank" rel="noopener" href="https://blog.mindorks.com/android-development-useful-tools-fd73283e82e3">Link</a></li>
+<li>Firebase. <a target="_blank" rel="noopener" href="https://firebase.google.com/">Link</a></li>
+</ul>
+<h3 id="Android-测试驱动开发"><a href="#Android-测试驱动开发" class="headerlink" title="Android 测试驱动开发"></a>Android 测试驱动开发</h3><ul>
+<li>Espresso 是什么？ <a target="_blank" rel="noopener" href="https://developer.android.com/training/testing/ui-testing/espresso-testing.html">Link</a></li>
+<li>Robolectric 是什么？ <a target="_blank" rel="noopener" href="http://robolectric.org/">Link</a></li>
+<li>UI-Automator 是什么？ <a target="_blank" rel="noopener" href="https://developer.android.com/training/testing/ui-testing/uiautomator-testing.html">Link</a></li>
+<li>请解释一下单元测试。</li>
+<li>请解释一下设备化测试。</li>
+<li>你是否做过单元测试或者自动测试？</li>
+<li>为什么要使用 Mockito？ <a target="_blank" rel="noopener" href="http://site.mockito.org/">Link</a></li>
+<li>请描述一下 JUnit 测试。</li>
+</ul>
+<h3 id="其他"><a href="#其他" class="headerlink" title="其他"></a>其他</h3><ul>
+<li>描述一下 REST APIs 如何工作 ？</li>
+<li>描述一下 SQLite 。</li>
+<li>描述一下 数据库 。</li>
+<li>项目管理工具 - trello ，basecamp ，kanban ，jira ，asana 。</li>
+<li>关于构建系统 - gradle , ant , buck 。</li>
+<li>APK 逆向工程 。</li>
+<li>混淆器用于什么 ？</li>
+<li>什么是混淆？ 用于什么？ 如何压缩 ？</li>
+<li>如何构建你的发布版本的 APP ？</li>
+<li>如何面向特定用户群体更新应用程序版本 ？</li>
+<li>可以识别卸载我们的应用程序的用户吗 ？</li>
+<li>缩小 APK 的体积 。<a target="_blank" rel="noopener" href="https://blog.mindorks.com/how-to-reduce-apk-size-in-android-2f3713d2d662">Link</a></li>
+<li>Android 开发最佳实践 。<a target="_blank" rel="noopener" href="https://blog.mindorks.com/android-development-best-practices-83c94b027fd3">Link</a></li>
+<li>Android 代码风格和指南 。<a target="_blank" rel="noopener" href="https://blog.mindorks.com/android-code-style-and-guidelines-d5f80453d5c7">Link</a></li>
+<li>你尝试使用过 Kotlin 吗 ？<a target="_blank" rel="noopener" href="https://blog.mindorks.com/why-you-must-try-kotlin-for-android-development-e14d00c8084b">Link</a></li>
+<li>开发 Android 应用程序时应该连续测量哪些指标 ？<a target="_blank" rel="noopener" href="https://blog.mindorks.com/android-app-performance-metrics-a1176334186e">Link</a></li>
+</ul>
+
+      
+    </div>
+    
+  </div>
+  
+  
+</article>
+
+  
+    <article id="post-Android Studio 使用" class="article global-container article-type-post" itemscope itemprop="blogPost">
+  
+    <header class="article-header">
+      
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2023/02/10/Android%20Studio%20%E4%BD%BF%E7%94%A8/">Android Studio 使用</a>
+    </h1>
+  
+
+    </header>
+  
+  <div class="article-meta">
+    <a href="/2023/02/10/Android%20Studio%20%E4%BD%BF%E7%94%A8/" class="article-date">
+  <time datetime="2023-02-10T06:26:44.293Z" itemprop="datePublished">2023-02-10</time>
+</a>
+    
+    
+  </div>
+  
+
+  <div class="article-inner">
+    
+    <div class="article-content article-content-cloud" itemprop="articleBody">
+      
+        <h1 id="Android-Studio-使用"><a href="#Android-Studio-使用" class="headerlink" title="Android Studio 使用"></a>Android Studio 使用</h1><h2 id="Debug"><a href="#Debug" class="headerlink" title="Debug"></a>Debug</h2><ul>
+<li>BreakPoint :  断点 AS的BreakPoint是从这里开始停止运行, 需要点击Resume按钮才能继续运行</li>
+<li>Resume Program:  进入到下一个BreakPoint</li>
+<li>Pause Program:  停在当前APP正在执行的代码行</li>
+<li>View BreakPoints:  查看手动添加的BreakPoint( 方便寻找断点) </li>
+<li>Mute BreakPoints:  忽略BreakPoints, 即使之失效</li>
+<li>Step Over:  执行下一行</li>
+<li>Step Into:  进入当前方法</li>
+<li>Step Out:  退出当前函数栈帧</li>
+</ul>
+<h2 id="快捷键"><a href="#快捷键" class="headerlink" title="快捷键"></a>快捷键</h2><ul>
+<li>alt + ← (或→) 切换弹出</li>
+</ul>
+<h2 id="其他功能"><a href="#其他功能" class="headerlink" title="其他功能"></a>其他功能</h2><ul>
+<li>tab窗口可以pin住, tab上右键</li>
+<li>tab窗口可以分成两列, 对照使用, tab上右键</li>
+</ul>
+
+      
+    </div>
+    
+  </div>
+  
+  
+</article>
+
+  
+
+
+  <nav id="page-nav">
+    
+    <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><a class="extend next" rel="next" href="/page/2/">Next &amp;raquo;</a>
+  </nav>
+
+
+</section>
+        <aside id="sidebar">
+  
+    <div class="widget-box">
+  <div class="avatar-box">
+    <img class="avatar" src="/images/default-avatar.jpg" title="图片来自网络"></img>
+    <h3 class="avatar-name">
+      
+        安安
+      
+    </h3>
+    <p class="avatar-slogan">
+      正在摸鱼的安卓实习生
+    </p>
+  </div>
 </div>
 
-            </li>
-        
-            <li class="home-article-item">
 
-                
-
-                <h3 class="home-article-title">
-                    <a href="/2023/02/10/%E5%85%B3%E4%BA%8Eitem%E7%82%B9%E5%87%BB%E4%BA%8B%E4%BB%B6%E5%A4%8D%E7%94%A8%E7%9A%84%E9%97%AE%E9%A2%98/">
-                        关于item点击事件复用的问题
-                    </a>
-                </h3>
-
-                <div class="home-article-content keep-markdown-body">
-                    
-                        关于item点击事件复用的问题12345678910111213141516171819202122/** * Obtain a view initialized for the given position. * * This method sho...
-                    
-                </div>
-
-                <div class="home-article-meta-info-container">
-    <div class="home-article-meta-info">
-        <span>
-            <i class="fas fa-history"></i>&nbsp;
-            <span class="home-article-date" data-updated="Mon Nov 14 2022 21:00:18 GMT+0800">
-                2022-11-14
-            </span>
-        </span>
-        
-        
-    </div>
-
-    <a class="read-more" href="/2023/02/10/%E5%85%B3%E4%BA%8Eitem%E7%82%B9%E5%87%BB%E4%BA%8B%E4%BB%B6%E5%A4%8D%E7%94%A8%E7%9A%84%E9%97%AE%E9%A2%98/">繼續閱讀...&nbsp;<i class="fas fa-angle-right"></i></a>
-</div>
-
-            </li>
-        
-            <li class="home-article-item">
-
-                
-
-                <h3 class="home-article-title">
-                    <a href="/2023/02/10/%E5%85%B3%E4%BA%8EAndroid-View%E7%BB%98%E5%88%B6%E7%9A%84%E4%B8%80%E4%BA%9B%E9%97%AE%E9%A2%98/">
-                        关于Android View绘制的一些问题
-                    </a>
-                </h3>
-
-                <div class="home-article-content keep-markdown-body">
-                    
-                        关于Android View绘制的一些问题View.getY不准确的问题view的getY方法是获取的view相对于父布局的y坐标
-​	
-view.width获取为0的问题
-xml中设置visibility 为 invisible时, 在view.p...
-                    
-                </div>
-
-                <div class="home-article-meta-info-container">
-    <div class="home-article-meta-info">
-        <span>
-            <i class="fas fa-history"></i>&nbsp;
-            <span class="home-article-date" data-updated="Thu Nov 17 2022 11:25:28 GMT+0800">
-                2022-11-17
-            </span>
-        </span>
-        
-        
-    </div>
-
-    <a class="read-more" href="/2023/02/10/%E5%85%B3%E4%BA%8EAndroid-View%E7%BB%98%E5%88%B6%E7%9A%84%E4%B8%80%E4%BA%9B%E9%97%AE%E9%A2%98/">繼續閱讀...&nbsp;<i class="fas fa-angle-right"></i></a>
-</div>
-
-            </li>
-        
-            <li class="home-article-item">
-
-                
-
-                <h3 class="home-article-title">
-                    <a href="/2023/02/10/%E5%8D%95%E4%BE%8B%E6%A8%A1%E5%BC%8F/">
-                        单例模式
-                    </a>
-                </h3>
-
-                <div class="home-article-content keep-markdown-body">
-                    
-                        单例模式3.静态内部类模式：
-1234567891011public class SingleTon&#123;  private SingleTon()&#123;&#125;  private static class SingleTonHole...
-                    
-                </div>
-
-                <div class="home-article-meta-info-container">
-    <div class="home-article-meta-info">
-        <span>
-            <i class="fas fa-history"></i>&nbsp;
-            <span class="home-article-date" data-updated="Mon Dec 12 2022 18:39:02 GMT+0800">
-                2022-12-12
-            </span>
-        </span>
-        
-        
-    </div>
-
-    <a class="read-more" href="/2023/02/10/%E5%8D%95%E4%BE%8B%E6%A8%A1%E5%BC%8F/">繼續閱讀...&nbsp;<i class="fas fa-angle-right"></i></a>
-</div>
-
-            </li>
-        
-            <li class="home-article-item">
-
-                
-
-                <h3 class="home-article-title">
-                    <a href="/2023/02/10/UML%E7%B1%BB%E5%9B%BE%E5%92%8C%E7%B1%BB%E4%B8%8E%E7%B1%BB%E4%B9%8B%E9%97%B4%E7%9A%84%E5%85%B3%E7%B3%BB/">
-                        UML类图和类与类之间的关系
-                    </a>
-                </h3>
-
-                <div class="home-article-content keep-markdown-body">
-                    
-                        UML类图和类与类之间的关系
-继承 : 实线 + 三角
-实现接口: 虚线 + 三角
-聚合: list 和 item 的关系, 空心菱形 + 实线 + 箭头(&gt;)
-组合: 鸟和翅膀的关系, 对象持有对象, 生命周期一致, 实心空心菱形 + 实线 ...
-                    
-                </div>
-
-                <div class="home-article-meta-info-container">
-    <div class="home-article-meta-info">
-        <span>
-            <i class="fas fa-history"></i>&nbsp;
-            <span class="home-article-date" data-updated="Mon Dec 12 2022 17:43:30 GMT+0800">
-                2022-12-12
-            </span>
-        </span>
-        
-        
-    </div>
-
-    <a class="read-more" href="/2023/02/10/UML%E7%B1%BB%E5%9B%BE%E5%92%8C%E7%B1%BB%E4%B8%8E%E7%B1%BB%E4%B9%8B%E9%97%B4%E7%9A%84%E5%85%B3%E7%B3%BB/">繼續閱讀...&nbsp;<i class="fas fa-angle-right"></i></a>
-</div>
-
-            </li>
-        
-            <li class="home-article-item">
-
-                
-
-                <h3 class="home-article-title">
-                    <a href="/2023/02/10/TCP%E5%8F%AF%E9%9D%A0%E6%80%A7%E7%9A%84%E4%BF%9D%E8%AF%81/">
-                        TCP可靠性的保证
-                    </a>
-                </h3>
-
-                <div class="home-article-content keep-markdown-body">
-                    
-                        TCP可靠性的保证https://cloud.tencent.com/developer/article/1819844
-https://segmentfault.com/a/1190000022944999
-https://zhuanlan.zhi...
-                    
-                </div>
-
-                <div class="home-article-meta-info-container">
-    <div class="home-article-meta-info">
-        <span>
-            <i class="fas fa-history"></i>&nbsp;
-            <span class="home-article-date" data-updated="Mon Dec 05 2022 15:41:44 GMT+0800">
-                2022-12-05
-            </span>
-        </span>
-        
-        
-    </div>
-
-    <a class="read-more" href="/2023/02/10/TCP%E5%8F%AF%E9%9D%A0%E6%80%A7%E7%9A%84%E4%BF%9D%E8%AF%81/">繼續閱讀...&nbsp;<i class="fas fa-angle-right"></i></a>
-</div>
-
-            </li>
-        
-            <li class="home-article-item">
-
-                
-
-                <h3 class="home-article-title">
-                    <a href="/2023/02/10/okHttp3%E7%9A%84%E6%BA%90%E7%A0%81%E5%88%86%E6%9E%90/">
-                        okHttp3的源码分析
-                    </a>
-                </h3>
-
-                <div class="home-article-content keep-markdown-body">
-                    
-                        okHttp3的源码分析简述同步与异步请求, 都在RealCall中实现, 分别描述
-异步请求​			入口代码如下
-123456override fun enqueue(responseCallback: Callback) &#123;  chec...
-                    
-                </div>
-
-                <div class="home-article-meta-info-container">
-    <div class="home-article-meta-info">
-        <span>
-            <i class="fas fa-history"></i>&nbsp;
-            <span class="home-article-date" data-updated="Wed Nov 23 2022 20:01:20 GMT+0800">
-                2022-11-23
-            </span>
-        </span>
-        
-        
-    </div>
-
-    <a class="read-more" href="/2023/02/10/okHttp3%E7%9A%84%E6%BA%90%E7%A0%81%E5%88%86%E6%9E%90/">繼續閱讀...&nbsp;<i class="fas fa-angle-right"></i></a>
-</div>
-
-            </li>
-        
-            <li class="home-article-item">
-
-                
-
-                <h3 class="home-article-title">
-                    <a href="/2023/02/10/HashMap/">
-                        HashMap
-                    </a>
-                </h3>
-
-                <div class="home-article-content keep-markdown-body">
-                    
-                        HashMap
-                    
-                </div>
-
-                <div class="home-article-meta-info-container">
-    <div class="home-article-meta-info">
-        <span>
-            <i class="fas fa-history"></i>&nbsp;
-            <span class="home-article-date" data-updated="Thu Jan 05 2023 10:23:18 GMT+0800">
-                2023-01-05
-            </span>
-        </span>
-        
-        
-    </div>
-
-    <a class="read-more" href="/2023/02/10/HashMap/">繼續閱讀...&nbsp;<i class="fas fa-angle-right"></i></a>
-</div>
-
-            </li>
-        
-            <li class="home-article-item">
-
-                
-
-                <h3 class="home-article-title">
-                    <a href="/2023/02/10/Android%E9%9D%A2%E8%AF%95%E9%A2%98%E5%8D%95/">
-                        Android面试题单
-                    </a>
-                </h3>
-
-                <div class="home-article-content keep-markdown-body">
-                    
-                        Android面试题单
-Service 与 IntentService 的区别。Link
-Android 应用的结构是什么？
-Android 应用中如何保存数据。
-如何在 Android 应用中执行耗时操作。
-两个 Fragment 之间如何通信。
-...
-                    
-                </div>
-
-                <div class="home-article-meta-info-container">
-    <div class="home-article-meta-info">
-        <span>
-            <i class="fas fa-history"></i>&nbsp;
-            <span class="home-article-date" data-updated="Mon Dec 05 2022 16:03:50 GMT+0800">
-                2022-12-05
-            </span>
-        </span>
-        
-        
-    </div>
-
-    <a class="read-more" href="/2023/02/10/Android%E9%9D%A2%E8%AF%95%E9%A2%98%E5%8D%95/">繼續閱讀...&nbsp;<i class="fas fa-angle-right"></i></a>
-</div>
-
-            </li>
-        
-            <li class="home-article-item">
-
-                
-
-                <h3 class="home-article-title">
-                    <a href="/2023/02/10/Android%20Studio%20%E4%BD%BF%E7%94%A8/">
-                        Android Studio 使用
-                    </a>
-                </h3>
-
-                <div class="home-article-content keep-markdown-body">
-                    
-                        Android Studio 使用Debug
-BreakPoint :  断点 AS的BreakPoint是从这里开始停止运行, 需要点击Resume按钮才能继续运行
-Resume Program:  进入到下一个BreakPoint
-Pause P...
-                    
-                </div>
-
-                <div class="home-article-meta-info-container">
-    <div class="home-article-meta-info">
-        <span>
-            <i class="fas fa-history"></i>&nbsp;
-            <span class="home-article-date" data-updated="Tue Nov 01 2022 20:01:28 GMT+0800">
-                2022-11-01
-            </span>
-        </span>
-        
-        
-    </div>
-
-    <a class="read-more" href="/2023/02/10/Android%20Studio%20%E4%BD%BF%E7%94%A8/">繼續閱讀...&nbsp;<i class="fas fa-angle-right"></i></a>
-</div>
-
-            </li>
-        
-    </ul>
-
-    <div class="home-paginator">
-        <div class="paginator">
+  
     
 
+  
     
-        <a class="next btn"
-           href="/page/2/"
-        >下一頁</a>
+
+  
     
-</div>
-
+  
+    
+  <div class="widget-box">
+    <h3 class="widget-title">Archives</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/02/">February 2023</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/10/">October 2022</a></li></ul>
     </div>
-</div>
+  </div>
 
-
-                
-            </div>
-
-        </div>
-
-        <div class="page-main-content-bottom">
-            
-<footer class="footer">
-    <div class="info-container">
-        <div class="copyright-info info-item">
-            &copy;
-            
-                <span>2020</span> -
-            
-            2023
-            
-                &nbsp;<i class="fas fa-heart icon-animate"></i>
-                &nbsp;<a href="/">Keep Team</a>
-            
-        </div>
+  
+    
+  <div class="widget-box">
+    <h3 class="widget-title">Recent Posts</h3>
+    <div class="widget">
+      <ul>
         
-        <div class="theme-info info-item">
-            <a target="_blank" href="https://hexo.io">Hexo</a> 框架&nbsp;|&nbsp;主題&nbsp;<a class="theme-version" target="_blank" href="https://github.com/XPoet/hexo-theme-keep">Keep v3.6.1</a>
-        </div>
+          <li>
+            <a href="/2023/02/10/%E5%BC%80%E5%8F%91%E7%9A%84%E9%81%87%E5%88%B0%E7%9A%84bug/">开发的遇到的bug</a>
+          </li>
         
+          <li>
+            <a href="/2023/02/10/%E5%85%B3%E4%BA%8Eitem%E7%82%B9%E5%87%BB%E4%BA%8B%E4%BB%B6%E5%A4%8D%E7%94%A8%E7%9A%84%E9%97%AE%E9%A2%98/">关于item点击事件复用的问题</a>
+          </li>
         
+          <li>
+            <a href="/2023/02/10/%E5%85%B3%E4%BA%8EAndroid-View%E7%BB%98%E5%88%B6%E7%9A%84%E4%B8%80%E4%BA%9B%E9%97%AE%E9%A2%98/">关于Android View绘制的一些问题</a>
+          </li>
+        
+          <li>
+            <a href="/2023/02/10/%E5%8D%95%E4%BE%8B%E6%A8%A1%E5%BC%8F/">单例模式</a>
+          </li>
+        
+          <li>
+            <a href="/2023/02/10/UML%E7%B1%BB%E5%9B%BE%E5%92%8C%E7%B1%BB%E4%B8%8E%E7%B1%BB%E4%B9%8B%E9%97%B4%E7%9A%84%E5%85%B3%E7%B3%BB/">UML类图和类与类之间的关系</a>
+          </li>
+        
+      </ul>
     </div>
+  </div>
+
+  
+      <div class="widget-box">
+    <h3 class="widget-title">友链</h3>
+    <div class="widget">
+      
+    </div>
+  </div>
+
+  
+</aside>
+      </div>
+      <footer id="footer">
+  <div class="foot-box global-width">
+    &copy; 2023 John Doe &nbsp;&nbsp;
+    Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+    &nbsp;|&nbsp;主题 <a target="_blank" rel="noopener" href="https://github.com/yiluyanxia/hexo-theme-antiquity">antiquity</a>
+    <br>
+    <script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+    <span id="busuanzi_container_site_pv">不蒜子告之   阁下是第<span id="busuanzi_value_site_pv"></span>个访客</span>
+  </div>
 </footer>
+      <script src="https://code.jquery.com/jquery-2.0.3.min.js"></script>
+<script>
+if (!window.jQuery) {
+var script = document.createElement('script');
+script.src = "/js/jquery-2.0.3.min.js";
+document.body.write(script);
+}
+</script>
 
-        </div>
-    </div>
+  
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
 
-    
+  
+<script src="/fancybox/jquery.fancybox.pack.js"></script>
 
-    <div class="right-bottom-side-tools">
-        <div class="side-tools-container">
-    <ul class="side-tools-list">
-        <li class="tools-item tool-font-adjust-plus flex-center">
-            <i class="fas fa-search-plus"></i>
-        </li>
 
-        <li class="tools-item tool-font-adjust-minus flex-center">
-            <i class="fas fa-search-minus"></i>
-        </li>
 
-        <li class="tools-item tool-dark-light-toggle flex-center">
-            <i class="fas fa-moon"></i>
-        </li>
 
-        <!-- rss -->
-        
+<script src="/js/script.js"></script>
 
-        
-            <li class="tools-item tool-scroll-to-top flex-center">
-                <i class="fas fa-arrow-up"></i>
-            </li>
-        
 
-        <li class="tools-item tool-scroll-to-bottom flex-center">
-            <i class="fas fa-arrow-down"></i>
-        </li>
-    </ul>
 
-    <ul class="exposed-tools-list">
-        <li class="tools-item tool-toggle-show flex-center">
-            <i class="fas fa-cog fa-spin"></i>
-        </li>
-        
-    </ul>
-</div>
 
     </div>
-
-    <div class="zoom-in-image-mask">
-    <img class="zoom-in-image">
-</div>
-
-
-    
-
-</main>
-
-
-
-
-
-<script src="/js/utils.js"></script>
-
-<script src="/js/main.js"></script>
-
-<script src="/js/header-shrink.js"></script>
-
-<script src="/js/back2top.js"></script>
-
-<script src="/js/dark-light-toggle.js"></script>
-
-
-
-
-
-
-
-
-
-
-<div class="post-scripts">
-    
-</div>
-
-
-
+    <nav id="mobile-nav" class="mobile-nav-box">
+  <div class="mobile-nav-img mobile-nav-top"></div>
+  
+    <a href="/" class="mobile-nav-link">首页</a>
+  
+    <a href="/archives" class="mobile-nav-link">归档</a>
+  
+  <div class="mobile-nav-img  mobile-nav-bottom"></div>
+</nav>    
+  </div>
 </body>
 </html>
