@@ -18,7 +18,7 @@
 <meta property="og:description" content="Android面试题单 Service 与 IntentService 的区别。Link Android 应用的结构是什么？ Android 应用中如何保存数据。 如何在 Android 应用中执行耗时操作。 两个 Fragment 之间如何通信。 阐述一下 Android 的通知系统。 两个不同的 app 之间如何交互。 什么是 Fragment？ 为什么建议只使用默认的构造方法来创建 Frag">
 <meta property="og:locale">
 <meta property="article:published_time" content="2023-02-10T06:26:44.295Z">
-<meta property="article:modified_time" content="2022-12-05T08:03:50.000Z">
+<meta property="article:modified_time" content="2023-02-13T06:43:06.358Z">
 <meta property="article:author" content="John Doe">
 <meta name="twitter:card" content="summary">
   
@@ -107,7 +107,12 @@
 <li>你能创建自定义 View 吗？具体是如何创建的？</li>
 <li>什么是 ViewGroup ，它与 View 的区别在哪里？</li>
 <li>Fragment 和 Activity 有什么区别？它们之间又有什么关系？</li>
-<li>谈谈 Serializable 接口和 Parcelable 接口的区别。在 Android 中最好使用哪种接口？</li>
+<li>谈谈 Serializable 接口和 Parcelable 接口的区别。在 Android 中最好使用哪种接口？<ul>
+<li>Serializable使用IO读写存储在硬盘上。序列化过程使用了反射技术，并且期间产生临时对象，优点代码少，在将对象序列化到存储设置中或将对象序列化后通过网络传输时建议选择Serializable。</li>
+<li>Parcelable是直接在内存中读写，我们知道内存的读写速度肯定优于硬盘读写速度，所以Parcelable序列化方式性能上要优于Serializable方式很多。所以Android应用程序在内存间数据传输时推荐使用Parcelable，如activity间传输数据和AIDL数据传递。大多数情况下使用Serializable也是没什么问题的，但是针对Android应用程序在内存间数据传输还是建议大家使用Parcelable方式实现序列化，毕竟性能好很多，其实也没多麻烦。</li>
+<li>Parcelable也不是不可以在网络中传输，只不过实现和操作过程过于麻烦并且为了防止android版本不同而导致Parcelable可能不同的情况，因此在序列化到存储设备或者网络传输方面还是尽量选择Serializable接口。</li>
+</ul>
+</li>
 <li>Activity 的启动模式有哪些？<a target="_blank" rel="noopener" href="https://blog.mindorks.com/android-activity-launchmode-explained-cbc6cf996802">Link</a></li>
 <li>解释一下 Android 中的 Intent 。<a target="_blank" rel="noopener" href="https://stackoverflow.com/questions/6578051/what-is-an-intent-in-android">Link</a></li>
 <li>什么是隐式 Intent ？</li>
@@ -329,6 +334,14 @@ gitment.render('gitmentContainer')
       <ul>
         
           <li>
+            <a href="/2023/02/17/2021%E8%93%9D%E6%A1%A5%E6%9D%AFB%E7%BB%84%E5%9B%BD%E8%B5%9B/">(no title)</a>
+          </li>
+        
+          <li>
+            <a href="/2023/02/11/Java%E9%9D%A2%E8%AF%95%E9%A2%98/">Java面试</a>
+          </li>
+        
+          <li>
             <a href="/2023/02/10/%E5%BC%80%E5%8F%91%E7%9A%84%E9%81%87%E5%88%B0%E7%9A%84bug/">开发的遇到的bug</a>
           </li>
         
@@ -338,14 +351,6 @@ gitment.render('gitmentContainer')
         
           <li>
             <a href="/2023/02/10/%E5%85%B3%E4%BA%8EAndroid-View%E7%BB%98%E5%88%B6%E7%9A%84%E4%B8%80%E4%BA%9B%E9%97%AE%E9%A2%98/">关于Android View绘制的一些问题</a>
-          </li>
-        
-          <li>
-            <a href="/2023/02/10/%E5%8D%95%E4%BE%8B%E6%A8%A1%E5%BC%8F/">单例模式</a>
-          </li>
-        
-          <li>
-            <a href="/2023/02/10/UML%E7%B1%BB%E5%9B%BE%E5%92%8C%E7%B1%BB%E4%B8%8E%E7%B1%BB%E4%B9%8B%E9%97%B4%E7%9A%84%E5%85%B3%E7%B3%BB/">UML类图和类与类之间的关系</a>
           </li>
         
       </ul>
