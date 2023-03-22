@@ -5,14 +5,14 @@
   
 
   
-  <title>Archives: 2022/10 | Hexo</title>
+  <title>Hexo</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
   
   
   
   <meta property="og:type" content="website">
 <meta property="og:title" content="Hexo">
-<meta property="og:url" content="http://example.com/archives/2022/10/index.html">
+<meta property="og:url" content="http://example.com/page/3/index.html">
 <meta property="og:site_name" content="Hexo">
 <meta property="og:locale">
 <meta property="article:author" content="John Doe">
@@ -59,64 +59,73 @@
       <div id="middlecontent" title class="global-width sidebar-right">
         <section id="main">
   
+    <article id="post-适配的一些问题" class="article global-container article-type-post" itemscope itemprop="blogPost">
   
-    
-    
-      
-      
-      <section class="global-container archives-wrap">
-        <div class="archive-year-wrap">
-          <a href="/archives/2022" class="archive-year">2022</a>
-        </div>
-        <div class="archives">
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
+    <header class="article-header">
       
   
     <h1 itemprop="name">
-      <a class="archive-article-title" href="/2022/10/25/%E5%85%AB%E7%9A%87%E5%90%8E%E9%97%AE%E9%A2%98/">eight queens</a>
+      <a class="article-title" href="/2022/10/25/%E9%80%82%E9%85%8D%E7%9A%84%E4%B8%80%E4%BA%9B%E9%97%AE%E9%A2%98/">适配的一些问题</a>
     </h1>
   
-      
+
     </header>
-    <div class="article-meta archive-article-meta">
-      <a href="/2022/10/25/%E5%85%AB%E7%9A%87%E5%90%8E%E9%97%AE%E9%A2%98/" class="article-date">
+  
+  <div class="article-meta">
+    <a href="/2022/10/25/%E9%80%82%E9%85%8D%E7%9A%84%E4%B8%80%E4%BA%9B%E9%97%AE%E9%A2%98/" class="article-date">
   <time datetime="2022-10-25T07:30:16.000Z" itemprop="datePublished">2022-10-25</time>
 </a>
-      
-      
-    </div>
-  </div>
-</article>
-  
     
     
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      
+  </div>
   
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2022/10/25/%E9%80%82%E9%85%8D%E7%9A%84%E4%B8%80%E4%BA%9B%E9%97%AE%E9%A2%98/">适配的一些问题</a>
-    </h1>
-  
+
+  <div class="article-inner">
+    
+<div class="article-gallery">
+  <div class="article-gallery-photos">
+    
+      <a class="article-gallery-img fancybox" target="_blank" href="http://mail.stud.tjut.edu.cn/static/mimg/o/domain/202210131830/index/img/icon-dashi.png" rel="gallery_cldy5hkxh000glkw93zq524io noopener">
+        <img src="http://mail.stud.tjut.edu.cn/static/mimg/o/domain/202210131830/index/img/icon-dashi.png" itemprop="image">
+      </a>
+    
+  </div>
+</div>
+
+    <div class="article-content article-content-cloud" itemprop="articleBody">
       
-    </header>
-    <div class="article-meta archive-article-meta">
-      <a href="/2022/10/25/%E9%80%82%E9%85%8D%E7%9A%84%E4%B8%80%E4%BA%9B%E9%97%AE%E9%A2%98/" class="article-date">
-  <time datetime="2022-10-25T07:30:16.000Z" itemprop="datePublished">2022-10-25</time>
-</a>
-      
+        <h1 id="适配的一些问题"><a href="#适配的一些问题" class="headerlink" title="适配的一些问题"></a>适配的一些问题</h1><h2 id="分辨率、dpi、dp、density"><a href="#分辨率、dpi、dp、density" class="headerlink" title="分辨率、dpi、dp、density"></a>分辨率、dpi、dp、density</h2><h3 id="分辨率"><a href="#分辨率" class="headerlink" title="分辨率"></a>分辨率</h3><p>320 * 160: 	即, 屏幕上有320 * 160个像素点</p>
+<h3 id="dpi"><a href="#dpi" class="headerlink" title="dpi"></a>dpi</h3><p>每英寸下像素点的个数 : 对角线像素点数 &#x2F; 对角线英寸数</p>
+<h3 id="density"><a href="#density" class="headerlink" title="density"></a>density</h3><p>dpi &#x2F; 160 </p>
+<h2 id="横竖屏切换导致的生命周期变化"><a href="#横竖屏切换导致的生命周期变化" class="headerlink" title="横竖屏切换导致的生命周期变化"></a>横竖屏切换导致的生命周期变化</h2><p>android:configChanges 配置的属性会被代码中的onConfigurationChanged方法监听到, 不做系统默认响应方式</p>
+<p>比如设置orientation|screenSize 属性后, 在屏幕方向变化和屏幕大小变化时不会执行默认的重建activity操作, 而是在onConfigurationChanged中监听到该变化后, 手动处理或者忽略</p>
+<h2 id="density变化"><a href="#density变化" class="headerlink" title="density变化"></a>density变化</h2><p>三星 系统中锁定竖屏后, 横屏转竖屏导致density变化, 在onCreate时数值正常,  但view显示前打印density发现不正常, 导致UI失配</p>
+<p>经过debug后, 发现density在建立activity时被修改多次, 无法确定是何处修改导致变化,  怀疑是autoSize库导致</p>
+<p>最终解决方案是在activity的onCreate方法中记录density值, 并在调用前对density赋值</p>
+<h2 id="fitsSystemWindows-x3D-true"><a href="#fitsSystemWindows-x3D-true" class="headerlink" title="fitsSystemWindows &#x3D; true"></a>fitsSystemWindows &#x3D; true</h2><p>导致设定view的y异常, 表现为, 向下偏移一个状态栏高度</p>
+<h2 id="recyclerView-中加载-match-parent-的图片显示显示不全"><a href="#recyclerView-中加载-match-parent-的图片显示显示不全" class="headerlink" title="recyclerView 中加载 match_parent 的图片显示显示不全"></a>recyclerView 中加载 match_parent 的图片显示显示不全</h2><p>此时图片高度会默认为屏幕高度, 大于屏幕高度的图片显示不全</p>
+<h2 id="图片按比例缩放"><a href="#图片按比例缩放" class="headerlink" title="图片按比例缩放"></a>图片按比例缩放</h2><figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">android:layout_width=&quot;match_parent&quot;</span><br><span class="line">android:layout_height=&quot;wrap_content&quot;</span><br><span class="line">android:adjustViewBounds=&quot;true&quot;</span><br></pre></td></tr></table></figure>
+
+
+
+
+
+
       
     </div>
+    
   </div>
+  
+  
 </article>
+
   
-  
-    </div></section>
-  
+
+
+  <nav id="page-nav">
+    
+    <a class="extend prev" rel="prev" href="/page/2/">&amp;laquo; Prev</a><a class="page-number" href="/">1</a><a class="page-number" href="/page/2/">2</a><span class="page-number current">3</span>
+  </nav>
 
 
 </section>
