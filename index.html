@@ -59,6 +59,47 @@
       <div id="middlecontent" title class="global-width sidebar-right">
         <section id="main">
   
+    <article id="post-LeetCode1641" class="article global-container article-type-post" itemscope itemprop="blogPost">
+  
+    <header class="article-header">
+      
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2023/03/29/LeetCode1641/">LeetCode1641</a>
+    </h1>
+  
+
+    </header>
+  
+  <div class="article-meta">
+    <a href="/2023/03/29/LeetCode1641/" class="article-date">
+  <time datetime="2023-03-29T14:08:09.114Z" itemprop="datePublished">2023-03-29</time>
+</a>
+    
+    
+  </div>
+  
+
+  <div class="article-inner">
+    
+    <div class="article-content article-content-cloud" itemprop="articleBody">
+      
+        <h1 id="LeetCode1641"><a href="#LeetCode1641" class="headerlink" title="LeetCode1641"></a>LeetCode1641</h1><p>给你一个整数 n，请返回长度为 n 、仅由元音 (a, e, i, o, u) 组成且按 字典序排列 的字符串数量。</p>
+<p>字符串 s 按 字典序排列 需要满足：对于所有有效的 i，s[i] 在字母表中的位置总是与 s[i+1] 相同或在 s[i+1] 之前。</p>
+<p>来源：力扣（LeetCode）<br>链接：<a target="_blank" rel="noopener" href="https://leetcode.cn/problems/count-sorted-vowel-strings">https://leetcode.cn/problems/count-sorted-vowel-strings</a><br>著作权归领扣网络所有。商业转载请联系官方授权，非商业转载请注明出处。</p>
+<p>自己推一下n &#x3D; 1, n &#x3D; 2, n &#x3D; 3的情况, 找到规律, 即可得解</p>
+<div class="highlight-box"autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" contenteditable="true"data-rel="JAVA"><figure class="iseeu highlight /java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Solution</span> &#123;</span><br><span class="line">      <span class="keyword">public</span> <span class="type">int</span> <span class="title function_">countVowelStrings</span><span class="params">(<span class="type">int</span> n)</span> &#123;</span><br><span class="line"></span><br><span class="line">        <span class="type">int</span> ans[] = <span class="keyword">new</span> <span class="title class_">int</span>[]&#123;<span class="number">1</span>,<span class="number">1</span>,<span class="number">1</span>,<span class="number">1</span>,<span class="number">1</span>&#125;;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">for</span> (<span class="type">int</span> <span class="variable">i</span> <span class="operator">=</span> <span class="number">1</span>; i &lt; n; i++) &#123;</span><br><span class="line">            <span class="keyword">for</span> (<span class="type">int</span> <span class="variable">j</span> <span class="operator">=</span> <span class="number">0</span>; j &lt; <span class="number">5</span>; j++) &#123;</span><br><span class="line">                <span class="keyword">for</span> (<span class="type">int</span> <span class="variable">k</span> <span class="operator">=</span> j + <span class="number">1</span>; k &lt; <span class="number">5</span>; k++) &#123;</span><br><span class="line">                    ans[j] += ans[k];</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="type">int</span> <span class="variable">all</span> <span class="operator">=</span> <span class="number">0</span>;</span><br><span class="line">        <span class="keyword">for</span> (<span class="type">int</span> <span class="variable">i</span> <span class="operator">=</span> <span class="number">0</span>; i &lt; <span class="number">5</span>; i++) &#123;</span><br><span class="line">            all += ans[i];</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> all;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></div>
+
+
+      
+    </div>
+    
+  </div>
+  
+  
+</article>
+
+  
     <article id="post-binder" class="article global-container article-type-post" itemscope itemprop="blogPost">
   
     <header class="article-header">
@@ -656,44 +697,6 @@
 </article>
 
   
-    <article id="post-TCP可靠性的保证" class="article global-container article-type-post" itemscope itemprop="blogPost">
-  
-    <header class="article-header">
-      
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2023/02/10/TCP%E5%8F%AF%E9%9D%A0%E6%80%A7%E7%9A%84%E4%BF%9D%E8%AF%81/">TCP可靠性的保证</a>
-    </h1>
-  
-
-    </header>
-  
-  <div class="article-meta">
-    <a href="/2023/02/10/TCP%E5%8F%AF%E9%9D%A0%E6%80%A7%E7%9A%84%E4%BF%9D%E8%AF%81/" class="article-date">
-  <time datetime="2023-02-10T06:26:44.301Z" itemprop="datePublished">2023-02-10</time>
-</a>
-    
-    
-  </div>
-  
-
-  <div class="article-inner">
-    
-    <div class="article-content article-content-cloud" itemprop="articleBody">
-      
-        <h1 id="TCP可靠性的保证"><a href="#TCP可靠性的保证" class="headerlink" title="TCP可靠性的保证"></a>TCP可靠性的保证</h1><p><a target="_blank" rel="noopener" href="https://cloud.tencent.com/developer/article/1819844">https://cloud.tencent.com/developer/article/1819844</a></p>
-<p><a target="_blank" rel="noopener" href="https://segmentfault.com/a/1190000022944999">https://segmentfault.com/a/1190000022944999</a></p>
-<p><a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/37379780">https://zhuanlan.zhihu.com/p/37379780</a></p>
-
-      
-    </div>
-    
-  </div>
-  
-  
-</article>
-
-  
 
 
   <nav id="page-nav">
@@ -745,6 +748,10 @@
       <ul>
         
           <li>
+            <a href="/2023/03/29/LeetCode1641/">LeetCode1641</a>
+          </li>
+        
+          <li>
             <a href="/2023/03/23/binder/">几个有用的link</a>
           </li>
         
@@ -758,10 +765,6 @@
         
           <li>
             <a href="/2023/02/11/Java%E9%9D%A2%E8%AF%95%E9%A2%98/">Java面试</a>
-          </li>
-        
-          <li>
-            <a href="/2023/02/10/%E5%BC%80%E5%8F%91%E7%9A%84%E9%81%87%E5%88%B0%E7%9A%84bug/">开发的遇到的bug</a>
           </li>
         
       </ul>
