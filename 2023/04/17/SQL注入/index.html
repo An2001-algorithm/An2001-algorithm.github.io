@@ -5,20 +5,20 @@
   
 
   
-  <title>组内趣事 | Hexo</title>
+  <title>SQL注入 | Hexo</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
   
   
   
-  <meta name="description" content="实习快乐语录 z老师: 这originId谁加的，tmd，看不懂 …30s later z老师: tmd, 我加的  z老师: za, 这, 这逻辑谁写的, 这么复杂 …30s later z老师: 我写的 za: 现在只有上帝知道这些代码啥意思  组会开始前 某人: z老师昨天请假了? z老师: 本来想今天也请假的, 但到了十几个快递, 来取快递 众人: 笑)  群里 某人: 这bug不好复现啊">
+  <meta name="description" content="SQL注入什么是SQL注入漏洞？用户可以提交一段数据库查询代码，根据程序返回的结果，获得某些他想得知的数据，这就是所谓的SQL Injection，即SQL注入。 例子下面以最简单的SQL注入举例 以登录为例, 假设服务器明文存储了用户名和密码 正常前后端交互流程分析 用户输入用户名name&#x3D; 123和密码password &#x3D; 123  前端传输数据到服务器, 服务器获取nam">
 <meta property="og:type" content="article">
-<meta property="og:title" content="组内趣事">
-<meta property="og:url" content="http://example.com/2023/02/10/%E7%BB%84%E5%86%85%E8%B6%A3%E4%BA%8B/index.html">
+<meta property="og:title" content="SQL注入">
+<meta property="og:url" content="http://example.com/2023/04/17/SQL%E6%B3%A8%E5%85%A5/index.html">
 <meta property="og:site_name" content="Hexo">
-<meta property="og:description" content="实习快乐语录 z老师: 这originId谁加的，tmd，看不懂 …30s later z老师: tmd, 我加的  z老师: za, 这, 这逻辑谁写的, 这么复杂 …30s later z老师: 我写的 za: 现在只有上帝知道这些代码啥意思  组会开始前 某人: z老师昨天请假了? z老师: 本来想今天也请假的, 但到了十几个快递, 来取快递 众人: 笑)  群里 某人: 这bug不好复现啊">
+<meta property="og:description" content="SQL注入什么是SQL注入漏洞？用户可以提交一段数据库查询代码，根据程序返回的结果，获得某些他想得知的数据，这就是所谓的SQL Injection，即SQL注入。 例子下面以最简单的SQL注入举例 以登录为例, 假设服务器明文存储了用户名和密码 正常前后端交互流程分析 用户输入用户名name&#x3D; 123和密码password &#x3D; 123  前端传输数据到服务器, 服务器获取nam">
 <meta property="og:locale">
-<meta property="article:published_time" content="2023-02-10T06:26:44.290Z">
-<meta property="article:modified_time" content="2022-11-04T06:26:38.000Z">
+<meta property="article:published_time" content="2023-04-17T13:52:39.555Z">
+<meta property="article:modified_time" content="2023-04-17T13:52:39.556Z">
 <meta property="article:author" content="John Doe">
 <meta name="twitter:card" content="summary">
   
@@ -61,21 +61,21 @@
   </div>
 </header>
       <div id="middlecontent" title class="global-width sidebar-right">
-        <section id="main"><article id="post-组内趣事" class="article global-container article-type-post" itemscope itemprop="blogPost">
+        <section id="main"><article id="post-SQL注入" class="article global-container article-type-post" itemscope itemprop="blogPost">
   
     <header class="article-header">
       
   
     <h1 class="article-title" itemprop="name">
-      组内趣事
+      SQL注入
     </h1>
   
 
     </header>
   
   <div class="article-meta">
-    <a href="/2023/02/10/%E7%BB%84%E5%86%85%E8%B6%A3%E4%BA%8B/" class="article-date">
-  <time datetime="2023-02-10T06:26:44.290Z" itemprop="datePublished">2023-02-10</time>
+    <a href="/2023/04/17/SQL%E6%B3%A8%E5%85%A5/" class="article-date">
+  <time datetime="2023-04-17T13:52:39.555Z" itemprop="datePublished">2023-04-17</time>
 </a>
     
     
@@ -90,24 +90,39 @@
     
     <div class="article-content article-content-cloud" itemprop="articleBody">
       
-        <h1 id="实习快乐语录"><a href="#实习快乐语录" class="headerlink" title="实习快乐语录"></a>实习快乐语录</h1><ol>
-<li><p>z老师: 这originId谁加的，tmd，看不懂</p>
-<p>…30s later</p>
-<p>z老师: tmd, 我加的</p>
+        <h1 id="SQL注入"><a href="#SQL注入" class="headerlink" title="SQL注入"></a>SQL注入</h1><h2 id="什么是SQL注入漏洞？"><a href="#什么是SQL注入漏洞？" class="headerlink" title="什么是SQL注入漏洞？"></a>什么是SQL注入漏洞？</h2><p>用户可以提交一段数据库查询代码，根据程序返回的结果，获得某些他想得知的数据，这就是所谓的SQL Injection，即SQL注入。</p>
+<h2 id="例子"><a href="#例子" class="headerlink" title="例子"></a>例子</h2><p>下面以最简单的SQL注入举例</p>
+<p>以登录为例, 假设服务器明文存储了用户名和密码</p>
+<h3 id="正常前后端交互流程分析"><a href="#正常前后端交互流程分析" class="headerlink" title="正常前后端交互流程分析"></a>正常前后端交互流程分析</h3><ol>
+<li><p>用户输入用户名name&#x3D; 123和密码password &#x3D; 123</p>
 </li>
-<li><p>z老师: za, 这, 这逻辑谁写的, 这么复杂</p>
-<p>…30s later</p>
-<p>z老师: 我写的</p>
-<p>za: 现在只有上帝知道这些代码啥意思</p>
+<li><p>前端传输数据到服务器, 服务器获取name&#x3D; 123和password &#x3D; 123</p>
 </li>
-<li><p>组会开始前</p>
-<p>某人: z老师昨天请假了?</p>
-<p>z老师: 本来想今天也请假的, 但到了十几个快递, 来取快递</p>
-<p>众人: 笑)</p>
+<li><p>服务器根据name&#x3D; 123和password &#x3D; 123向数据库发送请求</p>
 </li>
-<li><p>群里</p>
-<p>某人: 这bug不好复现啊</p>
-<p>主管: 偷偷标上已解决, 等测试下次复现再说</p>
+<li><p>查询语句为</p>
+<div class="highlight-box"autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" contenteditable="true"data-rel="SQL"><figure class="iseeu highlight /sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">select</span> <span class="operator">*</span> <span class="keyword">FROM</span> `<span class="keyword">user</span>` <span class="keyword">WHERE</span> name<span class="operator">=</span><span class="number">123</span> <span class="keyword">AND</span> password<span class="operator">=</span><span class="number">123</span></span><br></pre></td></tr></table></figure></div>
+</li>
+<li><p>数据库找到了匹配的用户名密码，返回数据, 表示数据库中存在此用户, 且用户名密码匹配</p>
+</li>
+<li><p>服务器返回数据到前端, 允许登录用户名为123的账号</p>
+</li>
+</ol>
+<h3 id="SQL注入方式"><a href="#SQL注入方式" class="headerlink" title="SQL注入方式"></a>SQL注入方式</h3><ol>
+<li><p>输入name &#x3D; 123 OR 1 #</p>
+</li>
+<li><p>输入password为任意值, 以456为例</p>
+</li>
+<li><p>网络传输, 服务器发起数据库查询的命令</p>
+</li>
+<li><p>此时, 查询寻语句为</p>
+<div class="highlight-box"autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" contenteditable="true"data-rel="SQL"><figure class="iseeu highlight /sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">select</span> <span class="operator">*</span> <span class="keyword">FROM</span> `<span class="keyword">user</span>` <span class="keyword">WHERE</span> name<span class="operator">=</span><span class="number">123</span> <span class="keyword">OR</span> <span class="number">1</span> # <span class="keyword">AND</span> password<span class="operator">=</span><span class="number">456</span></span><br></pre></td></tr></table></figure></div>
+</li>
+<li><p>由于SQL语句中, #后为注释内容, 故不执行, OR 1确保了该语句的where必定为真, 返回数据库中user表中全部数据</p>
+</li>
+<li><p>查询到有返回值, 服务判断匹配, 允许前端登录</p>
+</li>
+<li><p>完成了SQL注入, 实现登录</p>
 </li>
 </ol>
 
@@ -124,20 +139,11 @@
 <nav id="article-nav">
   <div class="article-nav-block">
     
-      <a href="/2023/02/10/795.%20%E5%8C%BA%E9%97%B4%E5%AD%90%E6%95%B0%E7%BB%84%E4%B8%AA%E6%95%B0/" id="article-nav-newer" class="article-nav-link-wrap">
-        <strong class="article-nav-caption"></strong>
-        <div class="article-nav-title">
-          
-            795. 区间子数组个数
-          
-        </div>
-      </a>
-    
   </div>
   <div class="article-nav-block">
     
-      <a href="/2023/02/10/%E4%B8%80%E6%AC%A1http%E8%AF%B7%E6%B1%82%E7%9A%84%E8%BF%87%E7%A8%8B/" id="article-nav-older" class="article-nav-link-wrap">
-        <div class="article-nav-title">一次http请求的过程</div>
+      <a href="/2023/04/17/T525/" id="article-nav-older" class="article-nav-link-wrap">
+        <div class="article-nav-title"></div>
         <strong class="article-nav-caption"></strong>
       </a>
     

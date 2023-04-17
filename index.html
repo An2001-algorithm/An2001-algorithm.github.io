@@ -59,6 +59,76 @@
       <div id="middlecontent" title class="global-width sidebar-right">
         <section id="main">
   
+    <article id="post-SQL注入" class="article global-container article-type-post" itemscope itemprop="blogPost">
+  
+    <header class="article-header">
+      
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2023/04/17/SQL%E6%B3%A8%E5%85%A5/">SQL注入</a>
+    </h1>
+  
+
+    </header>
+  
+  <div class="article-meta">
+    <a href="/2023/04/17/SQL%E6%B3%A8%E5%85%A5/" class="article-date">
+  <time datetime="2023-04-17T13:52:39.555Z" itemprop="datePublished">2023-04-17</time>
+</a>
+    
+    
+  </div>
+  
+
+  <div class="article-inner">
+    
+    <div class="article-content article-content-cloud" itemprop="articleBody">
+      
+        <h1 id="SQL注入"><a href="#SQL注入" class="headerlink" title="SQL注入"></a>SQL注入</h1><h2 id="什么是SQL注入漏洞？"><a href="#什么是SQL注入漏洞？" class="headerlink" title="什么是SQL注入漏洞？"></a>什么是SQL注入漏洞？</h2><p>用户可以提交一段数据库查询代码，根据程序返回的结果，获得某些他想得知的数据，这就是所谓的SQL Injection，即SQL注入。</p>
+<h2 id="例子"><a href="#例子" class="headerlink" title="例子"></a>例子</h2><p>下面以最简单的SQL注入举例</p>
+<p>以登录为例, 假设服务器明文存储了用户名和密码</p>
+<h3 id="正常前后端交互流程分析"><a href="#正常前后端交互流程分析" class="headerlink" title="正常前后端交互流程分析"></a>正常前后端交互流程分析</h3><ol>
+<li><p>用户输入用户名name&#x3D; 123和密码password &#x3D; 123</p>
+</li>
+<li><p>前端传输数据到服务器, 服务器获取name&#x3D; 123和password &#x3D; 123</p>
+</li>
+<li><p>服务器根据name&#x3D; 123和password &#x3D; 123向数据库发送请求</p>
+</li>
+<li><p>查询语句为</p>
+<div class="highlight-box"autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" contenteditable="true"data-rel="SQL"><figure class="iseeu highlight /sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">select</span> <span class="operator">*</span> <span class="keyword">FROM</span> `<span class="keyword">user</span>` <span class="keyword">WHERE</span> name<span class="operator">=</span><span class="number">123</span> <span class="keyword">AND</span> password<span class="operator">=</span><span class="number">123</span></span><br></pre></td></tr></table></figure></div>
+</li>
+<li><p>数据库找到了匹配的用户名密码，返回数据, 表示数据库中存在此用户, 且用户名密码匹配</p>
+</li>
+<li><p>服务器返回数据到前端, 允许登录用户名为123的账号</p>
+</li>
+</ol>
+<h3 id="SQL注入方式"><a href="#SQL注入方式" class="headerlink" title="SQL注入方式"></a>SQL注入方式</h3><ol>
+<li><p>输入name &#x3D; 123 OR 1 #</p>
+</li>
+<li><p>输入password为任意值, 以456为例</p>
+</li>
+<li><p>网络传输, 服务器发起数据库查询的命令</p>
+</li>
+<li><p>此时, 查询寻语句为</p>
+<div class="highlight-box"autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" contenteditable="true"data-rel="SQL"><figure class="iseeu highlight /sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">select</span> <span class="operator">*</span> <span class="keyword">FROM</span> `<span class="keyword">user</span>` <span class="keyword">WHERE</span> name<span class="operator">=</span><span class="number">123</span> <span class="keyword">OR</span> <span class="number">1</span> # <span class="keyword">AND</span> password<span class="operator">=</span><span class="number">456</span></span><br></pre></td></tr></table></figure></div>
+</li>
+<li><p>由于SQL语句中, #后为注释内容, 故不执行, OR 1确保了该语句的where必定为真, 返回数据库中user表中全部数据</p>
+</li>
+<li><p>查询到有返回值, 服务判断匹配, 允许前端登录</p>
+</li>
+<li><p>完成了SQL注入, 实现登录</p>
+</li>
+</ol>
+
+      
+    </div>
+    
+  </div>
+  
+  
+</article>
+
+  
     <article id="post-T525" class="article global-container article-type-post" itemscope itemprop="blogPost">
   
   <div class="article-meta">
@@ -623,75 +693,6 @@
 </article>
 
   
-    <article id="post-开发的遇到的bug" class="article global-container article-type-post" itemscope itemprop="blogPost">
-  
-    <header class="article-header">
-      
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2023/02/10/%E5%BC%80%E5%8F%91%E7%9A%84%E9%81%87%E5%88%B0%E7%9A%84bug/">开发的遇到的bug</a>
-    </h1>
-  
-
-    </header>
-  
-  <div class="article-meta">
-    <a href="/2023/02/10/%E5%BC%80%E5%8F%91%E7%9A%84%E9%81%87%E5%88%B0%E7%9A%84bug/" class="article-date">
-  <time datetime="2023-02-10T06:26:44.313Z" itemprop="datePublished">2023-02-10</time>
-</a>
-    
-    
-  </div>
-  
-
-  <div class="article-inner">
-    
-    <div class="article-content article-content-cloud" itemprop="articleBody">
-      
-        <h1 id="开发的遇到的bug"><a href="#开发的遇到的bug" class="headerlink" title="开发的遇到的bug"></a>开发的遇到的bug</h1><h2 id="设置lottie播放流程监听导致的bug"><a href="#设置lottie播放流程监听导致的bug" class="headerlink" title="设置lottie播放流程监听导致的bug"></a>设置lottie播放流程监听导致的bug</h2><h3 id="用户反馈-动画播放完成之后-不能响应任何操作"><a href="#用户反馈-动画播放完成之后-不能响应任何操作" class="headerlink" title="用户反馈: 动画播放完成之后, 不能响应任何操作"></a>用户反馈: 动画播放完成之后, 不能响应任何操作</h3><h3 id="前置条件-产品需求为动画播放完成之后才能响应用户操作"><a href="#前置条件-产品需求为动画播放完成之后才能响应用户操作" class="headerlink" title="前置条件: 产品需求为动画播放完成之后才能响应用户操作"></a>前置条件: 产品需求为动画播放完成之后才能响应用户操作</h3><h3 id="解决流程"><a href="#解决流程" class="headerlink" title="解决流程:"></a>解决流程:</h3><ol>
-<li><p>查看用户反馈日志和截图, 显示用户在动画播放的界面显示之后没有任何操作</p>
-</li>
-<li><p>推断此时app不能响应用户操作</p>
-</li>
-<li><p>查看设备为huawei  ELE-AL00 Android 10</p>
-</li>
-<li><p>尝试复现, 未果</p>
-</li>
-<li><p>查看bugly, 该版本此界面确有一个ANR上报, 推断是该ANR导致</p>
-</li>
-<li><p>修复掉该ANR</p>
-</li>
-<li><hr>
-</li>
-<li><p>更新版本之后, 仍有用户反馈</p>
-</li>
-<li><p>重新查看日志, 发现没有用户操作40s后, 又打印了一条日志, 断定不是ANR导致</p>
-</li>
-<li><p>园区饭后散步, 突发奇想是点击事件设定代码未执行, 进而怀疑是lottie监听播放流程的问题</p>
-</li>
-<li><p>回归代码, 对于监听播放完成, 采用的方式是animatedFraction &gt;&#x3D; 0.999999 查看源码</p>
-</li>
-<li><p>&#96;&#96;&#96;java<br> &#x2F;**<br>* Implementors of this interface can add themselves as update listeners<br>* to an <code>ValueAnimator</code> instance to receive callbacks on every  	 	  	  * animation frame, after the current frame’s values have been calculated for<br>* that <code>ValueAnimator</code>.<br>*&#x2F;</p>
-</li>
-</ol>
-<pre><code>```
-</code></pre>
-<ol start="13">
-<li><p>存在最后一帧小于0.999999 且播放完之后未进行回调的可能, 如此导致setOnClickListener未执行</p>
-</li>
-<li><p>改用addAnimatorListener(AnimatorListener) 修复掉该问题</p>
-</li>
-</ol>
-
-      
-    </div>
-    
-  </div>
-  
-  
-</article>
-
-  
 
 
   <nav id="page-nav">
@@ -743,6 +744,10 @@
       <ul>
         
           <li>
+            <a href="/2023/04/17/SQL%E6%B3%A8%E5%85%A5/">SQL注入</a>
+          </li>
+        
+          <li>
             <a href="/2023/04/17/T525/">(no title)</a>
           </li>
         
@@ -756,10 +761,6 @@
         
           <li>
             <a href="/2023/04/17/%E5%89%91%E6%8C%87%20Offer%20II%20014.%20%E5%AD%97%E7%AC%A6%E4%B8%B2%E4%B8%AD%E7%9A%84%E5%8F%98%E4%BD%8D%E8%AF%8D/">(no title)</a>
-          </li>
-        
-          <li>
-            <a href="/2023/03/29/LeetCode1641/">LeetCode1641</a>
           </li>
         
       </ul>
