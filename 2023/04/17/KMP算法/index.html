@@ -1,0 +1,299 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+
+  
+  <title>Hexo</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  
+  
+  
+  <meta name="description" content="KMP算法简述Knuth-Morris-Pratt 字符串查找算法，简称为 KMP算法，常用于在一个文本串 S 内查找一个模式串 P 的出现位置。 子串匹配对于模式串 A，在文本串B中找出与A完全相同的子串的位置 例如： A &#x3D; “ab” B &#x3D; “aaaab” Index i &#x3D; 3为答案 朴素算法枚举每一个i in B.index，对于每一个i，枚举j in A.">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Hexo">
+<meta property="og:url" content="http://example.com/2023/04/17/KMP%E7%AE%97%E6%B3%95/index.html">
+<meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="KMP算法简述Knuth-Morris-Pratt 字符串查找算法，简称为 KMP算法，常用于在一个文本串 S 内查找一个模式串 P 的出现位置。 子串匹配对于模式串 A，在文本串B中找出与A完全相同的子串的位置 例如： A &#x3D; “ab” B &#x3D; “aaaab” Index i &#x3D; 3为答案 朴素算法枚举每一个i in B.index，对于每一个i，枚举j in A.">
+<meta property="og:locale">
+<meta property="article:published_time" content="2023-04-17T11:42:46.330Z">
+<meta property="article:modified_time" content="2023-04-17T11:42:04.217Z">
+<meta property="article:author" content="John Doe">
+<meta name="twitter:card" content="summary">
+  
+    <link rel="alternate" href="/atom.xml" title="Hexo" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/images/default-avatar.jpg">
+  
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  
+<link rel="stylesheet" href="/css/style.css">
+
+  
+<link rel="stylesheet" href="/css/highlight.css">
+
+<meta name="generator" content="Hexo 6.3.0"></head>
+
+<body>
+  <div id="fullpage" class="mobile-nav-right">
+    
+      <div id="wrapper" title="图片来自网络">
+    
+    
+      <header id="header">
+  <div id="nav-toggle" class="nav-toggle"></div>
+  <div class="head-box global-width">
+    <nav class="nav-box nav-right">
+      
+        <a class="nav-item" href="/" title
+        
+        >首页</a>
+      
+        <a class="nav-item" href="/archives" title
+        
+        >归档</a>
+      
+    </nav>
+  </div>
+</header>
+      <div id="middlecontent" title class="global-width sidebar-right">
+        <section id="main"><article id="post-KMP算法" class="article global-container article-type-post" itemscope itemprop="blogPost">
+  
+  <div class="article-meta">
+    <a href="/2023/04/17/KMP%E7%AE%97%E6%B3%95/" class="article-date">
+  <time datetime="2023-04-17T11:42:46.330Z" itemprop="datePublished">2023-04-17</time>
+</a>
+    
+    
+  </div>
+  
+    <span id="busuanzi_container_page_pv">
+      本文总阅读量<span id="busuanzi_value_page_pv"></span>次
+    </span>
+  
+
+  <div class="article-inner">
+    
+    <div class="article-content article-content-cloud" itemprop="articleBody">
+      
+        <h1 id="KMP算法"><a href="#KMP算法" class="headerlink" title="KMP算法"></a>KMP算法</h1><h2 id="简述"><a href="#简述" class="headerlink" title="简述"></a>简述</h2><p><strong>K</strong>nuth-<strong>M</strong>orris-<strong>P</strong>ratt <a target="_blank" rel="noopener" href="https://www.zhihu.com/search?q=%E5%AD%97%E7%AC%A6%E4%B8%B2%E6%9F%A5%E6%89%BE%E7%AE%97%E6%B3%95&search_source=Entity&hybrid_search_source=Entity&hybrid_search_extra=%7B%22sourceType%22:%22answer%22,%22sourceId%22:769606119%7D">字符串查找算法</a>，简称为 <strong>KMP算法</strong>，常用于在一个文本串 S 内查找一个模式串 P 的出现位置。</p>
+<h2 id="子串匹配"><a href="#子串匹配" class="headerlink" title="子串匹配"></a>子串匹配</h2><p>对于模式串 A，在文本串B中找出与A完全相同的子串的位置</p>
+<p>例如：</p>
+<p>A &#x3D; “ab”</p>
+<p>B &#x3D; “aaaab”</p>
+<p>Index i &#x3D; 3为答案</p>
+<h2 id="朴素算法"><a href="#朴素算法" class="headerlink" title="朴素算法"></a>朴素算法</h2><p>枚举每一个i in B.index，对于每一个i，枚举j in A.index，check A[j] &#x3D;&#x3D; B[i + j]，当一次j的循环完成跑完，check全部成立，则有ans_index &#x3D; i</p>
+<p>代码如下：</p>
+<div class="highlight-box"autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" contenteditable="true"data-rel="JAVA"><figure class="iseeu highlight /java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">String</span> <span class="variable">A</span> <span class="operator">=</span> <span class="string">&quot;aaab&quot;</span>;</span><br><span class="line"><span class="type">String</span> <span class="variable">B</span> <span class="operator">=</span> <span class="string">&quot;aaaaab&quot;</span>;</span><br><span class="line"><span class="type">int</span> <span class="variable">ansIndex</span> <span class="operator">=</span> <span class="number">0</span>;</span><br><span class="line"><span class="keyword">for</span> (<span class="type">int</span> <span class="variable">i</span> <span class="operator">=</span> <span class="number">0</span>; i &lt; B.length() - A.length() + <span class="number">1</span>; i++) &#123;</span><br><span class="line">    <span class="type">boolean</span> <span class="variable">flag</span> <span class="operator">=</span> <span class="literal">true</span>;</span><br><span class="line">    <span class="keyword">for</span> (<span class="type">int</span> <span class="variable">j</span> <span class="operator">=</span> <span class="number">0</span>; j &lt; A.length(); j++) &#123;</span><br><span class="line">        <span class="keyword">if</span> (A.charAt(j) != B.charAt(i + j)) &#123;</span><br><span class="line">            flag = <span class="literal">false</span>;</span><br><span class="line">            <span class="keyword">break</span>;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">if</span> (flag) &#123;</span><br><span class="line">        ansIndex = i;</span><br><span class="line">        <span class="keyword">break</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line">System.out.println(ansIndex);</span><br></pre></td></tr></table></figure></div>
+
+<p>最坏的情况，两重循环全部跑完，显然时间复杂度为O(NM)，N M分别为A B串长度</p>
+<h2 id="对朴素算法的优化-KMP算法"><a href="#对朴素算法的优化-KMP算法" class="headerlink" title="对朴素算法的优化(KMP算法)"></a>对朴素算法的优化(KMP算法)</h2><p>关于时间复杂度，抛出一个问题，什么时候会有最坏的情况？</p>
+<p>即答：上面的例子就是</p>
+<p>对于上述例子，上述算法的冗余操作在于，每次移动了一个单位，以下述例子进行解释</p>
+<ol>
+<li><p>abcabd 和 abcabcabd，第一次循环，会在<code>i = 0</code>，<code>j = 5</code>的时候终止， 因为abcabd和abcabc的最后一个不匹配</p>
+</li>
+<li><p>上述算法的下一步操作为，<code>i++</code>，<code>j = 0</code>，继续循环</p>
+</li>
+<li><p>这时候我们考虑i的位置，显然，<code>i = 1,2</code>都属于冗余操作，因为<code>B[1] != A[0], B[2] != A[0]</code>，接着看<code>i = 3</code>的情况，可以发现，<code>i = 3</code>有可能完成匹配，因为至少<code>B[3] == A[0]</code></p>
+</li>
+<li><p>此时，我们再考虑j的位置，注意，这里有<code>B[3] == A[0], B[4] == A[1]</code>, 所以我们j可以直接取2，即<code>j = 2</code></p>
+</li>
+<li><p>显然直接取得<code>i = 3</code>, <code>j = 2</code>对于原先算法是一种优化，如果在O(1)的时间内获取这个信息，那么我们的优化即可完成</p>
+</li>
+<li><p>在此例中，在j &#x3D; 5终止匹配，可以给我们一个信息，此信息为，A串的0-4与B串的0-4完全相同，我们需要处理出上述3、4两点的信息，需要用到A串的0-4和B串的0-4，又因为A串的0-4与B串的0-4完全相同，所以我们需要用的A串的0-4与A串的0-4，且注意，我们用A串去匹配B串，所以A串是重复使用的，因此我们可以预处理出A串的0-(A.length-1)的3、4两点提到的信息，实现O(1)得获得此信息</p>
+</li>
+<li><p>至此，优化完成，此为KMP算法，时间复杂度为O(M+N), M、N分别为A、B串的长度</p>
+</li>
+</ol>
+<h2 id="代码"><a href="#代码" class="headerlink" title="代码"></a>代码</h2><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="type">int</span> <span class="title">KMP</span><span class="params">(<span class="type">char</span> *t, <span class="type">char</span> *p)</span> </span>&#123;</span><br><span class="line">      <span class="type">int</span> i = <span class="number">0</span>;</span><br><span class="line">      <span class="type">int</span> j = <span class="number">0</span>;</span><br><span class="line"></span><br><span class="line">      <span class="keyword">while</span> (i &lt; (<span class="type">int</span>) <span class="built_in">strlen</span>(t) &amp;&amp; j &lt; (<span class="type">int</span>) <span class="built_in">strlen</span>(p)) &#123;</span><br><span class="line">          <span class="keyword">if</span> (j == <span class="number">-1</span> || t[i] == p[j]) &#123;</span><br><span class="line">              i++;</span><br><span class="line">              j++;</span><br><span class="line">          &#125; <span class="keyword">else</span></span><br><span class="line">              j = next[j];</span><br><span class="line">      &#125;</span><br><span class="line"></span><br><span class="line">      <span class="keyword">if</span> (j == <span class="built_in">strlen</span>(p))</span><br><span class="line">          <span class="keyword">return</span> i - j;</span><br><span class="line">      <span class="keyword">else</span></span><br><span class="line">          <span class="keyword">return</span> <span class="number">-1</span>;</span><br><span class="line">  &#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+
+
+<h2 id="关于时间复杂度的证明"><a href="#关于时间复杂度的证明" class="headerlink" title="关于时间复杂度的证明"></a>关于时间复杂度的证明</h2><p>存疑的点在于<code>j = next[j]</code> 导致了j最坏的情况下减小到0，所以时间复杂度为O(NM)</p>
+<p>但是，KMP算法中i是递增的，不增的情况为失配时，</p>
+<p>所以，KMP 的比对次数是<code> (n + 失配次数）</code></p>
+<p>KMP 算法的最差情况的一个案例，<code>n/m</code> 个失配点位，每个点位重新匹配 <code>m-1</code> 次，此时总共比对 <code>n+(m-1)*(n/m)</code> 次，接近 <code>2n</code> 次。</p>
+<p>完。</p>
+<p>待补充，next数组的计算方式</p>
+
+      
+    </div>
+    
+      <footer class="article-footer">
+        完
+      </footer>
+    
+  </div>
+  
+    
+<nav id="article-nav">
+  <div class="article-nav-block">
+    
+      <a href="/2023/04/17/T37/" id="article-nav-newer" class="article-nav-link-wrap">
+        <strong class="article-nav-caption"></strong>
+        <div class="article-nav-title">
+          
+            <div>没有了</div>
+          
+        </div>
+      </a>
+    
+  </div>
+  <div class="article-nav-block">
+    
+      <a href="/2023/04/17/%E5%89%91%E6%8C%87%20Offer%20II%20014.%20%E5%AD%97%E7%AC%A6%E4%B8%B2%E4%B8%AD%E7%9A%84%E5%8F%98%E4%BD%8D%E8%AF%8D/" id="article-nav-older" class="article-nav-link-wrap">
+        <div class="article-nav-title"></div>
+        <strong class="article-nav-caption"></strong>
+      </a>
+    
+  </div>
+</nav>
+
+    <link rel="stylesheet" href="/css/gitment.css"> 
+<script src="/js/gitment.js"></script>
+
+<div id="gitmentContainer"></div>
+
+<script>
+var gitment = new Gitment({
+  owner: '',
+  repo: '',
+  oauth: {
+    client_id: '',
+    client_secret: '',
+  },
+})
+gitment.render('gitmentContainer')
+</script>
+
+  
+  
+</article>
+</section>
+        <aside id="sidebar">
+  
+    <div class="widget-box">
+  <div class="avatar-box">
+    <img class="avatar" src="/images/default-avatar.jpg" title="图片来自网络"></img>
+    <h3 class="avatar-name">
+      
+        安安
+      
+    </h3>
+    <p class="avatar-slogan">
+      正在摸鱼的安卓实习生
+    </p>
+  </div>
+</div>
+
+
+  
+    
+
+  
+    
+
+  
+    
+  
+    
+  <div class="widget-box">
+    <h3 class="widget-title">Archives</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/04/">April 2023</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/03/">March 2023</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/02/">February 2023</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/10/">October 2022</a></li></ul>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-box">
+    <h3 class="widget-title">Recent Posts</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2023/04/17/T525/">(no title)</a>
+          </li>
+        
+          <li>
+            <a href="/2023/04/17/T37/">(no title)</a>
+          </li>
+        
+          <li>
+            <a href="/2023/04/17/KMP%E7%AE%97%E6%B3%95/">(no title)</a>
+          </li>
+        
+          <li>
+            <a href="/2023/04/17/%E5%89%91%E6%8C%87%20Offer%20II%20014.%20%E5%AD%97%E7%AC%A6%E4%B8%B2%E4%B8%AD%E7%9A%84%E5%8F%98%E4%BD%8D%E8%AF%8D/">(no title)</a>
+          </li>
+        
+          <li>
+            <a href="/2023/03/29/LeetCode1641/">LeetCode1641</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+      <div class="widget-box">
+    <h3 class="widget-title">友链</h3>
+    <div class="widget">
+      
+    </div>
+  </div>
+
+  
+</aside>
+      </div>
+      <footer id="footer">
+  <div class="foot-box global-width">
+    &copy; 2023 John Doe &nbsp;&nbsp;
+    Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+    &nbsp;|&nbsp;主题 <a target="_blank" rel="noopener" href="https://github.com/yiluyanxia/hexo-theme-antiquity">antiquity</a>
+    <br>
+    <script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+    <span id="busuanzi_container_site_pv">不蒜子告之   阁下是第<span id="busuanzi_value_site_pv"></span>个访客</span>
+  </div>
+</footer>
+      <script src="https://code.jquery.com/jquery-2.0.3.min.js"></script>
+<script>
+if (!window.jQuery) {
+var script = document.createElement('script');
+script.src = "/js/jquery-2.0.3.min.js";
+document.body.write(script);
+}
+</script>
+
+  
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+
+  
+<script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+
+
+<script src="/js/script.js"></script>
+
+
+
+
+    </div>
+    <nav id="mobile-nav" class="mobile-nav-box">
+  <div class="mobile-nav-img mobile-nav-top"></div>
+  
+    <a href="/" class="mobile-nav-link">首页</a>
+  
+    <a href="/archives" class="mobile-nav-link">归档</a>
+  
+  <div class="mobile-nav-img  mobile-nav-bottom"></div>
+</nav>    
+  </div>
+</body>
+</html>
