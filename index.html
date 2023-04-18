@@ -59,6 +59,57 @@
       <div id="middlecontent" title class="global-width sidebar-right">
         <section id="main">
   
+    <article id="post-T07_08" class="article global-container article-type-post" itemscope itemprop="blogPost">
+  
+    <header class="article-header">
+      
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2023/04/18/T07_08/">T07_08 面试题 08.07. 无重复字符串的排列组合</a>
+    </h1>
+  
+
+    </header>
+  
+  <div class="article-meta">
+    <a href="/2023/04/18/T07_08/" class="article-date">
+  <time datetime="2023-04-18T12:14:37.160Z" itemprop="datePublished">2023-04-18</time>
+</a>
+    
+    
+  </div>
+  
+
+  <div class="article-inner">
+    
+    <div class="article-content article-content-cloud" itemprop="articleBody">
+      
+        <h1 id="面试题-08-07-无重复字符串的排列组合"><a href="#面试题-08-07-无重复字符串的排列组合" class="headerlink" title="面试题 08.07. 无重复字符串的排列组合"></a>面试题 08.07. 无重复字符串的排列组合</h1><p>Describtion：</p>
+<h4 id="面试题-08-07-无重复字符串的排列组合-1"><a href="#面试题-08-07-无重复字符串的排列组合-1" class="headerlink" title="面试题 08.07. 无重复字符串的排列组合"></a><a target="_blank" rel="noopener" href="https://leetcode.cn/problems/permutation-i-lcci/">面试题 08.07. 无重复字符串的排列组合</a></h4><p>无重复字符串的排列组合。编写一种方法，计算某字符串的所有排列组合，字符串每个字符均不相同。</p>
+<p><strong>示例1:</strong></p>
+<div class="highlight-box"autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" contenteditable="true"data-rel="PLAINTEXT"><figure class="iseeu highlight /plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">输入：S = &quot;qwe&quot;</span><br><span class="line">输出：[&quot;qwe&quot;, &quot;qew&quot;, &quot;wqe&quot;, &quot;weq&quot;, &quot;ewq&quot;, &quot;eqw&quot;]</span><br></pre></td></tr></table></figure></div>
+
+<p><strong>示例2:</strong></p>
+<div class="highlight-box"autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" contenteditable="true"data-rel="PLAINTEXT"><figure class="iseeu highlight /plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">输入：S = &quot;ab&quot;</span><br><span class="line">输出：[&quot;ab&quot;, &quot;ba&quot;]</span><br></pre></td></tr></table></figure></div>
+
+<p><strong>提示:</strong></p>
+<ol>
+<li>字符都是英文字母。</li>
+<li>字符串长度在[1, 9]之间。</li>
+</ol>
+<p><strong>思路</strong></p>
+<p>裸题，全排列，dfs+回溯</p>
+<p><strong>代码</strong></p>
+<div class="highlight-box"autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" contenteditable="true"data-rel="JAVA"><figure class="iseeu highlight /java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> java.util.Arrays;</span><br><span class="line"><span class="keyword">import</span> java.util.LinkedList;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">T07_08</span> &#123;</span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title function_">main</span><span class="params">(String[] args)</span> &#123;</span><br><span class="line">        String[] s = <span class="keyword">new</span> <span class="title class_">T07_08</span>().permutation(<span class="string">&quot;a&quot;</span>);</span><br><span class="line">        System.out.println(Arrays.toString(s));</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">public</span> String[] permutation(String S) &#123;</span><br><span class="line">        <span class="type">int</span>[] vis = <span class="keyword">new</span> <span class="title class_">int</span>[S.length()];</span><br><span class="line">        LinkedList&lt;String&gt; ans = <span class="keyword">new</span> <span class="title class_">LinkedList</span>&lt;&gt;();</span><br><span class="line">        <span class="type">StringBuilder</span> <span class="variable">sb</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">StringBuilder</span>();</span><br><span class="line">        dfs(vis,S,ans,<span class="number">0</span>,sb);</span><br><span class="line">        <span class="keyword">return</span>  ans.toArray(String[]::<span class="keyword">new</span>);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">void</span> <span class="title function_">dfs</span><span class="params">(<span class="type">int</span>[] vis, String S, LinkedList&lt;String&gt; ans, <span class="type">int</span> nowIndex, StringBuilder sb)</span> &#123;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">if</span> (sb.length() == S.length()) &#123;</span><br><span class="line">            ans.add(sb.toString());</span><br><span class="line">            <span class="keyword">return</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">for</span> (<span class="type">int</span> <span class="variable">i</span> <span class="operator">=</span> <span class="number">0</span>; i &lt; S.length(); i++) &#123;</span><br><span class="line">            <span class="keyword">if</span> (vis[i] == <span class="number">1</span>) <span class="keyword">continue</span>;</span><br><span class="line">            vis[i] = <span class="number">1</span>;</span><br><span class="line">            dfs(vis, S, ans, nowIndex, sb.append(S.charAt(i)));</span><br><span class="line">            sb.delete(sb.length() - <span class="number">1</span>, sb.length());</span><br><span class="line">            vis[i] = <span class="number">0</span>;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></div>
+      
+    </div>
+    
+  </div>
+  
+  
+</article>
+
+  
     <article id="post-SQL注入" class="article global-container article-type-post" itemscope itemprop="blogPost">
   
     <header class="article-header">
@@ -659,78 +710,6 @@
 </article>
 
   
-    <article id="post-Java面试题" class="article global-container article-type-post" itemscope itemprop="blogPost">
-  
-    <header class="article-header">
-      
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2023/02/11/Java%E9%9D%A2%E8%AF%95%E9%A2%98/">Java面试</a>
-    </h1>
-  
-
-    </header>
-  
-  <div class="article-meta">
-    <a href="/2023/02/11/Java%E9%9D%A2%E8%AF%95%E9%A2%98/" class="article-date">
-  <time datetime="2023-02-11T08:38:56.176Z" itemprop="datePublished">2023-02-11</time>
-</a>
-    
-    
-  </div>
-  
-
-  <div class="article-inner">
-    
-    <div class="article-content article-content-cloud" itemprop="articleBody">
-      
-        <h1 id="Java-面试"><a href="#Java-面试" class="headerlink" title="Java 面试"></a>Java 面试</h1><h3 id="创建线程的方法"><a href="#创建线程的方法" class="headerlink" title="创建线程的方法"></a>创建线程的方法</h3><ul>
-<li>Thread类, 实例化</li>
-<li>实现Runnable接口, 实例化</li>
-<li>实现Callable接口, 实例化</li>
-<li>线程池</li>
-</ul>
-<h3 id="线程的状态"><a href="#线程的状态" class="headerlink" title="线程的状态"></a>线程的状态</h3><ul>
-<li>创建, 线程对象建立</li>
-<li>就绪, 调用start之后</li>
-<li>运行, 获取时间片之后</li>
-<li>死亡, 线程不再运行之后, stop, run方法结束, 异常退出</li>
-<li>阻塞</li>
-</ul>
-<h4 id="挂起和阻塞区别："><a href="#挂起和阻塞区别：" class="headerlink" title="挂起和阻塞区别："></a>挂起和阻塞区别：</h4><ol>
-<li><p>挂起是一种主动行为，因此恢复也应该要主动完成。而阻塞是一种被动行为，是在等待事件或者资源任务的表现，你不知道它什么时候被阻塞，也不清楚它什么时候会恢复阻塞。</p>
-</li>
-<li><p>阻塞（pend）就是任务释放CPU，其他任务可以运行，一般在等待某种资源或者信号量的时候出现。</p>
-</li>
-<li><p>挂起（suspend）不释放CPU，如果任务优先级高，就永远轮不到其他任务运行。一般挂起用于程序调试中的条件中断，当出现某个条件的情况下挂起，然后进行单步调试。</p>
-</li>
-</ol>
-<h4 id="sleep（）和wait（）函数的区别："><a href="#sleep（）和wait（）函数的区别：" class="headerlink" title="sleep（）和wait（）函数的区别："></a>sleep（）和wait（）函数的区别：</h4><ol>
-<li>两者比较的共同之处是：两个方法都是使程序等待多少毫秒。</li>
-<li>最主要区别是：sleep（）方法没有释放锁。而wait（）方法释放了锁，使得其他线程可以使用同步控制块或者方法。</li>
-<li>sleep（）指线程被调用时，占着CPU不工作，形象的说明为“占着CPU”睡觉。<br>sleep(2000)表示：占用CPU，程序休眠2秒。<br>wait(2000)表示：不占用CPU，程序等待2秒。</li>
-</ol>
-<h3 id="双亲委派机制"><a href="#双亲委派机制" class="headerlink" title="双亲委派机制"></a>双亲委派机制</h3><p><img src="https://image-static.segmentfault.com/306/590/3065906840-5f9236c1b294a_fix732" alt="双亲委派机制"></p>
-<h4 id="启动类-x2F-引导类：Bootstrap-ClassLoader"><a href="#启动类-x2F-引导类：Bootstrap-ClassLoader" class="headerlink" title="启动类&#x2F;引导类：Bootstrap ClassLoader"></a><strong>启动类&#x2F;引导类：Bootstrap ClassLoader</strong></h4><h4 id="扩展类加载器：Extension-ClassLoader"><a href="#扩展类加载器：Extension-ClassLoader" class="headerlink" title="扩展类加载器：Extension ClassLoader"></a><strong>扩展类加载器：Extension ClassLoader</strong></h4><h4 id="应用程序类加载器：Application-Classloader"><a href="#应用程序类加载器：Application-Classloader" class="headerlink" title="应用程序类加载器：Application Classloader"></a><strong>应用程序类加载器：Application Classloader</strong></h4><h4 id="自定义加载器"><a href="#自定义加载器" class="headerlink" title="自定义加载器"></a><strong>自定义加载器</strong></h4><ol>
-<li><p>如果一个<code>类加载器</code>接收到了<code>类加载</code>的请求，它自己不会先去加载，会把这个请求委托给<code>父类加载器</code>去执行。</p>
-</li>
-<li><p>如果父类还存在父类加载器，则继续向上委托，一直委托到<code>启动类加载器：Bootstrap ClassLoader</code></p>
-</li>
-<li><p>如果父类加载器可以完成加载任务，就返回成功结果，如果父类加载失败，就由子类自己去尝试加载，如果子类加载失败就会抛出<code>ClassNotFoundException</code>异常，这就是<code>双亲委派模式</code></p>
-</li>
-</ol>
-<h4 id="第三方包加载方式：反向委派机制"><a href="#第三方包加载方式：反向委派机制" class="headerlink" title="第三方包加载方式：反向委派机制"></a><strong>第三方包加载方式：反向委派机制</strong></h4><p>在Java应用中存在着很多服务提供者接口（Service Provider Interface，SPI），这些接口允许第三方为它们提供实现，如常见的 SPI 有 JDBC、JNDI等，这些 SPI 的接口属于 Java 核心库，一般存在rt.jar包中，由Bootstrap类加载器加载。而Bootstrap类加载器无法直接加载SPI的实现类，同时由于双亲委派模式的存在，Bootstrap类加载器也无法反向委托AppClassLoader加载器SPI的实现类。在这种情况下，我们就需要一种特殊的类加载器来加载第三方的类库，而线程上下文类加载器（双亲委派模型的破坏者）就是很好的选择。</p>
-<p><img src="https://image-static.segmentfault.com/381/358/3813581141-5f8843a60f6fc_fix732"></p>
-
-      
-    </div>
-    
-  </div>
-  
-  
-</article>
-
-  
 
 
   <nav id="page-nav">
@@ -782,6 +761,10 @@
       <ul>
         
           <li>
+            <a href="/2023/04/18/T07_08/">T07_08 面试题 08.07. 无重复字符串的排列组合</a>
+          </li>
+        
+          <li>
             <a href="/2023/04/17/SQL%E6%B3%A8%E5%85%A5/">SQL注入</a>
           </li>
         
@@ -795,10 +778,6 @@
         
           <li>
             <a href="/2023/04/17/KMP%E7%AE%97%E6%B3%95/">KMP算法</a>
-          </li>
-        
-          <li>
-            <a href="/2023/04/17/%E5%89%91%E6%8C%87%20Offer%20II%20014.%20%E5%AD%97%E7%AC%A6%E4%B8%B2%E4%B8%AD%E7%9A%84%E5%8F%98%E4%BD%8D%E8%AF%8D/">剑指 Offer II 014. 字符串中的变位词</a>
           </li>
         
       </ul>
