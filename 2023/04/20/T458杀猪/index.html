@@ -1,0 +1,301 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+
+  
+  <title>458. 可怜的小猪(杀猪) | Hexo</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  
+  
+  
+  <meta name="description" content="458. 可怜的小猪description 458. 可怜的小猪 有 buckets 桶液体，其中 正好有一桶 含有毒药，其余装的都是水。它们从外观看起来都一样。为了弄清楚哪只水桶含有毒药，你可以喂一些猪喝，通过观察猪是否会死进行判断。不幸的是，你只有 minutesToTest 分钟时间来确定哪桶液体是有毒的 喂猪的规则如下： 选择若干活猪进行喂养可以允许小猪同时饮用任意数量的桶中的水，并且该过">
+<meta property="og:type" content="article">
+<meta property="og:title" content="458. 可怜的小猪(杀猪)">
+<meta property="og:url" content="http://example.com/2023/04/20/T458%E6%9D%80%E7%8C%AA/index.html">
+<meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="458. 可怜的小猪description 458. 可怜的小猪 有 buckets 桶液体，其中 正好有一桶 含有毒药，其余装的都是水。它们从外观看起来都一样。为了弄清楚哪只水桶含有毒药，你可以喂一些猪喝，通过观察猪是否会死进行判断。不幸的是，你只有 minutesToTest 分钟时间来确定哪桶液体是有毒的 喂猪的规则如下： 选择若干活猪进行喂养可以允许小猪同时饮用任意数量的桶中的水，并且该过">
+<meta property="og:locale">
+<meta property="article:published_time" content="2023-04-20T14:55:49.097Z">
+<meta property="article:modified_time" content="2023-04-20T15:14:58.413Z">
+<meta property="article:author" content="John Doe">
+<meta name="twitter:card" content="summary">
+  
+    <link rel="alternate" href="/atom.xml" title="Hexo" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/images/default-avatar.jpg">
+  
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  
+<link rel="stylesheet" href="/css/style.css">
+
+  
+<link rel="stylesheet" href="/css/highlight.css">
+
+<meta name="generator" content="Hexo 6.3.0"></head>
+
+<body>
+  <div id="fullpage" class="mobile-nav-right">
+    
+      <div id="wrapper" title="图片来自网络">
+    
+    
+      <header id="header">
+  <div id="nav-toggle" class="nav-toggle"></div>
+  <div class="head-box global-width">
+    <nav class="nav-box nav-right">
+      
+        <a class="nav-item" href="/" title
+        
+        >首页</a>
+      
+        <a class="nav-item" href="/archives" title
+        
+        >归档</a>
+      
+    </nav>
+  </div>
+</header>
+      <div id="middlecontent" title class="global-width sidebar-right">
+        <section id="main"><article id="post-T458杀猪" class="article global-container article-type-post" itemscope itemprop="blogPost">
+  
+    <header class="article-header">
+      
+  
+    <h1 class="article-title" itemprop="name">
+      458. 可怜的小猪(杀猪)
+    </h1>
+  
+
+    </header>
+  
+  <div class="article-meta">
+    <a href="/2023/04/20/T458%E6%9D%80%E7%8C%AA/" class="article-date">
+  <time datetime="2023-04-20T14:55:49.097Z" itemprop="datePublished">2023-04-20</time>
+</a>
+    
+    
+  </div>
+  
+    <span id="busuanzi_container_page_pv">
+      本文总阅读量<span id="busuanzi_value_page_pv"></span>次
+    </span>
+  
+
+  <div class="article-inner">
+    
+    <div class="article-content article-content-cloud" itemprop="articleBody">
+      
+        <h2 id="458-可怜的小猪"><a href="#458-可怜的小猪" class="headerlink" title="458. 可怜的小猪"></a>458. 可怜的小猪</h2><p><strong>description</strong></p>
+<p><a target="_blank" rel="noopener" href="https://leetcode.cn/problems/poor-pigs/">458. 可怜的小猪</a></p>
+<p>有 <code>buckets</code> 桶液体，其中 正好有一桶 含有毒药，其余装的都是水。它们从外观看起来都一样。为了弄清楚哪只水桶含有毒药，你可以喂一些猪喝，通过观察猪是否会死进行判断。不幸的是，你只有<code> minutesToTest</code> 分钟时间来确定哪桶液体是有毒的</p>
+<p>喂猪的规则如下：</p>
+<p>选择若干活猪进行喂养<br>可以允许小猪同时饮用任意数量的桶中的水，并且该过程不需要时间。<br>小猪喝完水后，必须有 <code>minutesToDie</code> 分钟的冷却时间。在这段时间里，你只能观察，而不允许继续喂猪。<br>过了 <code>minutesToDie</code> 分钟后，所有喝到毒药的猪都会死去，其他所有猪都会活下来。<br>重复这一过程，直到时间用完。<br>给你桶的数目 <code>buckets</code> ，<code>minutesToDie</code> 和 <code>minutesToTest</code> ，返回 在规定时间内判断哪个桶有毒所需的 最小 猪数 。</p>
+<p><strong>示例 1：</strong></p>
+<div class="highlight-box"autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" contenteditable="true"data-rel="PLAINTEXT"><figure class="iseeu highlight /plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">输入：buckets = 1000, minutesToDie = 15, minutesToTest = 60</span><br><span class="line">输出：5</span><br></pre></td></tr></table></figure></div>
+
+<p><strong>示例 2：</strong></p>
+<div class="highlight-box"autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" contenteditable="true"data-rel="PLAINTEXT"><figure class="iseeu highlight /plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">输入：buckets = 4, minutesToDie = 15, minutesToTest = 15</span><br><span class="line">输出：2</span><br></pre></td></tr></table></figure></div>
+
+
+
+<p><strong>思路分析</strong></p>
+<p>这里设实验次数为k &#x3D; [minutesToTest &#x2F; minutesToDie],  N &#x3D; buckets</p>
+<ol>
+<li><p>对于k&#x3D;&#x3D;1的情况, 是一道耳熟能详的题目, 答案为$log_2(N - 1) + 1$</p>
+</li>
+<li><p>再无思路</p>
+</li>
+<li><p>反转题目, 考虑给到m头猪, 可以验证多少桶水</p>
+<ul>
+<li>首先$2^m$显然可以</li>
+<li>考虑到这里, 其实问题就变成了, 给一个m, 哪种运算可以使得结果最大</li>
+<li>个人得出结论为m!</li>
+<li>因为考虑到猪会死亡的情况, 未能想到$n^n$的情况</li>
+</ul>
+</li>
+<li><p>查看题解, 发现信息论相关, 豁然开朗</p>
+</li>
+<li><p>根据香农理论, 可以得出$n^n$的答案</p>
+</li>
+</ol>
+<p><strong>关于信息论和香农</strong></p>
+<p>其基本理论为, 一个事件可以提供的信息量Q &#x3D; - $log_2{P}$,  P为事件发生的概率</p>
+<p>通俗的解释, 我们观察到太阳从东边升起来, 这件事告诉我们的信息几乎没有, 因为这是很正常的事情. 或者这是必然的事情</p>
+<p>再比如, 我们观察到飞机失事了, 那么我们可以得出更多的信息, 比如飞行员问题, 飞机硬件问题等等</p>
+<p>这个问题较为抽象..不理解正常</p>
+<p><strong>代码</strong></p>
+<div class="highlight-box"autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" contenteditable="true"data-rel="JAVA"><figure class="iseeu highlight /java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Solution</span> &#123;</span><br><span class="line">    <span class="keyword">public</span> <span class="type">int</span> <span class="title function_">poorPigs</span><span class="params">(<span class="type">int</span> buckets, <span class="type">int</span> minutesToDie, <span class="type">int</span> minutesToTest)</span> &#123;</span><br><span class="line">        <span class="type">int</span> <span class="variable">k</span> <span class="operator">=</span> minutesToTest / minutesToDie;</span><br><span class="line">        <span class="type">int</span> <span class="variable">t</span> <span class="operator">=</span> <span class="number">1</span>;</span><br><span class="line">        <span class="type">int</span> <span class="variable">ans</span> <span class="operator">=</span> <span class="number">0</span>;</span><br><span class="line">        <span class="keyword">while</span>(<span class="literal">true</span>)&#123;</span><br><span class="line">            <span class="keyword">if</span>(t &gt;= buckets)<span class="keyword">return</span> ans;</span><br><span class="line">            ans++;</span><br><span class="line">            t *= (k + <span class="number">1</span>);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></div>
+
+
+      
+    </div>
+    
+      <footer class="article-footer">
+        完
+      </footer>
+    
+  </div>
+  
+    
+<nav id="article-nav">
+  <div class="article-nav-block">
+    
+  </div>
+  <div class="article-nav-block">
+    
+      <a href="/2023/04/20/%E9%9D%9E%E5%AF%B9%E7%A7%B0%E5%8A%A0%E5%AF%86%E5%92%8CRSA%E7%AE%97%E6%B3%95/" id="article-nav-older" class="article-nav-link-wrap">
+        <div class="article-nav-title">非对称加密和RSA算法</div>
+        <strong class="article-nav-caption"></strong>
+      </a>
+    
+  </div>
+</nav>
+
+    <link rel="stylesheet" href="/css/gitment.css"> 
+<script src="/js/gitment.js"></script>
+
+<div id="gitmentContainer"></div>
+
+<script>
+var gitment = new Gitment({
+  owner: '',
+  repo: '',
+  oauth: {
+    client_id: '',
+    client_secret: '',
+  },
+})
+gitment.render('gitmentContainer')
+</script>
+
+  
+  
+</article>
+</section>
+        <aside id="sidebar">
+  
+    <div class="widget-box">
+  <div class="avatar-box">
+    <img class="avatar" src="/images/default-avatar.jpg" title="图片来自网络"></img>
+    <h3 class="avatar-name">
+      
+        安安
+      
+    </h3>
+    <p class="avatar-slogan">
+      正在摸鱼的安卓实习生
+    </p>
+  </div>
+</div>
+
+
+  
+    
+
+  
+    
+
+  
+    
+  
+    
+  <div class="widget-box">
+    <h3 class="widget-title">Archives</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/04/">April 2023</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/03/">March 2023</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/02/">February 2023</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/10/">October 2022</a></li></ul>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-box">
+    <h3 class="widget-title">Recent Posts</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2023/04/20/T458%E6%9D%80%E7%8C%AA/">458. 可怜的小猪(杀猪)</a>
+          </li>
+        
+          <li>
+            <a href="/2023/04/20/%E9%9D%9E%E5%AF%B9%E7%A7%B0%E5%8A%A0%E5%AF%86%E5%92%8CRSA%E7%AE%97%E6%B3%95/">非对称加密和RSA算法</a>
+          </li>
+        
+          <li>
+            <a href="/2023/04/18/T07_08/">T07_08 面试题 08.07. 无重复字符串的排列组合</a>
+          </li>
+        
+          <li>
+            <a href="/2023/04/17/SQL%E6%B3%A8%E5%85%A5/">SQL注入</a>
+          </li>
+        
+          <li>
+            <a href="/2023/04/17/T525/">525. 连续数组</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+      <div class="widget-box">
+    <h3 class="widget-title">友链</h3>
+    <div class="widget">
+      
+    </div>
+  </div>
+
+  
+</aside>
+      </div>
+      <footer id="footer">
+  <div class="foot-box global-width">
+    &copy; 2023 John Doe &nbsp;&nbsp;
+    Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+    &nbsp;|&nbsp;主题 <a target="_blank" rel="noopener" href="https://github.com/yiluyanxia/hexo-theme-antiquity">antiquity</a>
+    <br>
+    <script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+    <span id="busuanzi_container_site_pv">不蒜子告之   阁下是第<span id="busuanzi_value_site_pv"></span>个访客</span>
+  </div>
+</footer>
+      <script src="https://code.jquery.com/jquery-2.0.3.min.js"></script>
+<script>
+if (!window.jQuery) {
+var script = document.createElement('script');
+script.src = "/js/jquery-2.0.3.min.js";
+document.body.write(script);
+}
+</script>
+
+  
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+
+  
+<script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+
+
+<script src="/js/script.js"></script>
+
+
+
+
+    </div>
+    <nav id="mobile-nav" class="mobile-nav-box">
+  <div class="mobile-nav-img mobile-nav-top"></div>
+  
+    <a href="/" class="mobile-nav-link">首页</a>
+  
+    <a href="/archives" class="mobile-nav-link">归档</a>
+  
+  <div class="mobile-nav-img  mobile-nav-bottom"></div>
+</nav>    
+  </div>
+</body>
+</html>
