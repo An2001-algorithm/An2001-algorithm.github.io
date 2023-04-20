@@ -59,6 +59,129 @@
       <div id="middlecontent" title class="global-width sidebar-right">
         <section id="main">
   
+    <article id="post-okHttp3的源码分析" class="article global-container article-type-post" itemscope itemprop="blogPost">
+  
+    <header class="article-header">
+      
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2023/02/10/okHttp3%E7%9A%84%E6%BA%90%E7%A0%81%E5%88%86%E6%9E%90/">okHttp3的源码分析</a>
+    </h1>
+  
+
+    </header>
+  
+  <div class="article-meta">
+    <a href="/2023/02/10/okHttp3%E7%9A%84%E6%BA%90%E7%A0%81%E5%88%86%E6%9E%90/" class="article-date">
+  <time datetime="2023-02-10T06:26:44.299Z" itemprop="datePublished">2023-02-10</time>
+</a>
+    
+    
+  </div>
+  
+
+  <div class="article-inner">
+    
+    <div class="article-content article-content-cloud" itemprop="articleBody">
+      
+        <h1 id="okHttp3的源码分析"><a href="#okHttp3的源码分析" class="headerlink" title="okHttp3的源码分析"></a>okHttp3的源码分析</h1><h2 id="简述"><a href="#简述" class="headerlink" title="简述"></a>简述</h2><p>同步与异步请求, 都在RealCall中实现, 分别描述</p>
+<h2 id="异步请求"><a href="#异步请求" class="headerlink" title="异步请求"></a>异步请求</h2><p>​			入口代码如下</p>
+<figure class="highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">override</span> <span class="function"><span class="keyword">fun</span> <span class="title">enqueue</span><span class="params">(responseCallback: <span class="type">Callback</span>)</span></span> &#123;</span><br><span class="line">  check(executed.compareAndSet(<span class="literal">false</span>, <span class="literal">true</span>)) &#123; <span class="string">&quot;Already Executed&quot;</span> &#125;</span><br><span class="line">  callStart()</span><br><span class="line">    </span><br><span class="line">  client.dispatcher.enqueue(AsyncCall(responseCallback))</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<ol>
+<li>check(executed.compareAndSet(false, true)) { “Already Executed” } 检测是否执行过当前请求, executed is a AtomicBoolean</li>
+<li>callStart()方法调用了eventListener.callStart(this), 实现callStart的监听回调</li>
+<li>调用了enqueue()方法, 将传入的callback, 传入到AsyncCall中, 此类是RealCall的一个内部类, 实现了Runnable接口, 这里先查看enqueue方法</li>
+</ol>
+<figure class="highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">internal</span> <span class="function"><span class="keyword">fun</span> <span class="title">enqueue</span><span class="params">(call: <span class="type">AsyncCall</span>)</span></span> &#123;</span><br><span class="line">  synchronized(<span class="keyword">this</span>) &#123;</span><br><span class="line">    readyAsyncCalls.add(call)</span><br><span class="line"></span><br><span class="line">    <span class="keyword">if</span> (!call.call.forWebSocket) &#123;</span><br><span class="line">      <span class="keyword">val</span> existingCall = findExistingCallWithHost(call.host)</span><br><span class="line">      <span class="keyword">if</span> (existingCall != <span class="literal">null</span>) call.reuseCallsPerHostFrom(existingCall)</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">  promoteAndExecute()</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<ol start="4">
+<li>这里可以看到, 传入的AsyncCall进入了一个队列readyAsyncCalls, 这是已经准备好, 可以开始运行的请求队列</li>
+<li>if代码块, 是对相同host的请求的复用</li>
+<li>promoteAndExecute()是对call的执行, 查看此方法, 这里去除了非重点代码</li>
+</ol>
+<figure class="highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">private</span> <span class="function"><span class="keyword">fun</span> <span class="title">promoteAndExecute</span><span class="params">()</span></span>: <span class="built_in">Boolean</span> &#123;</span><br><span class="line">  <span class="keyword">this</span>.assertThreadDoesntHoldLock()</span><br><span class="line"> <span class="comment">//...  </span></span><br><span class="line">  <span class="keyword">val</span> executableCalls = mutableListOf&lt;AsyncCall&gt;()</span><br><span class="line">  synchronized(<span class="keyword">this</span>) &#123;</span><br><span class="line">    <span class="keyword">val</span> i = readyAsyncCalls.iterator()</span><br><span class="line">    <span class="keyword">while</span> (i.hasNext()) &#123;</span><br><span class="line">      <span class="keyword">val</span> asyncCall = i.next()</span><br><span class="line">      i.remove()</span><br><span class="line">      asyncCall.callsPerHost.incrementAndGet()</span><br><span class="line">      <span class="comment">//...  </span></span><br><span class="line">      executableCalls.add(asyncCall)</span><br><span class="line">      runningAsyncCalls.add(asyncCall)</span><br><span class="line">      <span class="comment">//...   </span></span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="keyword">for</span> (i <span class="keyword">in</span> <span class="number">0</span> until executableCalls.size) &#123;</span><br><span class="line">    <span class="keyword">val</span> asyncCall = executableCalls[i]</span><br><span class="line">    asyncCall.executeOn(executorService)</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="keyword">return</span> isRunning</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<ol start="7">
+<li>主要思路是用迭代器遍历整个readyAsyncCalls队列, 不断取出, 并放入executableCalls列表和runningAsyncCalls队列</li>
+<li>runningAsyncCalls用于记录正在运行的请求</li>
+<li>executableCalls在下方for循环中调用了asyncCall.executeOn(executorService), 调用了线程池的execute方法, 间接执行之前传入的AsyncCall的run方法, run方法实现如下</li>
+</ol>
+<figure class="highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">override</span> <span class="function"><span class="keyword">fun</span> <span class="title">run</span><span class="params">()</span></span> &#123;</span><br><span class="line">  threadName(<span class="string">&quot;OkHttp <span class="subst">$&#123;redactedUrl()&#125;</span>&quot;</span>) &#123;</span><br><span class="line">    <span class="keyword">var</span> signalledCallback = <span class="literal">false</span></span><br><span class="line">    timeout.enter()</span><br><span class="line">    <span class="keyword">try</span> &#123;</span><br><span class="line">      <span class="keyword">val</span> response = getResponseWithInterceptorChain()</span><br><span class="line">      signalledCallback = <span class="literal">true</span></span><br><span class="line">      responseCallback.onResponse(<span class="keyword">this</span><span class="symbol">@RealCall</span>, response)</span><br><span class="line">    &#125; <span class="keyword">catch</span> (e: IOException) &#123;</span><br><span class="line">      <span class="keyword">if</span> (signalledCallback) &#123;</span><br><span class="line">        <span class="comment">// Do not signal the callback twice!</span></span><br><span class="line">        Platform.<span class="keyword">get</span>().log(<span class="string">&quot;Callback failure for <span class="subst">$&#123;toLoggableString()&#125;</span>&quot;</span>, Platform.INFO, e)</span><br><span class="line">      &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">        responseCallback.onFailure(<span class="keyword">this</span><span class="symbol">@RealCall</span>, e)</span><br><span class="line">      &#125;</span><br><span class="line">    &#125; <span class="keyword">catch</span> (t: Throwable) &#123;</span><br><span class="line">      cancel()</span><br><span class="line">      <span class="keyword">if</span> (!signalledCallback) &#123;</span><br><span class="line">        <span class="keyword">val</span> canceledException = IOException(<span class="string">&quot;canceled due to <span class="variable">$t</span>&quot;</span>)</span><br><span class="line">        canceledException.addSuppressed(t)</span><br><span class="line">        responseCallback.onFailure(<span class="keyword">this</span><span class="symbol">@RealCall</span>, canceledException)</span><br><span class="line">      &#125;</span><br><span class="line">      <span class="keyword">throw</span> t</span><br><span class="line">    &#125; <span class="keyword">finally</span> &#123;</span><br><span class="line">      client.dispatcher.finished(<span class="keyword">this</span>)</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<ol start="10">
+<li>执行了getResponseWithInterceptorChain方法获取response, 这里告一段落, 后面分析此方法</li>
+</ol>
+<h2 id="同步请求"><a href="#同步请求" class="headerlink" title="同步请求"></a>同步请求</h2><p>​			入口代码如下</p>
+<figure class="highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">override</span> <span class="function"><span class="keyword">fun</span> <span class="title">execute</span><span class="params">()</span></span>: Response &#123;</span><br><span class="line">  check(executed.compareAndSet(<span class="literal">false</span>, <span class="literal">true</span>)) &#123; <span class="string">&quot;Already Executed&quot;</span> &#125;</span><br><span class="line"></span><br><span class="line">  timeout.enter()</span><br><span class="line">  callStart()</span><br><span class="line">  <span class="keyword">try</span> &#123;</span><br><span class="line">    client.dispatcher.executed(<span class="keyword">this</span>)</span><br><span class="line">    <span class="keyword">return</span> getResponseWithInterceptorChain()</span><br><span class="line">  &#125; <span class="keyword">finally</span> &#123;</span><br><span class="line">    client.dispatcher.finished(<span class="keyword">this</span>)</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<ol>
+<li>check(executed.compareAndSet(false, true)) { “Already Executed” } 和异步请求同样的检测是否执行过</li>
+<li>callStart()与异步请求同样的, 是请求开始的回调</li>
+<li>client.dispatcher.executed(this), 实现如下, 同步请求是直接加入runningSyncCalls队列的</li>
+</ol>
+<figure class="highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/** Used by [Call.execute] to signal it is in-flight. */</span></span><br><span class="line"><span class="meta">@Synchronized</span> <span class="keyword">internal</span> <span class="function"><span class="keyword">fun</span> <span class="title">executed</span><span class="params">(call: <span class="type">RealCall</span>)</span></span> &#123;</span><br><span class="line">  runningSyncCalls.add(call)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<ol start="4">
+<li>最后同样执行了getResponseWithInterceptorChain方法返回response, 与异步请求统一起来, 下面查看此方法</li>
+</ol>
+<h2 id="getResponseWithInterceptorChain的分析"><a href="#getResponseWithInterceptorChain的分析" class="headerlink" title="getResponseWithInterceptorChain的分析"></a>getResponseWithInterceptorChain的分析</h2><figure class="highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Throws(IOException::class)</span></span><br><span class="line"><span class="keyword">internal</span> <span class="function"><span class="keyword">fun</span> <span class="title">getResponseWithInterceptorChain</span><span class="params">()</span></span>: Response &#123;</span><br><span class="line">  <span class="comment">// Build a full stack of interceptors.</span></span><br><span class="line">  <span class="keyword">val</span> interceptors = mutableListOf&lt;Interceptor&gt;()</span><br><span class="line">  interceptors += client.interceptors</span><br><span class="line">  interceptors += RetryAndFollowUpInterceptor(client)</span><br><span class="line">  interceptors += BridgeInterceptor(client.cookieJar)</span><br><span class="line">  interceptors += CacheInterceptor(client.cache)</span><br><span class="line">  interceptors += ConnectInterceptor</span><br><span class="line">  <span class="keyword">if</span> (!forWebSocket) &#123;</span><br><span class="line">    interceptors += client.networkInterceptors</span><br><span class="line">  &#125;</span><br><span class="line">  interceptors += CallServerInterceptor(forWebSocket)</span><br><span class="line"></span><br><span class="line">  <span class="keyword">val</span> chain = RealInterceptorChain(</span><br><span class="line">      call = <span class="keyword">this</span>,</span><br><span class="line">      interceptors = interceptors,</span><br><span class="line">      index = <span class="number">0</span>,</span><br><span class="line">      exchange = <span class="literal">null</span>,</span><br><span class="line">      request = originalRequest,</span><br><span class="line">      connectTimeoutMillis = client.connectTimeoutMillis,</span><br><span class="line">      readTimeoutMillis = client.readTimeoutMillis,</span><br><span class="line">      writeTimeoutMillis = client.writeTimeoutMillis</span><br><span class="line">  )</span><br><span class="line"></span><br><span class="line">  <span class="keyword">var</span> calledNoMoreExchanges = <span class="literal">false</span></span><br><span class="line">  <span class="keyword">try</span> &#123;</span><br><span class="line">    <span class="keyword">val</span> response = chain.proceed(originalRequest)</span><br><span class="line">    <span class="keyword">if</span> (isCanceled()) &#123;</span><br><span class="line">      response.closeQuietly()</span><br><span class="line">      <span class="keyword">throw</span> IOException(<span class="string">&quot;Canceled&quot;</span>)</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> response</span><br><span class="line">  &#125; <span class="keyword">catch</span> (e: IOException) &#123;</span><br><span class="line">    calledNoMoreExchanges = <span class="literal">true</span></span><br><span class="line">    <span class="keyword">throw</span> noMoreExchanges(e) <span class="keyword">as</span> Throwable</span><br><span class="line">  &#125; <span class="keyword">finally</span> &#123;</span><br><span class="line">    <span class="keyword">if</span> (!calledNoMoreExchanges) &#123;</span><br><span class="line">      noMoreExchanges(<span class="literal">null</span>)</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<ol>
+<li>构建了一个Interceptor(拦截器)的ArrayList</li>
+<li>依次添加各种Interceptor</li>
+<li>生成一个RealInterceptorChain</li>
+<li>执行了RealInterceptorChain.proceed方法, 来获取response</li>
+<li>这里是一个责任链模式的典型使用, 下面分析责任链中每一个对象的职责</li>
+</ol>
+<h2 id="ConnectInterceptor分析"><a href="#ConnectInterceptor分析" class="headerlink" title="ConnectInterceptor分析"></a>ConnectInterceptor分析</h2><figure class="highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">object</span> ConnectInterceptor : Interceptor &#123;</span><br><span class="line">  <span class="meta">@Throws(IOException::class)</span></span><br><span class="line">  <span class="keyword">override</span> <span class="function"><span class="keyword">fun</span> <span class="title">intercept</span><span class="params">(chain: <span class="type">Interceptor</span>.<span class="type">Chain</span>)</span></span>: Response &#123;</span><br><span class="line">    <span class="keyword">val</span> realChain = chain <span class="keyword">as</span> RealInterceptorChain</span><br><span class="line">    <span class="keyword">val</span> exchange = realChain.call.initExchange(chain)</span><br><span class="line">    <span class="keyword">val</span> connectedChain = realChain.copy(exchange = exchange)</span><br><span class="line">    <span class="keyword">return</span> connectedChain.proceed(realChain.request)</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<ol>
+<li>initExchange()方法会调用exchangeFinder.find(client, chain), 进而调用以下方法</li>
+</ol>
+<figure class="highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Throws(SocketException::class)</span></span><br><span class="line"><span class="keyword">internal</span> <span class="function"><span class="keyword">fun</span> <span class="title">newCodec</span><span class="params">(client: <span class="type">OkHttpClient</span>, chain: <span class="type">RealInterceptorChain</span>)</span></span>: ExchangeCodec &#123;</span><br><span class="line">  <span class="keyword">val</span> socket = <span class="keyword">this</span>.socket!!</span><br><span class="line">  <span class="keyword">val</span> source = <span class="keyword">this</span>.source!!</span><br><span class="line">  <span class="keyword">val</span> sink = <span class="keyword">this</span>.sink!!</span><br><span class="line">  <span class="keyword">val</span> http2Connection = <span class="keyword">this</span>.http2Connection</span><br><span class="line"></span><br><span class="line">  <span class="keyword">return</span> <span class="keyword">if</span> (http2Connection != <span class="literal">null</span>) &#123;</span><br><span class="line">    Http2ExchangeCodec(client, <span class="keyword">this</span>, chain, http2Connection)</span><br><span class="line">  &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">    socket.soTimeout = chain.readTimeoutMillis()</span><br><span class="line">    source.timeout().timeout(chain.readTimeoutMillis.toLong(), MILLISECONDS)</span><br><span class="line">    sink.timeout().timeout(chain.writeTimeoutMillis.toLong(), MILLISECONDS)</span><br><span class="line">    Http1ExchangeCodec(client, <span class="keyword">this</span>, source, sink)</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<ol start="2">
+<li>这里可以看到,  在不同情况下, 会建立Http2ExchangeCodec 或 Http1ExchangeCodec的对象</li>
+<li>注意这里的source和sink, 这是数据传输的buffer, 在建立连接后, sink用于数据发送, source用于数据获取</li>
+<li>对于Http1ExchangeCodec, 是直接传入了source 和 sink</li>
+<li>对于Http2ExchangeCodec, 传入了http2Connection, 此对象建立过程如下</li>
+</ol>
+<figure class="highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Throws(IOException::class)</span></span><br><span class="line"><span class="keyword">private</span> <span class="function"><span class="keyword">fun</span> <span class="title">startHttp2</span><span class="params">(pingIntervalMillis: <span class="type">Int</span>)</span></span> &#123;</span><br><span class="line">  <span class="keyword">val</span> socket = <span class="keyword">this</span>.socket!!</span><br><span class="line">  <span class="keyword">val</span> source = <span class="keyword">this</span>.source!!</span><br><span class="line">  <span class="keyword">val</span> sink = <span class="keyword">this</span>.sink!!</span><br><span class="line">  socket.soTimeout = <span class="number">0</span> <span class="comment">// HTTP/2 connection timeouts are set per-stream.</span></span><br><span class="line">  <span class="keyword">val</span> http2Connection = Http2Connection.Builder(client = <span class="literal">true</span>, taskRunner = TaskRunner.INSTANCE)</span><br><span class="line">      .socket(socket, route.address.url.host, source, sink)</span><br><span class="line">      .listener(<span class="keyword">this</span>)</span><br><span class="line">      .pingIntervalMillis(pingIntervalMillis)</span><br><span class="line">      .build()</span><br><span class="line">  <span class="keyword">this</span>.http2Connection = http2Connection</span><br><span class="line">  <span class="keyword">this</span>.allocationLimit = Http2Connection.DEFAULT_SETTINGS.getMaxConcurrentStreams()</span><br><span class="line">  http2Connection.start()</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<ol start="6">
+<li>可以看出http2Connection对象的建立过程中也是传入了source 和 sink</li>
+<li>而source 和 sink在connectSocket方法中, 是被rawSocket的source 和 sink的buffer赋值的</li>
+</ol>
+<figure class="highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">private</span> <span class="function"><span class="keyword">fun</span> <span class="title">connectSocket</span><span class="params">(</span></span></span><br><span class="line"><span class="params"><span class="function">  connectTimeout: <span class="type">Int</span>,</span></span></span><br><span class="line"><span class="params"><span class="function">  readTimeout: <span class="type">Int</span>,</span></span></span><br><span class="line"><span class="params"><span class="function">  call: <span class="type">Call</span>,</span></span></span><br><span class="line"><span class="params"><span class="function">  eventListener: <span class="type">EventListener</span></span></span></span><br><span class="line"><span class="params"><span class="function">)</span></span> &#123;</span><br><span class="line">  <span class="keyword">val</span> proxy = route.proxy</span><br><span class="line">  <span class="keyword">val</span> address = route.address</span><br><span class="line"></span><br><span class="line">  <span class="keyword">val</span> rawSocket = <span class="keyword">when</span> (proxy.type()) &#123;</span><br><span class="line">    Proxy.Type.DIRECT, Proxy.Type.HTTP -&gt; address.socketFactory.createSocket()!!</span><br><span class="line">    <span class="keyword">else</span> -&gt; Socket(proxy)</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="keyword">this</span>.rawSocket = rawSocket</span><br><span class="line"></span><br><span class="line">  eventListener.connectStart(call, route.socketAddress, proxy)</span><br><span class="line">  rawSocket.soTimeout = readTimeout</span><br><span class="line">  <span class="keyword">try</span> &#123;</span><br><span class="line">    Platform.<span class="keyword">get</span>().connectSocket(rawSocket, route.socketAddress, connectTimeout)</span><br><span class="line">  &#125; <span class="keyword">catch</span> (e: ConnectException) &#123;</span><br><span class="line">    <span class="keyword">throw</span> ConnectException(<span class="string">&quot;Failed to connect to <span class="subst">$&#123;route.socketAddress&#125;</span>&quot;</span>).apply &#123;</span><br><span class="line">      initCause(e)</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="comment">// The following try/catch block is a pseudo hacky way to get around a crash on Android 7.0</span></span><br><span class="line">  <span class="comment">// More details:</span></span><br><span class="line">  <span class="comment">// https://github.com/square/okhttp/issues/3245</span></span><br><span class="line">  <span class="comment">// https://android-review.googlesource.com/#/c/271775/</span></span><br><span class="line">  <span class="keyword">try</span> &#123;</span><br><span class="line">    source = rawSocket.source().buffer()</span><br><span class="line">    sink = rawSocket.sink().buffer()</span><br><span class="line">  &#125; <span class="keyword">catch</span> (npe: NullPointerException) &#123;</span><br><span class="line">    <span class="keyword">if</span> (npe.message == NPE_THROW_WITH_NULL) &#123;</span><br><span class="line">      <span class="keyword">throw</span> IOException(npe)</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<ol start="8">
+<li>因此, 到这里Http2ExchangeCodec和Http1ExchangeCodec都持有了source 和 sink两个对象</li>
+</ol>
+<h2 id="CallServerInterceptor分析"><a href="#CallServerInterceptor分析" class="headerlink" title="CallServerInterceptor分析"></a>CallServerInterceptor分析</h2><figure class="highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/** This is the last interceptor in the chain. It makes a network call to the server. */</span></span><br><span class="line"><span class="keyword">class</span> <span class="title class_">CallServerInterceptor</span>(<span class="keyword">private</span> <span class="keyword">val</span> forWebSocket: <span class="built_in">Boolean</span>) : Interceptor &#123;</span><br><span class="line">    <span class="keyword">override</span> <span class="function"><span class="keyword">fun</span> <span class="title">intercept</span><span class="params">(chain: <span class="type">Interceptor</span>.<span class="type">Chain</span>)</span></span>: Response &#123;</span><br><span class="line">        <span class="comment">//...</span></span><br><span class="line">        exchange.writeRequestHeaders(request)</span><br><span class="line">        <span class="comment">//...</span></span><br><span class="line">        requestBody.writeTo(bufferedRequestBody)</span><br><span class="line">        <span class="comment">//...</span></span><br><span class="line">        exchange.responseHeadersStart()</span><br><span class="line">        <span class="comment">//...</span></span><br><span class="line">        <span class="keyword">var</span> response = responseBuilder</span><br><span class="line">            .request(request)</span><br><span class="line">            .handshake(exchange.connection.handshake())</span><br><span class="line">            .sentRequestAtMillis(sentRequestMillis)</span><br><span class="line">            .receivedResponseAtMillis(System.currentTimeMillis())</span><br><span class="line">            .build()</span><br><span class="line">        <span class="comment">//...</span></span><br><span class="line">        response.newBuilder()</span><br><span class="line">            .body(exchange.openResponseBody(response))</span><br><span class="line">            .build()</span><br><span class="line">        <span class="comment">//...</span></span><br><span class="line">        <span class="keyword">return</span> response</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<ol>
+<li>CallServerInterceptor是责任链的最后一个拦截器, 实现了请求的发送和数据的获取, 只保留了下面要分析的代码</li>
+<li>exchange.writeRequestHeaders(request)发送headers</li>
+<li>requestBody.writeTo(bufferedRequestBody)发送body</li>
+<li>exchange.responseHeadersStart()在获取返回数据的headers</li>
+<li>exchange.openResponseBody(response)在获取返回数据的body部分</li>
+<li>这里的发送或者读取都是通过source 和 sink对象实现的</li>
+<li>查看openResponseBody的实现</li>
+</ol>
+<h2 id="杂项"><a href="#杂项" class="headerlink" title="杂项"></a>杂项</h2><figure class="highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">internal</span> <span class="keyword">inline</span> <span class="function"><span class="keyword">fun</span> Buffer.<span class="title">commonWrite</span><span class="params">(</span></span></span><br><span class="line"><span class="params"><span class="function">        source: <span class="type">ByteArray</span>, offset: <span class="type">Int</span>, byteCount: <span class="type">Int</span>)</span></span>: Buffer &#123;</span><br><span class="line">    <span class="keyword">var</span> offset = offset</span><br><span class="line">    checkOffsetAndCount(source.size.toLong(), offset.toLong(), byteCount.toLong())</span><br><span class="line"></span><br><span class="line">    <span class="keyword">val</span> limit = offset + byteCount</span><br><span class="line">    <span class="keyword">while</span> (offset &lt; limit) &#123;</span><br><span class="line">        <span class="comment">//这里获取了一个列表, 因此数据是得到保存的</span></span><br><span class="line">        <span class="keyword">val</span> tail = writableSegment(<span class="number">1</span>)</span><br><span class="line"></span><br><span class="line">        <span class="keyword">val</span> toCopy = minOf(limit - offset, Segment.SIZE - tail.limit)</span><br><span class="line">        source.copyInto(destination = tail.<span class="keyword">data</span>, destinationOffset = tail.limit,</span><br><span class="line">                startIndex = offset, endIndex = offset + toCopy)</span><br><span class="line"></span><br><span class="line">        offset += toCopy</span><br><span class="line">        tail.limit += toCopy</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    size += byteCount.toLong()</span><br><span class="line">    <span class="keyword">return</span> <span class="keyword">this</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p><img src="C:\Users\anjiaheng01\AppData\Roaming\Typora\typora-user-images\image-20221118170518051.png" alt="okio中有趣的代码"></p>
+
+      
+    </div>
+    
+  </div>
+  
+  
+</article>
+
+  
     <article id="post-HashMap" class="article global-container article-type-post" itemscope itemprop="blogPost">
   
     <header class="article-header">
@@ -845,62 +968,11 @@
 </article>
 
   
-    <article id="post-适配的一些问题" class="article global-container article-type-post" itemscope itemprop="blogPost">
-  
-    <header class="article-header">
-      
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2022/10/25/%E9%80%82%E9%85%8D%E7%9A%84%E4%B8%80%E4%BA%9B%E9%97%AE%E9%A2%98/">适配的一些问题</a>
-    </h1>
-  
-
-    </header>
-  
-  <div class="article-meta">
-    <a href="/2022/10/25/%E9%80%82%E9%85%8D%E7%9A%84%E4%B8%80%E4%BA%9B%E9%97%AE%E9%A2%98/" class="article-date">
-  <time datetime="2022-10-25T07:30:16.000Z" itemprop="datePublished">2022-10-25</time>
-</a>
-    
-    
-  </div>
-  
-
-  <div class="article-inner">
-    
-    <div class="article-content article-content-cloud" itemprop="articleBody">
-      
-        <h1 id="适配的一些问题"><a href="#适配的一些问题" class="headerlink" title="适配的一些问题"></a>适配的一些问题</h1><h2 id="分辨率、dpi、dp、density"><a href="#分辨率、dpi、dp、density" class="headerlink" title="分辨率、dpi、dp、density"></a>分辨率、dpi、dp、density</h2><h3 id="分辨率"><a href="#分辨率" class="headerlink" title="分辨率"></a>分辨率</h3><p>320 * 160: 	即, 屏幕上有320 * 160个像素点</p>
-<h3 id="dpi"><a href="#dpi" class="headerlink" title="dpi"></a>dpi</h3><p>每英寸下像素点的个数 : 对角线像素点数 &#x2F; 对角线英寸数</p>
-<h3 id="density"><a href="#density" class="headerlink" title="density"></a>density</h3><p>dpi &#x2F; 160 </p>
-<h2 id="横竖屏切换导致的生命周期变化"><a href="#横竖屏切换导致的生命周期变化" class="headerlink" title="横竖屏切换导致的生命周期变化"></a>横竖屏切换导致的生命周期变化</h2><p>android:configChanges 配置的属性会被代码中的onConfigurationChanged方法监听到, 不做系统默认响应方式</p>
-<p>比如设置orientation|screenSize 属性后, 在屏幕方向变化和屏幕大小变化时不会执行默认的重建activity操作, 而是在onConfigurationChanged中监听到该变化后, 手动处理或者忽略</p>
-<h2 id="density变化"><a href="#density变化" class="headerlink" title="density变化"></a>density变化</h2><p>三星 系统中锁定竖屏后, 横屏转竖屏导致density变化, 在onCreate时数值正常,  但view显示前打印density发现不正常, 导致UI失配</p>
-<p>经过debug后, 发现density在建立activity时被修改多次, 无法确定是何处修改导致变化,  怀疑是autoSize库导致</p>
-<p>最终解决方案是在activity的onCreate方法中记录density值, 并在调用前对density赋值</p>
-<h2 id="fitsSystemWindows-x3D-true"><a href="#fitsSystemWindows-x3D-true" class="headerlink" title="fitsSystemWindows &#x3D; true"></a>fitsSystemWindows &#x3D; true</h2><p>导致设定view的y异常, 表现为, 向下偏移一个状态栏高度</p>
-<h2 id="recyclerView-中加载-match-parent-的图片显示显示不全"><a href="#recyclerView-中加载-match-parent-的图片显示显示不全" class="headerlink" title="recyclerView 中加载 match_parent 的图片显示显示不全"></a>recyclerView 中加载 match_parent 的图片显示显示不全</h2><p>此时图片高度会默认为屏幕高度, 大于屏幕高度的图片显示不全</p>
-<h2 id="图片按比例缩放"><a href="#图片按比例缩放" class="headerlink" title="图片按比例缩放"></a>图片按比例缩放</h2><div class="highlight-box"autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" contenteditable="true"data-rel="XML"><figure class="iseeu highlight /xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">android:layout_width=&quot;match_parent&quot;</span><br><span class="line">android:layout_height=&quot;wrap_content&quot;</span><br><span class="line">android:adjustViewBounds=&quot;true&quot;</span><br></pre></td></tr></table></figure></div>
-
-
-
-
-
-
-      
-    </div>
-    
-  </div>
-  
-  
-</article>
-
-  
 
 
   <nav id="page-nav">
     
-    <a class="extend prev" rel="prev" href="/page/2/">&amp;laquo; Prev</a><a class="page-number" href="/">1</a><a class="page-number" href="/page/2/">2</a><span class="page-number current">3</span>
+    <a class="extend prev" rel="prev" href="/page/2/">&amp;laquo; Prev</a><a class="page-number" href="/">1</a><a class="page-number" href="/page/2/">2</a><span class="page-number current">3</span><a class="page-number" href="/page/4/">4</a><a class="extend next" rel="next" href="/page/4/">Next &amp;raquo;</a>
   </nav>
 
 
@@ -947,6 +1019,10 @@
       <ul>
         
           <li>
+            <a href="/2023/04/20/TodoList/">TodoList by An</a>
+          </li>
+        
+          <li>
             <a href="/2023/04/20/T458%E6%9D%80%E7%8C%AA/">458. 可怜的小猪(杀猪)</a>
           </li>
         
@@ -960,10 +1036,6 @@
         
           <li>
             <a href="/2023/04/17/SQL%E6%B3%A8%E5%85%A5/">SQL注入</a>
-          </li>
-        
-          <li>
-            <a href="/2023/04/17/T525/">525. 连续数组</a>
           </li>
         
       </ul>
