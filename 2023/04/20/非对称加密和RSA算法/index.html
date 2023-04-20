@@ -1,0 +1,311 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+
+  
+  <title>非对称加密和RSA算法 | Hexo</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  
+  
+  
+  <meta name="description" content="非对称加密和RSA算法对称加密客户端A和服务端B通信, 设^为加密运算, v为解密运算  约定密钥K, K可对明文加密, 密文解密 A发送明文S, 则密文为str &#x3D;  S ^  K, 发送str B收到str, 解密得明文S &#x3D; str v K 反之, 亦可  其问题在于, 密钥K得传输时存在泄露的可能 非对称加密客户端A和服务端B通信  设K, P为公钥和私钥, K加密,">
+<meta property="og:type" content="article">
+<meta property="og:title" content="非对称加密和RSA算法">
+<meta property="og:url" content="http://example.com/2023/04/20/%E9%9D%9E%E5%AF%B9%E7%A7%B0%E5%8A%A0%E5%AF%86%E5%92%8CRSA%E7%AE%97%E6%B3%95/index.html">
+<meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="非对称加密和RSA算法对称加密客户端A和服务端B通信, 设^为加密运算, v为解密运算  约定密钥K, K可对明文加密, 密文解密 A发送明文S, 则密文为str &#x3D;  S ^  K, 发送str B收到str, 解密得明文S &#x3D; str v K 反之, 亦可  其问题在于, 密钥K得传输时存在泄露的可能 非对称加密客户端A和服务端B通信  设K, P为公钥和私钥, K加密,">
+<meta property="og:locale">
+<meta property="og:image" content="c:\Users\19732\AppData\Roaming\Typora\typora-user-images\image-20230420223633241.png">
+<meta property="og:image" content="c:\Users\19732\AppData\Roaming\Typora\typora-user-images\image-20230420223643934.png">
+<meta property="article:published_time" content="2023-04-20T14:37:18.736Z">
+<meta property="article:modified_time" content="2023-04-20T14:53:51.722Z">
+<meta property="article:author" content="John Doe">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="c:\Users\19732\AppData\Roaming\Typora\typora-user-images\image-20230420223633241.png">
+  
+    <link rel="alternate" href="/atom.xml" title="Hexo" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/images/default-avatar.jpg">
+  
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  
+<link rel="stylesheet" href="/css/style.css">
+
+  
+<link rel="stylesheet" href="/css/highlight.css">
+
+<meta name="generator" content="Hexo 6.3.0"></head>
+
+<body>
+  <div id="fullpage" class="mobile-nav-right">
+    
+      <div id="wrapper" title="图片来自网络">
+    
+    
+      <header id="header">
+  <div id="nav-toggle" class="nav-toggle"></div>
+  <div class="head-box global-width">
+    <nav class="nav-box nav-right">
+      
+        <a class="nav-item" href="/" title
+        
+        >首页</a>
+      
+        <a class="nav-item" href="/archives" title
+        
+        >归档</a>
+      
+    </nav>
+  </div>
+</header>
+      <div id="middlecontent" title class="global-width sidebar-right">
+        <section id="main"><article id="post-非对称加密和RSA算法" class="article global-container article-type-post" itemscope itemprop="blogPost">
+  
+    <header class="article-header">
+      
+  
+    <h1 class="article-title" itemprop="name">
+      非对称加密和RSA算法
+    </h1>
+  
+
+    </header>
+  
+  <div class="article-meta">
+    <a href="/2023/04/20/%E9%9D%9E%E5%AF%B9%E7%A7%B0%E5%8A%A0%E5%AF%86%E5%92%8CRSA%E7%AE%97%E6%B3%95/" class="article-date">
+  <time datetime="2023-04-20T14:37:18.736Z" itemprop="datePublished">2023-04-20</time>
+</a>
+    
+    
+  </div>
+  
+    <span id="busuanzi_container_page_pv">
+      本文总阅读量<span id="busuanzi_value_page_pv"></span>次
+    </span>
+  
+
+  <div class="article-inner">
+    
+    <div class="article-content article-content-cloud" itemprop="articleBody">
+      
+        <h1 id="非对称加密和RSA算法"><a href="#非对称加密和RSA算法" class="headerlink" title="非对称加密和RSA算法"></a>非对称加密和RSA算法</h1><h2 id="对称加密"><a href="#对称加密" class="headerlink" title="对称加密"></a>对称加密</h2><p>客户端A和服务端B通信, 设^为加密运算, v为解密运算</p>
+<ol>
+<li>约定密钥K, K可对明文加密, 密文解密</li>
+<li>A发送明文S, 则密文为str &#x3D;  S ^  K, 发送str</li>
+<li>B收到str, 解密得明文S &#x3D; str v K</li>
+<li>反之, 亦可</li>
+</ol>
+<p>其问题在于, 密钥K得传输时存在泄露的可能</p>
+<h2 id="非对称加密"><a href="#非对称加密" class="headerlink" title="非对称加密"></a>非对称加密</h2><p>客户端A和服务端B通信</p>
+<ol>
+<li>设K, P为公钥和私钥, K加密, P解密</li>
+<li>B暴露出K, A获取K</li>
+<li>A发送明文S, 则密文为str &#x3D;  S ^  K, 发送str</li>
+<li>B收到str, 解密得明文S &#x3D; str v P</li>
+<li>至此实现了单方面得A发送, B接收的数据传输</li>
+</ol>
+<p>其原理基于, 不能在NP时间内通过K解出P</p>
+<p>由于计算复杂, 一般会通过一次非对称加密来传递一个对称加密的密钥, 后续通信使用对称加密即可</p>
+<h2 id="RSA算法"><a href="#RSA算法" class="headerlink" title="RSA算法"></a>RSA算法</h2><p>基于大数分解定理的一种非对称加密算法</p>
+<p>大数分解, 一种陷门函数, 即可以在NP时间复杂度内正向计算f(x) &#x3D; y, 但根据y解出x是NP完全问题(目前无法证明不是) </p>
+<p><img src="C:\Users\19732\AppData\Roaming\Typora\typora-user-images\image-20230420223633241.png" alt="image-20230420223633241"></p>
+<p><img src="C:\Users\19732\AppData\Roaming\Typora\typora-user-images\image-20230420223643934.png" alt="image-20230420223643934"></p>
+<p>步骤</p>
+<ol>
+<li><p>N &#x3D; p * q</p>
+</li>
+<li><p>L &#x3D; lcm（p－1，q－1）</p>
+</li>
+<li><p>1 &lt; E &lt; L</p>
+<p>gcd（E，L）&#x3D;1</p>
+</li>
+<li><p>1 &lt; D &lt; L</p>
+<p>E＊D mod L ＝ 1</p>
+</li>
+</ol>
+<h2 id="代码实现"><a href="#代码实现" class="headerlink" title="代码实现"></a>代码实现</h2><p>Java代码, 用到了java.security包</p>
+<p>采用了1024bit的密钥长度, 理论上破解时间为2000年以上</p>
+<p>服务端生成公私钥</p>
+<div class="highlight-box"autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" contenteditable="true"data-rel="JAVA"><figure class="iseeu highlight /java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">private</span> <span class="keyword">static</span> <span class="type">int</span> <span class="variable">KEYSIZE</span> <span class="operator">=</span> <span class="number">1024</span>;</span><br><span class="line"><span class="type">SecureRandom</span> <span class="variable">sr</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">SecureRandom</span>();</span><br><span class="line"><span class="type">KeyPairGenerator</span> <span class="variable">kpg</span> <span class="operator">=</span> KeyPairGenerator.getInstance(<span class="string">&quot;RSA&quot;</span>);</span><br><span class="line">kpg.initialize(KEYSIZE, sr);</span><br><span class="line"><span class="comment">// 生成公私钥</span></span><br><span class="line"><span class="type">KeyPair</span> <span class="variable">kp</span> <span class="operator">=</span> kpg.generateKeyPair();</span><br><span class="line"></span><br><span class="line"><span class="type">Key</span> <span class="variable">publicKey</span> <span class="operator">=</span> kp.getPublic();</span><br><span class="line"><span class="type">byte</span>[] publicKeyBytes = publicKey.getEncoded();</span><br><span class="line"><span class="type">String</span> <span class="variable">pub</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">String</span>(Base64.encodeBase64(publicKeyBytes),</span><br><span class="line">          ConfigureEncryptAndDecrypt.CHAR_ENCODING);</span><br><span class="line"></span><br><span class="line"><span class="type">Key</span> <span class="variable">privateKey</span> <span class="operator">=</span> kp.getPrivate();</span><br><span class="line"><span class="type">byte</span>[] privateKeyBytes = privateKey.getEncoded();</span><br><span class="line"><span class="type">String</span> <span class="variable">pri</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">String</span>(Base64.encodeBase64(privateKeyBytes),</span><br><span class="line">          ConfigureEncryptAndDecrypt.CHAR_ENCODING);</span><br></pre></td></tr></table></figure></div>
+
+<p>客户端接收数据代码</p>
+<div class="highlight-box"autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" contenteditable="true"data-rel="KOTLIN"><figure class="iseeu highlight /kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">fun</span> <span class="title">runReceive</span><span class="params">()</span></span> = thread &#123;</span><br><span class="line">    <span class="keyword">val</span> ds = DatagramSocket(<span class="number">10086</span>)</span><br><span class="line">    <span class="keyword">val</span> container = ByteArray(<span class="number">1024</span>)</span><br><span class="line">    <span class="keyword">val</span> dp = DatagramPacket(container, container.size)</span><br><span class="line">    ds.receive(dp)</span><br><span class="line">    <span class="keyword">val</span> s = String(dp.<span class="keyword">data</span>, <span class="number">0</span>, dp.length)</span><br><span class="line">    <span class="keyword">val</span> msgRe1 = GsonUtil.fromJson&lt;Msg&gt;(s)</span><br><span class="line">    println(msgRe1)</span><br><span class="line">    </span><br><span class="line">    <span class="comment">//获取到公钥</span></span><br><span class="line">    <span class="keyword">val</span> pubKey = msgRe1.raw.msg</span><br><span class="line">    </span><br><span class="line">    <span class="comment">// 用公钥加密对称加密的密钥</span></span><br><span class="line">    <span class="keyword">val</span> encode = RSA.encrypt(msg2.raw.msg, pubKey)</span><br><span class="line">    msg2.raw.msg = encode</span><br><span class="line">    </span><br><span class="line">    <span class="comment">// 放到list中, send线程将发送此密钥</span></span><br><span class="line">    list.add(GsonUtil.toJson(msg2))</span><br><span class="line">    </span><br><span class="line">    println(<span class="string">&quot;aes:<span class="variable">$secret</span>&quot;</span>)</span><br><span class="line">    println(<span class="string">&quot;与服务端建立起安全连接&quot;</span>)</span><br><span class="line">    isLogin = <span class="literal">true</span></span><br><span class="line">    </span><br><span class="line">    <span class="comment">// 下面为一次非对称加密成功之后, 对称加密部分</span></span><br><span class="line">    <span class="keyword">while</span> (<span class="literal">true</span>) &#123;</span><br><span class="line">        ds.receive(dp)</span><br><span class="line">        <span class="keyword">val</span> encodeData = String(dp.<span class="keyword">data</span>, <span class="number">0</span>, dp.length)</span><br><span class="line">        <span class="keyword">val</span> <span class="keyword">data</span> = AES.decryptWithKeyBase64(encodeData, secret)</span><br><span class="line">        <span class="keyword">val</span> msg = GsonUtil.fromJson&lt;Msg&gt;(<span class="keyword">data</span>)</span><br><span class="line">        <span class="keyword">if</span> (msg.raw.target.userName !== <span class="string">&quot;server&quot;</span>) &#123;</span><br><span class="line">            <span class="comment">// todo check hash</span></span><br><span class="line">            <span class="keyword">if</span> (!(makeHash(msg.raw) != msg.hash)) &#123;</span><br><span class="line">                println(<span class="string">&quot;data might be changed&quot;</span>)</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="keyword">val</span> content = <span class="string">&quot;server:<span class="subst">$&#123;msg.raw.msg&#125;</span>&quot;</span></span><br><span class="line">            println(content)</span><br><span class="line">            println(msg)</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></div>
+
+
+
+<p>客户端发送数据代码</p>
+<div class="highlight-box"autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" contenteditable="true"data-rel="KOTLIN"><figure class="iseeu highlight /kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">   <span class="function"><span class="keyword">fun</span> <span class="title">runSend</span><span class="params">()</span></span> = thread &#123;</span><br><span class="line">        <span class="keyword">while</span> (<span class="literal">true</span>) &#123;</span><br><span class="line">            <span class="keyword">while</span> (list.isEmpty()) &#123;</span><br><span class="line">                sleep(<span class="number">500</span>)</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="keyword">val</span> soc = Socket(SERVER_IP, <span class="number">1090</span>)</span><br><span class="line">            <span class="keyword">val</span> outStream = soc.getOutputStream()</span><br><span class="line">            <span class="keyword">val</span> <span class="keyword">data</span> = list[<span class="number">0</span>]</span><br><span class="line">            list.removeAt(<span class="number">0</span>)</span><br><span class="line">            outStream.write(<span class="keyword">data</span>.toByteArray())</span><br><span class="line">            outStream.flush()</span><br><span class="line">            outStream.close()</span><br><span class="line">        &#125;</span><br><span class="line"><span class="comment">//        soc.close()</span></span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure></div>
+
+
+      
+    </div>
+    
+      <footer class="article-footer">
+        完
+      </footer>
+    
+  </div>
+  
+    
+<nav id="article-nav">
+  <div class="article-nav-block">
+    
+  </div>
+  <div class="article-nav-block">
+    
+      <a href="/2023/04/18/T07_08/" id="article-nav-older" class="article-nav-link-wrap">
+        <div class="article-nav-title">T07_08 面试题 08.07. 无重复字符串的排列组合</div>
+        <strong class="article-nav-caption"></strong>
+      </a>
+    
+  </div>
+</nav>
+
+    <link rel="stylesheet" href="/css/gitment.css"> 
+<script src="/js/gitment.js"></script>
+
+<div id="gitmentContainer"></div>
+
+<script>
+var gitment = new Gitment({
+  owner: '',
+  repo: '',
+  oauth: {
+    client_id: '',
+    client_secret: '',
+  },
+})
+gitment.render('gitmentContainer')
+</script>
+
+  
+  
+</article>
+</section>
+        <aside id="sidebar">
+  
+    <div class="widget-box">
+  <div class="avatar-box">
+    <img class="avatar" src="/images/default-avatar.jpg" title="图片来自网络"></img>
+    <h3 class="avatar-name">
+      
+        安安
+      
+    </h3>
+    <p class="avatar-slogan">
+      正在摸鱼的安卓实习生
+    </p>
+  </div>
+</div>
+
+
+  
+    
+
+  
+    
+
+  
+    
+  
+    
+  <div class="widget-box">
+    <h3 class="widget-title">Archives</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/04/">April 2023</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/03/">March 2023</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/02/">February 2023</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/10/">October 2022</a></li></ul>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-box">
+    <h3 class="widget-title">Recent Posts</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2023/04/20/%E9%9D%9E%E5%AF%B9%E7%A7%B0%E5%8A%A0%E5%AF%86%E5%92%8CRSA%E7%AE%97%E6%B3%95/">非对称加密和RSA算法</a>
+          </li>
+        
+          <li>
+            <a href="/2023/04/18/T07_08/">T07_08 面试题 08.07. 无重复字符串的排列组合</a>
+          </li>
+        
+          <li>
+            <a href="/2023/04/17/SQL%E6%B3%A8%E5%85%A5/">SQL注入</a>
+          </li>
+        
+          <li>
+            <a href="/2023/04/17/T525/">525. 连续数组</a>
+          </li>
+        
+          <li>
+            <a href="/2023/04/17/T37/">LeetCode T37 数独</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+      <div class="widget-box">
+    <h3 class="widget-title">友链</h3>
+    <div class="widget">
+      
+    </div>
+  </div>
+
+  
+</aside>
+      </div>
+      <footer id="footer">
+  <div class="foot-box global-width">
+    &copy; 2023 John Doe &nbsp;&nbsp;
+    Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+    &nbsp;|&nbsp;主题 <a target="_blank" rel="noopener" href="https://github.com/yiluyanxia/hexo-theme-antiquity">antiquity</a>
+    <br>
+    <script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+    <span id="busuanzi_container_site_pv">不蒜子告之   阁下是第<span id="busuanzi_value_site_pv"></span>个访客</span>
+  </div>
+</footer>
+      <script src="https://code.jquery.com/jquery-2.0.3.min.js"></script>
+<script>
+if (!window.jQuery) {
+var script = document.createElement('script');
+script.src = "/js/jquery-2.0.3.min.js";
+document.body.write(script);
+}
+</script>
+
+  
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+
+  
+<script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+
+
+<script src="/js/script.js"></script>
+
+
+
+
+    </div>
+    <nav id="mobile-nav" class="mobile-nav-box">
+  <div class="mobile-nav-img mobile-nav-top"></div>
+  
+    <a href="/" class="mobile-nav-link">首页</a>
+  
+    <a href="/archives" class="mobile-nav-link">归档</a>
+  
+  <div class="mobile-nav-img  mobile-nav-bottom"></div>
+</nav>    
+  </div>
+</body>
+</html>
