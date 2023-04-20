@@ -17,13 +17,10 @@
 <meta property="og:site_name" content="Hexo">
 <meta property="og:description" content="非对称加密和RSA算法对称加密客户端A和服务端B通信, 设^为加密运算, v为解密运算  约定密钥K, K可对明文加密, 密文解密 A发送明文S, 则密文为str &#x3D;  S ^  K, 发送str B收到str, 解密得明文S &#x3D; str v K 反之, 亦可  其问题在于, 密钥K得传输时存在泄露的可能 非对称加密客户端A和服务端B通信  设K, P为公钥和私钥, K加密,">
 <meta property="og:locale">
-<meta property="og:image" content="c:\Users\19732\AppData\Roaming\Typora\typora-user-images\image-20230420223633241.png">
-<meta property="og:image" content="c:\Users\19732\AppData\Roaming\Typora\typora-user-images\image-20230420223643934.png">
 <meta property="article:published_time" content="2023-04-20T14:37:18.736Z">
-<meta property="article:modified_time" content="2023-04-20T14:53:51.722Z">
+<meta property="article:modified_time" content="2023-04-20T15:19:10.187Z">
 <meta property="article:author" content="John Doe">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="c:\Users\19732\AppData\Roaming\Typora\typora-user-images\image-20230420223633241.png">
   
     <link rel="alternate" href="/atom.xml" title="Hexo" type="application/atom+xml">
   
@@ -113,9 +110,9 @@
 <p>由于计算复杂, 一般会通过一次非对称加密来传递一个对称加密的密钥, 后续通信使用对称加密即可</p>
 <h2 id="RSA算法"><a href="#RSA算法" class="headerlink" title="RSA算法"></a>RSA算法</h2><p>基于大数分解定理的一种非对称加密算法</p>
 <p>大数分解, 一种陷门函数, 即可以在NP时间复杂度内正向计算f(x) &#x3D; y, 但根据y解出x是NP完全问题(目前无法证明不是) </p>
-<p><img src="C:\Users\19732\AppData\Roaming\Typora\typora-user-images\image-20230420223633241.png" alt="image-20230420223633241"></p>
-<p><img src="C:\Users\19732\AppData\Roaming\Typora\typora-user-images\image-20230420223643934.png" alt="image-20230420223643934"></p>
-<p>步骤</p>
+<p>​	密文 &#x3D; $明文^E$ mod N</p>
+<p>​	明文&#x3D; $密文^D$ mod N</p>
+<p>生产过程: </p>
 <ol>
 <li><p>N &#x3D; p * q</p>
 </li>
