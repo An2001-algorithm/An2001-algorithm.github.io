@@ -18,7 +18,7 @@
 <meta property="og:description" content="开发的遇到的bug设置lottie播放流程监听导致的bug用户反馈: 动画播放完成之后, 不能响应任何操作前置条件: 产品需求为动画播放完成之后才能响应用户操作解决流程: 查看用户反馈日志和截图, 显示用户在动画播放的界面显示之后没有任何操作  推断此时app不能响应用户操作  查看设备为huawei  ELE-AL00 Android 10  尝试复现, 未果  查看bugly, 该版本此界面确">
 <meta property="og:locale">
 <meta property="article:published_time" content="2023-02-10T06:26:44.313Z">
-<meta property="article:modified_time" content="2022-10-28T04:52:46.000Z">
+<meta property="article:modified_time" content="2023-04-20T15:22:32.517Z">
 <meta property="article:author" content="John Doe">
 <meta name="twitter:card" content="summary">
   
@@ -113,12 +113,8 @@
 </li>
 <li><p>回归代码, 对于监听播放完成, 采用的方式是animatedFraction &gt;&#x3D; 0.999999 查看源码</p>
 </li>
-<li><p>&#96;&#96;&#96;java<br> &#x2F;**<br>* Implementors of this interface can add themselves as update listeners<br>* to an <code>ValueAnimator</code> instance to receive callbacks on every  	 	  	  * animation frame, after the current frame’s values have been calculated for<br>* that <code>ValueAnimator</code>.<br>*&#x2F;</p>
+<li><div class="highlight-box"autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" contenteditable="true"data-rel="JAVA"><figure class="iseeu highlight /java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment">   * Implementors of this interface can add themselves as update listeners</span></span><br><span class="line"><span class="comment">   * to an &lt;code&gt;ValueAnimator&lt;/code&gt; instance to receive callbacks on every  	 	  	  * animation frame, after the current frame&#x27;s values have been calculated for </span></span><br><span class="line"><span class="comment">   * that &lt;code&gt;ValueAnimator&lt;/code&gt;.</span></span><br><span class="line"><span class="comment">   */</span></span><br></pre></td></tr></table></figure></div>
 </li>
-</ol>
-<pre><code>```
-</code></pre>
-<ol start="13">
 <li><p>存在最后一帧小于0.999999 且播放完之后未进行回调的可能, 如此导致setOnClickListener未执行</p>
 </li>
 <li><p>改用addAnimatorListener(AnimatorListener) 修复掉该问题</p>

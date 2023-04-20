@@ -868,16 +868,6 @@
 
   <div class="article-inner">
     
-<div class="article-gallery">
-  <div class="article-gallery-photos">
-    
-      <a class="article-gallery-img fancybox" target="_blank" href="http://mail.stud.tjut.edu.cn/static/mimg/o/domain/202210131830/index/img/icon-dashi.png" rel="gallery_cldy5hkxh000glkw93zq524io noopener">
-        <img src="http://mail.stud.tjut.edu.cn/static/mimg/o/domain/202210131830/index/img/icon-dashi.png" itemprop="image">
-      </a>
-    
-  </div>
-</div>
-
     <div class="article-content article-content-cloud" itemprop="articleBody">
       
         <h1 id="适配的一些问题"><a href="#适配的一些问题" class="headerlink" title="适配的一些问题"></a>适配的一些问题</h1><h2 id="分辨率、dpi、dp、density"><a href="#分辨率、dpi、dp、density" class="headerlink" title="分辨率、dpi、dp、density"></a>分辨率、dpi、dp、density</h2><h3 id="分辨率"><a href="#分辨率" class="headerlink" title="分辨率"></a>分辨率</h3><p>320 * 160: 	即, 屏幕上有320 * 160个像素点</p>
@@ -890,7 +880,7 @@
 <p>最终解决方案是在activity的onCreate方法中记录density值, 并在调用前对density赋值</p>
 <h2 id="fitsSystemWindows-x3D-true"><a href="#fitsSystemWindows-x3D-true" class="headerlink" title="fitsSystemWindows &#x3D; true"></a>fitsSystemWindows &#x3D; true</h2><p>导致设定view的y异常, 表现为, 向下偏移一个状态栏高度</p>
 <h2 id="recyclerView-中加载-match-parent-的图片显示显示不全"><a href="#recyclerView-中加载-match-parent-的图片显示显示不全" class="headerlink" title="recyclerView 中加载 match_parent 的图片显示显示不全"></a>recyclerView 中加载 match_parent 的图片显示显示不全</h2><p>此时图片高度会默认为屏幕高度, 大于屏幕高度的图片显示不全</p>
-<h2 id="图片按比例缩放"><a href="#图片按比例缩放" class="headerlink" title="图片按比例缩放"></a>图片按比例缩放</h2><figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">android:layout_width=&quot;match_parent&quot;</span><br><span class="line">android:layout_height=&quot;wrap_content&quot;</span><br><span class="line">android:adjustViewBounds=&quot;true&quot;</span><br></pre></td></tr></table></figure>
+<h2 id="图片按比例缩放"><a href="#图片按比例缩放" class="headerlink" title="图片按比例缩放"></a>图片按比例缩放</h2><div class="highlight-box"autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" contenteditable="true"data-rel="XML"><figure class="iseeu highlight /xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">android:layout_width=&quot;match_parent&quot;</span><br><span class="line">android:layout_height=&quot;wrap_content&quot;</span><br><span class="line">android:adjustViewBounds=&quot;true&quot;</span><br></pre></td></tr></table></figure></div>
 
 
 
