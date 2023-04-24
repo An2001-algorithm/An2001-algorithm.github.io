@@ -59,6 +59,203 @@
       <div id="middlecontent" title class="global-width sidebar-right">
         <section id="main">
   
+    <article id="post-T37" class="article global-container article-type-post" itemscope itemprop="blogPost">
+  
+    <header class="article-header">
+      
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2023/04/17/T37/">LeetCode T37 数独</a>
+    </h1>
+  
+
+    </header>
+  
+  <div class="article-meta">
+    <a href="/2023/04/17/T37/" class="article-date">
+  <time datetime="2023-04-17T11:42:46.332Z" itemprop="datePublished">2023-04-17</time>
+</a>
+    
+    
+  </div>
+  
+
+  <div class="article-inner">
+    
+    <div class="article-content article-content-cloud" itemprop="articleBody">
+      
+        <h1 id="LeetCode-T37-数独"><a href="#LeetCode-T37-数独" class="headerlink" title="LeetCode T37 数独"></a>LeetCode T37 数独</h1><div class="highlight-box"autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" contenteditable="true"data-rel="JAVA"><figure class="iseeu highlight /java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br><span class="line">117</span><br><span class="line">118</span><br><span class="line">119</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> java.util.Arrays;</span><br><span class="line"></span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * 经典题目，搜索加回溯</span></span><br><span class="line"><span class="comment"> * 注意剪枝，拿到答案之后离开停止所有递归</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">T37</span> &#123;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title function_">main</span><span class="params">(String[] args)</span> &#123;</span><br><span class="line">        <span class="keyword">new</span> <span class="title class_">T37</span>().solveSudoku(</span><br><span class="line">                <span class="keyword">new</span> <span class="title class_">char</span>[][]&#123;</span><br><span class="line">                        &#123;<span class="string">&#x27;5&#x27;</span>, <span class="string">&#x27;3&#x27;</span>, <span class="string">&#x27;.&#x27;</span>, <span class="string">&#x27;.&#x27;</span>, <span class="string">&#x27;7&#x27;</span>, <span class="string">&#x27;.&#x27;</span>, <span class="string">&#x27;.&#x27;</span>, <span class="string">&#x27;.&#x27;</span>, <span class="string">&#x27;.&#x27;</span>&#125;,</span><br><span class="line">                        &#123;<span class="string">&#x27;6&#x27;</span>, <span class="string">&#x27;.&#x27;</span>, <span class="string">&#x27;.&#x27;</span>, <span class="string">&#x27;1&#x27;</span>, <span class="string">&#x27;9&#x27;</span>, <span class="string">&#x27;5&#x27;</span>, <span class="string">&#x27;.&#x27;</span>, <span class="string">&#x27;.&#x27;</span>, <span class="string">&#x27;.&#x27;</span>&#125;,</span><br><span class="line">                        &#123;<span class="string">&#x27;.&#x27;</span>, <span class="string">&#x27;9&#x27;</span>, <span class="string">&#x27;8&#x27;</span>, <span class="string">&#x27;.&#x27;</span>, <span class="string">&#x27;.&#x27;</span>, <span class="string">&#x27;.&#x27;</span>, <span class="string">&#x27;.&#x27;</span>, <span class="string">&#x27;6&#x27;</span>, <span class="string">&#x27;.&#x27;</span>&#125;,</span><br><span class="line">                        &#123;<span class="string">&#x27;8&#x27;</span>, <span class="string">&#x27;.&#x27;</span>, <span class="string">&#x27;.&#x27;</span>, <span class="string">&#x27;.&#x27;</span>, <span class="string">&#x27;6&#x27;</span>, <span class="string">&#x27;.&#x27;</span>, <span class="string">&#x27;.&#x27;</span>, <span class="string">&#x27;.&#x27;</span>, <span class="string">&#x27;3&#x27;</span>&#125;,</span><br><span class="line">                        &#123;<span class="string">&#x27;4&#x27;</span>, <span class="string">&#x27;.&#x27;</span>, <span class="string">&#x27;.&#x27;</span>, <span class="string">&#x27;8&#x27;</span>, <span class="string">&#x27;.&#x27;</span>, <span class="string">&#x27;3&#x27;</span>, <span class="string">&#x27;.&#x27;</span>, <span class="string">&#x27;.&#x27;</span>, <span class="string">&#x27;1&#x27;</span>&#125;,</span><br><span class="line">                        &#123;<span class="string">&#x27;7&#x27;</span>, <span class="string">&#x27;.&#x27;</span>, <span class="string">&#x27;.&#x27;</span>, <span class="string">&#x27;.&#x27;</span>, <span class="string">&#x27;2&#x27;</span>, <span class="string">&#x27;.&#x27;</span>, <span class="string">&#x27;.&#x27;</span>, <span class="string">&#x27;.&#x27;</span>, <span class="string">&#x27;6&#x27;</span>&#125;,</span><br><span class="line">                        &#123;<span class="string">&#x27;.&#x27;</span>, <span class="string">&#x27;6&#x27;</span>, <span class="string">&#x27;.&#x27;</span>, <span class="string">&#x27;.&#x27;</span>, <span class="string">&#x27;.&#x27;</span>, <span class="string">&#x27;.&#x27;</span>, <span class="string">&#x27;2&#x27;</span>, <span class="string">&#x27;8&#x27;</span>, <span class="string">&#x27;.&#x27;</span>&#125;,</span><br><span class="line">                        &#123;<span class="string">&#x27;.&#x27;</span>, <span class="string">&#x27;.&#x27;</span>, <span class="string">&#x27;.&#x27;</span>, <span class="string">&#x27;4&#x27;</span>, <span class="string">&#x27;1&#x27;</span>, <span class="string">&#x27;9&#x27;</span>, <span class="string">&#x27;.&#x27;</span>, <span class="string">&#x27;.&#x27;</span>, <span class="string">&#x27;5&#x27;</span>&#125;,</span><br><span class="line">                        &#123;<span class="string">&#x27;.&#x27;</span>, <span class="string">&#x27;.&#x27;</span>, <span class="string">&#x27;.&#x27;</span>, <span class="string">&#x27;.&#x27;</span>, <span class="string">&#x27;8&#x27;</span>, <span class="string">&#x27;.&#x27;</span>, <span class="string">&#x27;.&#x27;</span>, <span class="string">&#x27;7&#x27;</span>, <span class="string">&#x27;9&#x27;</span>&#125;</span><br><span class="line">                &#125;</span><br><span class="line">        );</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="type">int</span>[][] std = <span class="keyword">new</span> <span class="title class_">int</span>[][]&#123;</span><br><span class="line">            &#123;<span class="number">1</span>, <span class="number">1</span>, <span class="number">1</span>, <span class="number">2</span>, <span class="number">2</span>, <span class="number">2</span>, <span class="number">3</span>, <span class="number">3</span>, <span class="number">3</span>&#125;,</span><br><span class="line">            &#123;<span class="number">1</span>, <span class="number">1</span>, <span class="number">1</span>, <span class="number">2</span>, <span class="number">2</span>, <span class="number">2</span>, <span class="number">3</span>, <span class="number">3</span>, <span class="number">3</span>&#125;,</span><br><span class="line">            &#123;<span class="number">1</span>, <span class="number">1</span>, <span class="number">1</span>, <span class="number">2</span>, <span class="number">2</span>, <span class="number">2</span>, <span class="number">3</span>, <span class="number">3</span>, <span class="number">3</span>&#125;,</span><br><span class="line">            &#123;<span class="number">4</span>, <span class="number">4</span>, <span class="number">4</span>, <span class="number">5</span>, <span class="number">5</span>, <span class="number">5</span>, <span class="number">6</span>, <span class="number">6</span>, <span class="number">6</span>&#125;,</span><br><span class="line">            &#123;<span class="number">4</span>, <span class="number">4</span>, <span class="number">4</span>, <span class="number">5</span>, <span class="number">5</span>, <span class="number">5</span>, <span class="number">6</span>, <span class="number">6</span>, <span class="number">6</span>&#125;,</span><br><span class="line">            &#123;<span class="number">4</span>, <span class="number">4</span>, <span class="number">4</span>, <span class="number">5</span>, <span class="number">5</span>, <span class="number">5</span>, <span class="number">6</span>, <span class="number">6</span>, <span class="number">6</span>&#125;,</span><br><span class="line">            &#123;<span class="number">7</span>, <span class="number">7</span>, <span class="number">7</span>, <span class="number">8</span>, <span class="number">8</span>, <span class="number">8</span>, <span class="number">9</span>, <span class="number">9</span>, <span class="number">9</span>&#125;,</span><br><span class="line">            &#123;<span class="number">7</span>, <span class="number">7</span>, <span class="number">7</span>, <span class="number">8</span>, <span class="number">8</span>, <span class="number">8</span>, <span class="number">9</span>, <span class="number">9</span>, <span class="number">9</span>&#125;,</span><br><span class="line">            &#123;<span class="number">7</span>, <span class="number">7</span>, <span class="number">7</span>, <span class="number">8</span>, <span class="number">8</span>, <span class="number">8</span>, <span class="number">9</span>, <span class="number">9</span>, <span class="number">9</span>&#125;,</span><br><span class="line">    &#125;;</span><br><span class="line">    <span class="type">boolean</span>[][] flagLine = <span class="keyword">new</span> <span class="title class_">boolean</span>[<span class="number">10</span>][<span class="number">10</span>];</span><br><span class="line">    <span class="type">boolean</span>[][] flagRow = <span class="keyword">new</span> <span class="title class_">boolean</span>[<span class="number">10</span>][<span class="number">10</span>];</span><br><span class="line">    <span class="type">boolean</span>[][] flag = <span class="keyword">new</span> <span class="title class_">boolean</span>[<span class="number">10</span>][<span class="number">10</span>];</span><br><span class="line"></span><br><span class="line">    <span class="type">char</span>[][] ans;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">    <span class="type">int</span> <span class="variable">js</span> <span class="operator">=</span> <span class="number">0</span>;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">solveSudoku</span><span class="params">(<span class="type">char</span>[][] board)</span> &#123;</span><br><span class="line">        ans = <span class="literal">null</span>;</span><br><span class="line">        <span class="keyword">for</span> (<span class="type">int</span> <span class="variable">i</span> <span class="operator">=</span> <span class="number">0</span>; i &lt; board.length; i++) &#123;</span><br><span class="line">            <span class="keyword">for</span> (<span class="type">int</span> <span class="variable">j</span> <span class="operator">=</span> <span class="number">0</span>; j &lt; board.length; j++) &#123;</span><br><span class="line">                <span class="keyword">if</span> (board[i][j] == <span class="string">&#x27;.&#x27;</span>) <span class="keyword">continue</span>;</span><br><span class="line">                flagLine[i][board[i][j] - <span class="string">&#x27;0&#x27;</span>] = <span class="literal">true</span>;</span><br><span class="line">                flagRow[j][board[i][j] - <span class="string">&#x27;0&#x27;</span>] = <span class="literal">true</span>;</span><br><span class="line">                flag[check(i, j)][board[i][j] - <span class="string">&#x27;0&#x27;</span>] = <span class="literal">true</span>;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        dfs(board, <span class="number">0</span>, -<span class="number">1</span>);</span><br><span class="line">        <span class="keyword">for</span> (<span class="type">int</span> <span class="variable">i</span> <span class="operator">=</span> <span class="number">0</span>; i &lt; board.length; i++) &#123;</span><br><span class="line">            board[i] = Arrays.copyOf(ans[i],ans[i].length);</span><br><span class="line">        &#125;</span><br><span class="line"><span class="comment">//        System.out.println(Arrays.deepToString(ans));</span></span><br><span class="line"></span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">void</span> <span class="title function_">dfs</span><span class="params">(<span class="type">char</span>[][] board, <span class="type">int</span> x, <span class="type">int</span> y)</span> &#123;</span><br><span class="line"><span class="comment">//        System.out.println(Arrays.deepToString(board));</span></span><br><span class="line"><span class="comment">//        System.out.println();</span></span><br><span class="line">        <span class="keyword">if</span> (ans != <span class="literal">null</span>)<span class="keyword">return</span>;</span><br><span class="line">        <span class="keyword">if</span> (y != <span class="number">8</span>) y++;</span><br><span class="line">        <span class="keyword">else</span> &#123;</span><br><span class="line">            x++;</span><br><span class="line">            y = <span class="number">0</span>;</span><br><span class="line">        &#125;</span><br><span class="line"><span class="comment">//        System.out.println(x + &quot; &quot; + y);</span></span><br><span class="line">        <span class="keyword">if</span> (board[x][y] != <span class="string">&#x27;.&#x27;</span>) &#123;</span><br><span class="line">            <span class="keyword">if</span> (x == <span class="number">8</span> &amp;&amp; y == <span class="number">8</span>) &#123;</span><br><span class="line">                ans = <span class="keyword">new</span> <span class="title class_">char</span>[<span class="number">9</span>][<span class="number">9</span>];</span><br><span class="line">                <span class="keyword">for</span> (<span class="type">int</span> <span class="variable">i</span> <span class="operator">=</span> <span class="number">0</span>; i &lt; board.length; i++) &#123;</span><br><span class="line">                    ans[i] = Arrays.copyOf(board[i],board[i].length);</span><br><span class="line">                &#125;</span><br><span class="line">                <span class="keyword">return</span>;</span><br><span class="line">            &#125;</span><br><span class="line">            dfs(board, x, y);</span><br><span class="line">            <span class="keyword">return</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">for</span> (<span class="type">int</span> <span class="variable">i</span> <span class="operator">=</span> <span class="number">1</span>; i &lt;= <span class="number">9</span>; i++) &#123;</span><br><span class="line">            <span class="keyword">if</span> (flagLine[x][i] || flagRow[y][i] || flag[check(x, y)][i]) &#123;</span><br><span class="line">                <span class="keyword">continue</span>;</span><br><span class="line">            &#125;</span><br><span class="line">            flagLine[x][i] = <span class="literal">true</span>;</span><br><span class="line">            flagRow[y][i] = <span class="literal">true</span>;</span><br><span class="line">            flag[check(x, y)][i] = <span class="literal">true</span>;</span><br><span class="line">            board[x][y] = (<span class="type">char</span>) (i + <span class="string">&#x27;0&#x27;</span>);</span><br><span class="line"></span><br><span class="line"><span class="comment">//            if (js &lt;= 1000) &#123;</span></span><br><span class="line"><span class="comment">//                System.out.println(x + &quot; &quot; + y + &quot; &quot; + i);</span></span><br><span class="line"><span class="comment">//                js++;</span></span><br><span class="line"><span class="comment">//            &#125;</span></span><br><span class="line"><span class="comment">//        System.out.println(Arrays.deepToString(board));</span></span><br><span class="line">            <span class="keyword">if</span> (x == <span class="number">8</span> &amp;&amp; y == <span class="number">8</span>) &#123;</span><br><span class="line">                ans = <span class="keyword">new</span> <span class="title class_">char</span>[<span class="number">9</span>][<span class="number">9</span>];</span><br><span class="line">                <span class="keyword">for</span> (<span class="type">int</span> <span class="variable">oo</span> <span class="operator">=</span> <span class="number">0</span>; oo &lt; board.length; oo++) &#123;</span><br><span class="line">                    ans[oo] = Arrays.copyOf(board[oo],board[oo].length);</span><br><span class="line">                &#125;</span><br><span class="line">                <span class="keyword">return</span>;</span><br><span class="line">            &#125;</span><br><span class="line">            dfs(board, x, y);</span><br><span class="line"></span><br><span class="line">            flagLine[x][i] = <span class="literal">false</span>;</span><br><span class="line">            flagRow[y][i] = <span class="literal">false</span>;</span><br><span class="line">            flag[check(x, y)][i] = <span class="literal">false</span>;</span><br><span class="line">            board[x][y] = <span class="string">&#x27;.&#x27;</span>;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="type">int</span> <span class="title function_">check</span><span class="params">(<span class="type">int</span> i, <span class="type">int</span> j)</span> &#123;</span><br><span class="line">        <span class="keyword">return</span> std[i][j];</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></div>
+      
+    </div>
+    
+  </div>
+  
+  
+</article>
+
+  
+    <article id="post-KMP算法" class="article global-container article-type-post" itemscope itemprop="blogPost">
+  
+    <header class="article-header">
+      
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2023/04/17/KMP%E7%AE%97%E6%B3%95/">KMP算法</a>
+    </h1>
+  
+
+    </header>
+  
+  <div class="article-meta">
+    <a href="/2023/04/17/KMP%E7%AE%97%E6%B3%95/" class="article-date">
+  <time datetime="2023-04-17T11:42:46.330Z" itemprop="datePublished">2023-04-17</time>
+</a>
+    
+    
+  </div>
+  
+
+  <div class="article-inner">
+    
+    <div class="article-content article-content-cloud" itemprop="articleBody">
+      
+        <h1 id="KMP算法"><a href="#KMP算法" class="headerlink" title="KMP算法"></a>KMP算法</h1><h2 id="简述"><a href="#简述" class="headerlink" title="简述"></a>简述</h2><p><strong>K</strong>nuth-<strong>M</strong>orris-<strong>P</strong>ratt <a target="_blank" rel="noopener" href="https://www.zhihu.com/search?q=%E5%AD%97%E7%AC%A6%E4%B8%B2%E6%9F%A5%E6%89%BE%E7%AE%97%E6%B3%95&search_source=Entity&hybrid_search_source=Entity&hybrid_search_extra=%7B%22sourceType%22:%22answer%22,%22sourceId%22:769606119%7D">字符串查找算法</a>，简称为 <strong>KMP算法</strong>，常用于在一个文本串 S 内查找一个模式串 P 的出现位置。</p>
+<h2 id="子串匹配"><a href="#子串匹配" class="headerlink" title="子串匹配"></a>子串匹配</h2><p>对于模式串 A，在文本串B中找出与A完全相同的子串的位置</p>
+<p>例如：</p>
+<p>A &#x3D; “ab”</p>
+<p>B &#x3D; “aaaab”</p>
+<p>Index i &#x3D; 3为答案</p>
+<h2 id="朴素算法"><a href="#朴素算法" class="headerlink" title="朴素算法"></a>朴素算法</h2><p>枚举每一个i in B.index，对于每一个i，枚举j in A.index，check A[j] &#x3D;&#x3D; B[i + j]，当一次j的循环完成跑完，check全部成立，则有ans_index &#x3D; i</p>
+<p>代码如下：</p>
+<div class="highlight-box"autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" contenteditable="true"data-rel="JAVA"><figure class="iseeu highlight /java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">String</span> <span class="variable">A</span> <span class="operator">=</span> <span class="string">&quot;aaab&quot;</span>;</span><br><span class="line"><span class="type">String</span> <span class="variable">B</span> <span class="operator">=</span> <span class="string">&quot;aaaaab&quot;</span>;</span><br><span class="line"><span class="type">int</span> <span class="variable">ansIndex</span> <span class="operator">=</span> <span class="number">0</span>;</span><br><span class="line"><span class="keyword">for</span> (<span class="type">int</span> <span class="variable">i</span> <span class="operator">=</span> <span class="number">0</span>; i &lt; B.length() - A.length() + <span class="number">1</span>; i++) &#123;</span><br><span class="line">    <span class="type">boolean</span> <span class="variable">flag</span> <span class="operator">=</span> <span class="literal">true</span>;</span><br><span class="line">    <span class="keyword">for</span> (<span class="type">int</span> <span class="variable">j</span> <span class="operator">=</span> <span class="number">0</span>; j &lt; A.length(); j++) &#123;</span><br><span class="line">        <span class="keyword">if</span> (A.charAt(j) != B.charAt(i + j)) &#123;</span><br><span class="line">            flag = <span class="literal">false</span>;</span><br><span class="line">            <span class="keyword">break</span>;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">if</span> (flag) &#123;</span><br><span class="line">        ansIndex = i;</span><br><span class="line">        <span class="keyword">break</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line">System.out.println(ansIndex);</span><br></pre></td></tr></table></figure></div>
+
+<p>最坏的情况，两重循环全部跑完，显然时间复杂度为O(NM)，N M分别为A B串长度</p>
+<h2 id="对朴素算法的优化-KMP算法"><a href="#对朴素算法的优化-KMP算法" class="headerlink" title="对朴素算法的优化(KMP算法)"></a>对朴素算法的优化(KMP算法)</h2><p>关于时间复杂度，抛出一个问题，什么时候会有最坏的情况？</p>
+<p>即答：上面的例子就是</p>
+<p>对于上述例子，上述算法的冗余操作在于，每次移动了一个单位，以下述例子进行解释</p>
+<ol>
+<li><p>abcabd 和 abcabcabd，第一次循环，会在<code>i = 0</code>，<code>j = 5</code>的时候终止， 因为abcabd和abcabc的最后一个不匹配</p>
+</li>
+<li><p>上述算法的下一步操作为，<code>i++</code>，<code>j = 0</code>，继续循环</p>
+</li>
+<li><p>这时候我们考虑i的位置，显然，<code>i = 1,2</code>都属于冗余操作，因为<code>B[1] != A[0], B[2] != A[0]</code>，接着看<code>i = 3</code>的情况，可以发现，<code>i = 3</code>有可能完成匹配，因为至少<code>B[3] == A[0]</code></p>
+</li>
+<li><p>此时，我们再考虑j的位置，注意，这里有<code>B[3] == A[0], B[4] == A[1]</code>, 所以我们j可以直接取2，即<code>j = 2</code></p>
+</li>
+<li><p>显然直接取得<code>i = 3</code>, <code>j = 2</code>对于原先算法是一种优化，如果在O(1)的时间内获取这个信息，那么我们的优化即可完成</p>
+</li>
+<li><p>在此例中，在j &#x3D; 5终止匹配，可以给我们一个信息，此信息为，A串的0-4与B串的0-4完全相同，我们需要处理出上述3、4两点的信息，需要用到A串的0-4和B串的0-4，又因为A串的0-4与B串的0-4完全相同，所以我们需要用的A串的0-4与A串的0-4，且注意，我们用A串去匹配B串，所以A串是重复使用的，因此我们可以预处理出A串的0-(A.length-1)的3、4两点提到的信息，实现O(1)得获得此信息</p>
+</li>
+<li><p>至此，优化完成，此为KMP算法，时间复杂度为O(M+N), M、N分别为A、B串的长度</p>
+</li>
+</ol>
+<h2 id="代码"><a href="#代码" class="headerlink" title="代码"></a>代码</h2><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="type">int</span> <span class="title">KMP</span><span class="params">(<span class="type">char</span> *t, <span class="type">char</span> *p)</span> </span>&#123;</span><br><span class="line">      <span class="type">int</span> i = <span class="number">0</span>;</span><br><span class="line">      <span class="type">int</span> j = <span class="number">0</span>;</span><br><span class="line"></span><br><span class="line">      <span class="keyword">while</span> (i &lt; (<span class="type">int</span>) <span class="built_in">strlen</span>(t) &amp;&amp; j &lt; (<span class="type">int</span>) <span class="built_in">strlen</span>(p)) &#123;</span><br><span class="line">          <span class="keyword">if</span> (j == <span class="number">-1</span> || t[i] == p[j]) &#123;</span><br><span class="line">              i++;</span><br><span class="line">              j++;</span><br><span class="line">          &#125; <span class="keyword">else</span></span><br><span class="line">              j = next[j];</span><br><span class="line">      &#125;</span><br><span class="line"></span><br><span class="line">      <span class="keyword">if</span> (j == <span class="built_in">strlen</span>(p))</span><br><span class="line">          <span class="keyword">return</span> i - j;</span><br><span class="line">      <span class="keyword">else</span></span><br><span class="line">          <span class="keyword">return</span> <span class="number">-1</span>;</span><br><span class="line">  &#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+
+
+<h2 id="关于时间复杂度的证明"><a href="#关于时间复杂度的证明" class="headerlink" title="关于时间复杂度的证明"></a>关于时间复杂度的证明</h2><p>存疑的点在于<code>j = next[j]</code> 导致了j最坏的情况下减小到0，所以时间复杂度为O(NM)</p>
+<p>但是，KMP算法中i是递增的，不增的情况为失配时，</p>
+<p>所以，KMP 的比对次数是<code> (n + 失配次数）</code></p>
+<p>KMP 算法的最差情况的一个案例，<code>n/m</code> 个失配点位，每个点位重新匹配 <code>m-1</code> 次，此时总共比对 <code>n+(m-1)*(n/m)</code> 次，接近 <code>2n</code> 次。</p>
+<p>完。</p>
+<p>待补充，next数组的计算方式</p>
+
+      
+    </div>
+    
+  </div>
+  
+  
+</article>
+
+  
+    <article id="post-剑指 Offer II 014. 字符串中的变位词" class="article global-container article-type-post" itemscope itemprop="blogPost">
+  
+    <header class="article-header">
+      
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2023/04/17/%E5%89%91%E6%8C%87%20Offer%20II%20014.%20%E5%AD%97%E7%AC%A6%E4%B8%B2%E4%B8%AD%E7%9A%84%E5%8F%98%E4%BD%8D%E8%AF%8D/">剑指 Offer II 014. 字符串中的变位词</a>
+    </h1>
+  
+
+    </header>
+  
+  <div class="article-meta">
+    <a href="/2023/04/17/%E5%89%91%E6%8C%87%20Offer%20II%20014.%20%E5%AD%97%E7%AC%A6%E4%B8%B2%E4%B8%AD%E7%9A%84%E5%8F%98%E4%BD%8D%E8%AF%8D/" class="article-date">
+  <time datetime="2023-04-17T11:42:46.326Z" itemprop="datePublished">2023-04-17</time>
+</a>
+    
+    
+  </div>
+  
+
+  <div class="article-inner">
+    
+    <div class="article-content article-content-cloud" itemprop="articleBody">
+      
+        <h1 id="剑指-Offer-II-014-字符串中的变位词"><a href="#剑指-Offer-II-014-字符串中的变位词" class="headerlink" title="剑指 Offer II 014. 字符串中的变位词"></a>剑指 Offer II 014. 字符串中的变位词</h1><p><strong>Describion：</strong></p>
+<p>给定两个字符串 <code>s1</code> 和 <code>s2</code>，写一个函数来判断 <code>s2</code> 是否包含 <code>s1</code> 的某个变位词。</p>
+<p>换句话说，第一个字符串的排列之一是第二个字符串的 <strong>子串</strong> 。</p>
+<p><strong>示例 1 ：</strong></p>
+<div class="highlight-box"autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" contenteditable="true"data-rel="PLAINTEXT"><figure class="iseeu highlight /plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">输入: s1 = &quot;ab&quot; s2 = &quot;eidbaooo&quot;</span><br><span class="line">输出: True</span><br><span class="line">解释: s2 包含 s1 的排列之一 (&quot;ba&quot;).</span><br></pre></td></tr></table></figure></div>
+
+<p><strong>提示：</strong></p>
+<ul>
+<li><code>1 &lt;= s1.length, s2.length &lt;= 104</code></li>
+<li><code>s1</code> 和 <code>s2</code> 仅包含小写字母</li>
+</ul>
+<div class="highlight-box"autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" contenteditable="true"data-rel="JAVA"><figure class="iseeu highlight /java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> java.util.Arrays;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">JianzhiOfferII014</span> &#123;</span><br><span class="line"></span><br><span class="line">  	<span class="comment">/**</span></span><br><span class="line"><span class="comment">     *</span></span><br><span class="line"><span class="comment">     * 不需要枚举排列</span></span><br><span class="line"><span class="comment">     * 保证每个字母出现的次数一致，且字符串长度一致即为符合条件的字串</span></span><br><span class="line"><span class="comment">     *</span></span><br><span class="line"><span class="comment">     * 显然需要前缀和优化</span></span><br><span class="line"><span class="comment">     *</span></span><br><span class="line"><span class="comment">     * 题目得解</span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title function_">main</span><span class="params">(String[] args)</span> &#123;</span><br><span class="line">        <span class="type">boolean</span> <span class="variable">a</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">JianzhiOfferII014</span>().checkInclusion(<span class="string">&quot;adc&quot;</span>, <span class="string">&quot;dcda&quot;</span>);</span><br><span class="line">        System.out.println(a);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">public</span> <span class="type">boolean</span> <span class="title function_">checkInclusion</span><span class="params">(String s1, String s2)</span> &#123;</span><br><span class="line">        <span class="type">int</span>[][] pre1 = <span class="keyword">new</span> <span class="title class_">int</span>[<span class="number">26</span>][s1.length()];</span><br><span class="line">        <span class="type">int</span>[][] pre2 = <span class="keyword">new</span> <span class="title class_">int</span>[<span class="number">26</span>][s2.length()];</span><br><span class="line">        pre1[s1.charAt(<span class="number">0</span>) - <span class="string">&#x27;a&#x27;</span>][<span class="number">0</span>] = <span class="number">1</span>;</span><br><span class="line">        pre2[s2.charAt(<span class="number">0</span>) - <span class="string">&#x27;a&#x27;</span>][<span class="number">0</span>] = <span class="number">1</span>;</span><br><span class="line">        <span class="keyword">for</span> (<span class="type">int</span> <span class="variable">i</span> <span class="operator">=</span> <span class="number">1</span>; i &lt; s1.length(); i++) &#123;</span><br><span class="line">            <span class="keyword">for</span> (<span class="type">int</span> <span class="variable">j</span> <span class="operator">=</span> <span class="number">0</span>; j &lt; <span class="number">26</span>; j++) &#123;</span><br><span class="line">                pre1[j][i] = pre1[j][i - <span class="number">1</span>];</span><br><span class="line">            &#125;</span><br><span class="line">            pre1[s1.charAt(i) - <span class="string">&#x27;a&#x27;</span>][i] = pre1[s1.charAt(i) - <span class="string">&#x27;a&#x27;</span>][i - <span class="number">1</span>] + <span class="number">1</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">for</span> (<span class="type">int</span> <span class="variable">i</span> <span class="operator">=</span> <span class="number">1</span>; i &lt; s2.length(); i++) &#123;</span><br><span class="line">            <span class="keyword">for</span> (<span class="type">int</span> <span class="variable">j</span> <span class="operator">=</span> <span class="number">0</span>; j &lt; <span class="number">26</span>; j++) &#123;</span><br><span class="line">                pre2[j][i] = pre2[j][i - <span class="number">1</span>];</span><br><span class="line">            &#125;</span><br><span class="line">            pre2[s2.charAt(i) - <span class="string">&#x27;a&#x27;</span>][i] = pre2[s2.charAt(i) - <span class="string">&#x27;a&#x27;</span>][i - <span class="number">1</span>] + <span class="number">1</span>;</span><br><span class="line"></span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">//        System.out.println(Arrays.deepToString(pre1));</span></span><br><span class="line"><span class="comment">//        System.out.println(Arrays.deepToString(pre2));</span></span><br><span class="line">        <span class="type">int</span> <span class="variable">len</span> <span class="operator">=</span> s1.length();</span><br><span class="line">        <span class="keyword">for</span> (<span class="type">int</span> <span class="variable">i</span> <span class="operator">=</span> <span class="number">0</span>; i &lt; s2.length(); i++) &#123;</span><br><span class="line">            <span class="keyword">if</span> (i + len - <span class="number">1</span> &gt;= s2.length()) <span class="keyword">break</span>;</span><br><span class="line">            <span class="type">boolean</span> <span class="variable">flag</span> <span class="operator">=</span> <span class="literal">false</span>;</span><br><span class="line">            <span class="keyword">for</span> (<span class="type">int</span> <span class="variable">j</span> <span class="operator">=</span> <span class="number">0</span>; j &lt; <span class="number">26</span>; j++) &#123;</span><br><span class="line">                <span class="keyword">if</span> (i == <span class="number">0</span>) &#123;</span><br><span class="line">                    <span class="keyword">if</span> (pre1[j][len - <span class="number">1</span>] != pre2[j][i + len - <span class="number">1</span>]) &#123;</span><br><span class="line">                        flag = <span class="literal">true</span>;</span><br><span class="line">                        <span class="keyword">break</span>;</span><br><span class="line">                    &#125;</span><br><span class="line"></span><br><span class="line">                &#125; <span class="keyword">else</span> <span class="keyword">if</span> (pre1[j][len - <span class="number">1</span>] != pre2[j][i + len - <span class="number">1</span>] - pre2[j][i - <span class="number">1</span>]) &#123;</span><br><span class="line">                    flag = <span class="literal">true</span>;</span><br><span class="line">                    <span class="keyword">break</span>;</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="keyword">if</span> (!flag) &#123;</span><br><span class="line">                <span class="keyword">return</span> <span class="literal">true</span>;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">return</span> <span class="literal">false</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></div>
+      
+    </div>
+    
+  </div>
+  
+  
+</article>
+
+  
+    <article id="post-LeetCode1641" class="article global-container article-type-post" itemscope itemprop="blogPost">
+  
+    <header class="article-header">
+      
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2023/03/29/LeetCode1641/">LeetCode1641</a>
+    </h1>
+  
+
+    </header>
+  
+  <div class="article-meta">
+    <a href="/2023/03/29/LeetCode1641/" class="article-date">
+  <time datetime="2023-03-29T14:08:09.114Z" itemprop="datePublished">2023-03-29</time>
+</a>
+    
+    
+  </div>
+  
+
+  <div class="article-inner">
+    
+    <div class="article-content article-content-cloud" itemprop="articleBody">
+      
+        <h1 id="LeetCode1641"><a href="#LeetCode1641" class="headerlink" title="LeetCode1641"></a>LeetCode1641</h1><p>给你一个整数 n，请返回长度为 n 、仅由元音 (a, e, i, o, u) 组成且按 字典序排列 的字符串数量。</p>
+<p>字符串 s 按 字典序排列 需要满足：对于所有有效的 i，s[i] 在字母表中的位置总是与 s[i+1] 相同或在 s[i+1] 之前。</p>
+<p>来源：力扣（LeetCode）<br>链接：<a target="_blank" rel="noopener" href="https://leetcode.cn/problems/count-sorted-vowel-strings">https://leetcode.cn/problems/count-sorted-vowel-strings</a><br>著作权归领扣网络所有。商业转载请联系官方授权，非商业转载请注明出处。</p>
+<p>自己推一下n &#x3D; 1, n &#x3D; 2, n &#x3D; 3的情况, 找到规律, 即可得解</p>
+<div class="highlight-box"autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" contenteditable="true"data-rel="JAVA"><figure class="iseeu highlight /java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Solution</span> &#123;</span><br><span class="line">      <span class="keyword">public</span> <span class="type">int</span> <span class="title function_">countVowelStrings</span><span class="params">(<span class="type">int</span> n)</span> &#123;</span><br><span class="line"></span><br><span class="line">        <span class="type">int</span> ans[] = <span class="keyword">new</span> <span class="title class_">int</span>[]&#123;<span class="number">1</span>,<span class="number">1</span>,<span class="number">1</span>,<span class="number">1</span>,<span class="number">1</span>&#125;;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">for</span> (<span class="type">int</span> <span class="variable">i</span> <span class="operator">=</span> <span class="number">1</span>; i &lt; n; i++) &#123;</span><br><span class="line">            <span class="keyword">for</span> (<span class="type">int</span> <span class="variable">j</span> <span class="operator">=</span> <span class="number">0</span>; j &lt; <span class="number">5</span>; j++) &#123;</span><br><span class="line">                <span class="keyword">for</span> (<span class="type">int</span> <span class="variable">k</span> <span class="operator">=</span> j + <span class="number">1</span>; k &lt; <span class="number">5</span>; k++) &#123;</span><br><span class="line">                    ans[j] += ans[k];</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="type">int</span> <span class="variable">all</span> <span class="operator">=</span> <span class="number">0</span>;</span><br><span class="line">        <span class="keyword">for</span> (<span class="type">int</span> <span class="variable">i</span> <span class="operator">=</span> <span class="number">0</span>; i &lt; <span class="number">5</span>; i++) &#123;</span><br><span class="line">            all += ans[i];</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> all;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></div>
+
+
+      
+    </div>
+    
+  </div>
+  
+  
+</article>
+
+  
     <article id="post-binder" class="article global-container article-type-post" itemscope itemprop="blogPost">
   
     <header class="article-header">
@@ -524,172 +721,6 @@
 </article>
 
   
-    <article id="post-关于Android-View绘制的一些问题" class="article global-container article-type-post" itemscope itemprop="blogPost">
-  
-    <header class="article-header">
-      
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2023/02/10/%E5%85%B3%E4%BA%8EAndroid-View%E7%BB%98%E5%88%B6%E7%9A%84%E4%B8%80%E4%BA%9B%E9%97%AE%E9%A2%98/">关于Android View绘制的一些问题</a>
-    </h1>
-  
-
-    </header>
-  
-  <div class="article-meta">
-    <a href="/2023/02/10/%E5%85%B3%E4%BA%8EAndroid-View%E7%BB%98%E5%88%B6%E7%9A%84%E4%B8%80%E4%BA%9B%E9%97%AE%E9%A2%98/" class="article-date">
-  <time datetime="2023-02-10T06:26:44.309Z" itemprop="datePublished">2023-02-10</time>
-</a>
-    
-    
-  </div>
-  
-
-  <div class="article-inner">
-    
-    <div class="article-content article-content-cloud" itemprop="articleBody">
-      
-        <h1 id="关于Android-View绘制的一些问题"><a href="#关于Android-View绘制的一些问题" class="headerlink" title="关于Android View绘制的一些问题"></a>关于Android View绘制的一些问题</h1><h2 id="View-getY不准确的问题"><a href="#View-getY不准确的问题" class="headerlink" title="View.getY不准确的问题"></a>View.getY不准确的问题</h2><p>view的getY方法是获取的view相对于父布局的y坐标</p>
-<p>​	</p>
-<h2 id="view-width获取为0的问题"><a href="#view-width获取为0的问题" class="headerlink" title="view.width获取为0的问题"></a>view.width获取为0的问题</h2><ol>
-<li>xml中设置visibility 为 invisible时, 在view.post中可获得width</li>
-<li>xml中设置visibility 为 gone时, 在view.post中不能获得width, 需要在post前, 设置为visible才能获取</li>
-</ol>
-
-      
-    </div>
-    
-  </div>
-  
-  
-</article>
-
-  
-    <article id="post-单例模式" class="article global-container article-type-post" itemscope itemprop="blogPost">
-  
-    <header class="article-header">
-      
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2023/02/10/%E5%8D%95%E4%BE%8B%E6%A8%A1%E5%BC%8F/">单例模式</a>
-    </h1>
-  
-
-    </header>
-  
-  <div class="article-meta">
-    <a href="/2023/02/10/%E5%8D%95%E4%BE%8B%E6%A8%A1%E5%BC%8F/" class="article-date">
-  <time datetime="2023-02-10T06:26:44.307Z" itemprop="datePublished">2023-02-10</time>
-</a>
-    
-    
-  </div>
-  
-
-  <div class="article-inner">
-    
-    <div class="article-content article-content-cloud" itemprop="articleBody">
-      
-        <h1 id="单例模式"><a href="#单例模式" class="headerlink" title="单例模式"></a>单例模式</h1><p>3.静态内部类模式：</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">SingleTon</span>&#123;</span><br><span class="line">  <span class="keyword">private</span> <span class="title function_">SingleTon</span><span class="params">()</span>&#123;&#125;</span><br><span class="line"></span><br><span class="line">  <span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">class</span> <span class="title class_">SingleTonHoler</span>&#123;</span><br><span class="line">     <span class="keyword">private</span> <span class="keyword">static</span> <span class="type">SingleTon</span> <span class="variable">INSTANCE</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">SingleTon</span>();</span><br><span class="line"> &#125;</span><br><span class="line"></span><br><span class="line">  <span class="keyword">public</span> <span class="keyword">static</span> SingleTon <span class="title function_">getInstance</span><span class="params">()</span>&#123;</span><br><span class="line">    <span class="keyword">return</span> SingleTonHoler.INSTANCE;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p>静态内部类的优点是：外部类加载时并不需要立即加载内部类，内部类不被加载则不去初始化INSTANCE，故而不占内存。即当SingleTon第一次被加载时，并不需要去加载SingleTonHoler，只有当getInstance()方法第一次被调用时，才会去初始化INSTANCE,第一次调用getInstance()方法会导致虚拟机加载SingleTonHoler类，这种方法不仅能确保线程安全，也能保证单例的唯一性，同时也延迟了单例的实例化。</p>
-<p>那么，静态内部类又是如何实现线程安全的呢？首先，我们先了解下类的加载时机。</p>
-<p>类加载时机：JAVA虚拟机在有且仅有的5种场景下会对类进行初始化。<br>1.遇到new、getstatic、setstatic或者invokestatic这4个字节码指令时，对应的java代码场景为：new一个关键字或者一个实例化对象时、读取或设置一个静态字段时(final修饰、已在编译期把结果放入常量池的除外)、调用一个类的静态方法时。<br>2.使用java.lang.reflect包的方法对类进行反射调用的时候，如果类没进行初始化，需要先调用其初始化方法进行初始化。<br>3.当初始化一个类时，如果其父类还未进行初始化，会先触发其父类的初始化。<br>4.当虚拟机启动时，用户需要指定一个要执行的主类(包含main()方法的类)，虚拟机会先初始化这个类。<br>5.当使用JDK 1.7等动态语言支持时，如果一个java.lang.invoke.MethodHandle实例最后的解析结果REF_getStatic、REF_putStatic、REF_invokeStatic的方法句柄，并且这个方法句柄所对应的类没有进行过初始化，则需要先触发其初始化。<br>这5种情况被称为是类的主动引用，注意，这里《虚拟机规范》中使用的限定词是”有且仅有”，那么，除此之外的所有引用类都不会对类进行初始化，称为被动引用。静态内部类就属于被动引用的行列。</p>
-<p>我们再回头看下getInstance()方法，调用的是SingleTonHoler.INSTANCE，取的是SingleTonHoler里的INSTANCE对象，跟上面那个DCL方法不同的是，getInstance()方法并没有多次去new对象，故不管多少个线程去调用getInstance()方法，取的都是同一个INSTANCE对象，而不用去重新创建。当getInstance()方法被调用时，SingleTonHoler才在SingleTon的运行时常量池里，把符号引用替换为直接引用，这时静态对象INSTANCE也真正被创建，然后再被getInstance()方法返回出去，这点同饿汉模式。那么INSTANCE在创建过程中又是如何保证线程安全的呢？在《深入理解JAVA虚拟机》中，有这么一句话:</p>
-<p> <strong>虚拟机会保证一个类的<clinit>()方法在多线程环境中被正确地加锁、同步，如果多个线程同时去初始化一个类，那么只会有一个线程去执行这个类的<clinit>()方法，其他线程都需要阻塞等待，直到活动线程执行<clinit>()方法完毕。如果在一个类的<clinit>()方法中有耗时很长的操作，就可能造成多个进程阻塞(需要注意的是，其他线程虽然会被阻塞，但如果执行<clinit>()方法后，其他线程唤醒之后不会再次进入<clinit>()方法。同一个加载器下，一个类型只会初始化一次。)，在实际应用中，这种阻塞往往是很隐蔽的。</strong></p>
-<p>故而，可以看出INSTANCE在创建过程中是线程安全的，所以说静态内部类形式的单例可保证线程安全，也能保证单例的唯一性，同时也延迟了单例的实例化。</p>
-<p>那么，是不是可以说静态内部类单例就是最完美的单例模式了呢？其实不然，静态内部类也有着一个致命的缺点，就是传参的问题，由于是静态内部类的形式去创建单例的，故外部无法传递参数进去，例如Context这种参数，所以，我们创建单例时，可以在静态内部类与DCL模式里自己斟酌。<br>————————————————<br>版权声明：本文为CSDN博主「走着不语」的原创文章，遵循CC 4.0 BY-SA版权协议，转载请附上原文出处链接及本声明。<br>原文链接：<a target="_blank" rel="noopener" href="https://blog.csdn.net/mnb65482/article/details/80458571">https://blog.csdn.net/mnb65482/article/details/80458571</a></p>
-
-      
-    </div>
-    
-  </div>
-  
-  
-</article>
-
-  
-    <article id="post-UML类图和类与类之间的关系" class="article global-container article-type-post" itemscope itemprop="blogPost">
-  
-    <header class="article-header">
-      
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2023/02/10/UML%E7%B1%BB%E5%9B%BE%E5%92%8C%E7%B1%BB%E4%B8%8E%E7%B1%BB%E4%B9%8B%E9%97%B4%E7%9A%84%E5%85%B3%E7%B3%BB/">UML类图和类与类之间的关系</a>
-    </h1>
-  
-
-    </header>
-  
-  <div class="article-meta">
-    <a href="/2023/02/10/UML%E7%B1%BB%E5%9B%BE%E5%92%8C%E7%B1%BB%E4%B8%8E%E7%B1%BB%E4%B9%8B%E9%97%B4%E7%9A%84%E5%85%B3%E7%B3%BB/" class="article-date">
-  <time datetime="2023-02-10T06:26:44.303Z" itemprop="datePublished">2023-02-10</time>
-</a>
-    
-    
-  </div>
-  
-
-  <div class="article-inner">
-    
-    <div class="article-content article-content-cloud" itemprop="articleBody">
-      
-        <h1 id="UML类图和类与类之间的关系"><a href="#UML类图和类与类之间的关系" class="headerlink" title="UML类图和类与类之间的关系"></a>UML类图和类与类之间的关系</h1><ul>
-<li>继承 : 实线 + 三角</li>
-<li>实现接口: 虚线 + 三角</li>
-<li>聚合: list 和 item 的关系, 空心菱形 + 实线 + 箭头(&gt;)</li>
-<li>组合: 鸟和翅膀的关系, 对象持有对象, 生命周期一致, 实心空心菱形 + 实线 + 箭头(&gt;)</li>
-<li>关联: 对象相关, 有影响即可, 人和手机, 实线 + 箭头(&gt;)</li>
-</ul>
-
-      
-    </div>
-    
-  </div>
-  
-  
-</article>
-
-  
-    <article id="post-TCP可靠性的保证" class="article global-container article-type-post" itemscope itemprop="blogPost">
-  
-    <header class="article-header">
-      
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2023/02/10/TCP%E5%8F%AF%E9%9D%A0%E6%80%A7%E7%9A%84%E4%BF%9D%E8%AF%81/">TCP可靠性的保证</a>
-    </h1>
-  
-
-    </header>
-  
-  <div class="article-meta">
-    <a href="/2023/02/10/TCP%E5%8F%AF%E9%9D%A0%E6%80%A7%E7%9A%84%E4%BF%9D%E8%AF%81/" class="article-date">
-  <time datetime="2023-02-10T06:26:44.301Z" itemprop="datePublished">2023-02-10</time>
-</a>
-    
-    
-  </div>
-  
-
-  <div class="article-inner">
-    
-    <div class="article-content article-content-cloud" itemprop="articleBody">
-      
-        <h1 id="TCP可靠性的保证"><a href="#TCP可靠性的保证" class="headerlink" title="TCP可靠性的保证"></a>TCP可靠性的保证</h1><p><a target="_blank" rel="noopener" href="https://cloud.tencent.com/developer/article/1819844">https://cloud.tencent.com/developer/article/1819844</a></p>
-<p><a target="_blank" rel="noopener" href="https://segmentfault.com/a/1190000022944999">https://segmentfault.com/a/1190000022944999</a></p>
-<p><a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/37379780">https://zhuanlan.zhihu.com/p/37379780</a></p>
-
-      
-    </div>
-    
-  </div>
-  
-  
-</article>
-
-  
 
 
   <nav id="page-nav">
@@ -741,23 +772,23 @@
       <ul>
         
           <li>
+            <a href="/2023/04/24/QuickSort/">快速排序模版</a>
+          </li>
+        
+          <li>
+            <a href="/2023/04/24/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/">面试相关的操作系统题目</a>
+          </li>
+        
+          <li>
+            <a href="/2023/04/24/Handler%E6%9C%BA%E5%88%B6/">关于handler机制</a>
+          </li>
+        
+          <li>
+            <a href="/2023/04/24/%E6%89%8BQ%E4%B8%80%E9%9D%A2/">(no title)</a>
+          </li>
+        
+          <li>
             <a href="/2023/04/20/TodoList/">TodoList by An</a>
-          </li>
-        
-          <li>
-            <a href="/2023/04/20/T458%E6%9D%80%E7%8C%AA/">458. 可怜的小猪(杀猪)</a>
-          </li>
-        
-          <li>
-            <a href="/2023/04/20/%E9%9D%9E%E5%AF%B9%E7%A7%B0%E5%8A%A0%E5%AF%86%E5%92%8CRSA%E7%AE%97%E6%B3%95/">非对称加密和RSA算法</a>
-          </li>
-        
-          <li>
-            <a href="/2023/04/18/T07_08/">T07_08 面试题 08.07. 无重复字符串的排列组合</a>
-          </li>
-        
-          <li>
-            <a href="/2023/04/17/SQL%E6%B3%A8%E5%85%A5/">SQL注入</a>
           </li>
         
       </ul>
