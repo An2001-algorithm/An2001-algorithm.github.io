@@ -1,0 +1,300 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+
+  
+  <title>剑指offer 剪绳子 | Hexo</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  
+  
+  
+  <meta name="description" content="剑指 Offer 14- II. 剪绳子 II给你一根长度为 n 的绳子，请把绳子剪成整数长度的 m 段（m、n都是整数，n&gt;1并且m&gt;1），每段绳子的长度记为 k[0],k[1]…k[m - 1] 。请问 k[0]k[1]…*k[m - 1] 可能的最大乘积是多少？例如，当绳子的长度是8时，我们把它剪成长度分别为2、3、3的三段，此时得到的最大乘积是18。 答案需要取模 1e9+7（">
+<meta property="og:type" content="article">
+<meta property="og:title" content="剑指offer 剪绳子">
+<meta property="og:url" content="http://example.com/2023/05/04/%E5%89%91%E6%8C%87offer-%E5%89%AA%E7%BB%B3%E5%AD%90/index.html">
+<meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="剑指 Offer 14- II. 剪绳子 II给你一根长度为 n 的绳子，请把绳子剪成整数长度的 m 段（m、n都是整数，n&gt;1并且m&gt;1），每段绳子的长度记为 k[0],k[1]…k[m - 1] 。请问 k[0]k[1]…*k[m - 1] 可能的最大乘积是多少？例如，当绳子的长度是8时，我们把它剪成长度分别为2、3、3的三段，此时得到的最大乘积是18。 答案需要取模 1e9+7（">
+<meta property="og:locale">
+<meta property="article:published_time" content="2023-05-04T14:22:23.715Z">
+<meta property="article:modified_time" content="2023-05-04T14:22:23.715Z">
+<meta property="article:author" content="John Doe">
+<meta name="twitter:card" content="summary">
+  
+    <link rel="alternate" href="/atom.xml" title="Hexo" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/images/default-avatar.jpg">
+  
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  
+<link rel="stylesheet" href="/css/style.css">
+
+  
+<link rel="stylesheet" href="/css/highlight.css">
+
+<meta name="generator" content="Hexo 6.3.0"></head>
+
+<body>
+  <div id="fullpage" class="mobile-nav-right">
+    
+      <div id="wrapper" title="图片来自网络">
+    
+    
+      <header id="header">
+  <div id="nav-toggle" class="nav-toggle"></div>
+  <div class="head-box global-width">
+    <nav class="nav-box nav-right">
+      
+        <a class="nav-item" href="/" title
+        
+        >首页</a>
+      
+        <a class="nav-item" href="/archives" title
+        
+        >归档</a>
+      
+    </nav>
+  </div>
+</header>
+      <div id="middlecontent" title class="global-width sidebar-right">
+        <section id="main"><article id="post-剑指offer-剪绳子" class="article global-container article-type-post" itemscope itemprop="blogPost">
+  
+    <header class="article-header">
+      
+  
+    <h1 class="article-title" itemprop="name">
+      剑指offer 剪绳子
+    </h1>
+  
+
+    </header>
+  
+  <div class="article-meta">
+    <a href="/2023/05/04/%E5%89%91%E6%8C%87offer-%E5%89%AA%E7%BB%B3%E5%AD%90/" class="article-date">
+  <time datetime="2023-05-04T14:22:23.715Z" itemprop="datePublished">2023-05-04</time>
+</a>
+    
+    
+  </div>
+  
+    <span id="busuanzi_container_page_pv">
+      本文总阅读量<span id="busuanzi_value_page_pv"></span>次
+    </span>
+  
+
+  <div class="article-inner">
+    
+    <div class="article-content article-content-cloud" itemprop="articleBody">
+      
+        <h1 id="剑指-Offer-14-II-剪绳子-II"><a href="#剑指-Offer-14-II-剪绳子-II" class="headerlink" title="剑指 Offer 14- II. 剪绳子 II"></a><a target="_blank" rel="noopener" href="https://leetcode.cn/problems/jian-sheng-zi-ii-lcof/">剑指 Offer 14- II. 剪绳子 II</a></h1><p>给你一根长度为 n 的绳子，请把绳子剪成整数长度的 m 段（m、n都是整数，n&gt;1并且m&gt;1），每段绳子的长度记为 k[0],k[1]…k[m - 1] 。请问 k[0]<em>k[1]</em>…*k[m - 1] 可能的最大乘积是多少？例如，当绳子的长度是8时，我们把它剪成长度分别为2、3、3的三段，此时得到的最大乘积是18。</p>
+<p>答案需要取模 1e9+7（1000000007），如计算初始结果为：1000000008，请返回 1。</p>
+<p><strong>示例 1：</strong></p>
+<div class="highlight-box"autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" contenteditable="true"data-rel="PLAINTEXT"><figure class="iseeu highlight /plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">输入: 2</span><br><span class="line">输出: 1</span><br><span class="line">解释: 2 = 1 + 1, 1 × 1 = 1</span><br></pre></td></tr></table></figure></div>
+
+<p><strong>示例 2:</strong></p>
+<div class="highlight-box"autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" contenteditable="true"data-rel="PLAINTEXT"><figure class="iseeu highlight /plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">输入: 10</span><br><span class="line">输出: 36</span><br><span class="line">解释: 10 = 3 + 3 + 4, 3 × 3 × 4 = 36</span><br></pre></td></tr></table></figure></div>
+
+
+
+<p>如果无取模运算, 也就是<a target="_blank" rel="noopener" href="https://leetcode.cn/problems/jian-sheng-zi-lcof/">剑指 Offer 14- I. 剪绳子</a>, DP可解, 如下</p>
+<div class="highlight-box"autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" contenteditable="true"data-rel="JAVA"><figure class="iseeu highlight /java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Solution</span> &#123;</span><br><span class="line">    <span class="keyword">public</span> <span class="type">int</span> <span class="title function_">cuttingRope</span><span class="params">(<span class="type">int</span> n)</span> &#123;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">        <span class="type">int</span>[] nums = <span class="keyword">new</span> <span class="title class_">int</span>[n + <span class="number">1</span>];</span><br><span class="line">        <span class="keyword">if</span>(n == <span class="number">1</span> || n == <span class="number">2</span>)<span class="keyword">return</span> <span class="number">1</span>;</span><br><span class="line">        nums[<span class="number">1</span>] = <span class="number">1</span>;</span><br><span class="line">        nums[<span class="number">2</span>] = <span class="number">2</span>;</span><br><span class="line">        <span class="keyword">for</span> (<span class="type">int</span> <span class="variable">i</span> <span class="operator">=</span> <span class="number">3</span>; i &lt;= n; i++) &#123;</span><br><span class="line">            <span class="keyword">for</span> (<span class="type">int</span> <span class="variable">j</span> <span class="operator">=</span> <span class="number">1</span>; j &lt; i; j++) &#123;</span><br><span class="line">                nums[i] = Math.max(nums[i], nums[j] * (i - j));</span><br><span class="line">                nums[i] = Math.max(nums[i], j * (i - j));</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        </span><br><span class="line">        <span class="keyword">return</span> nums[n];</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></div>
+
+<p>这里讨论增加取模运算之后的解法</p>
+<p>显然这与<strong>算术-几何平均值不等式</strong>相关</p>
+<p>即,<br>$$<br>\frac{\sum^n_{i&#x3D;1}{a_i}}n ≥ {\sqrt[n]{\prod_{i&#x3D;1}^n{a_i}}}<br>$$<br>此题需证明, 在某种条件下<br>$$<br>{\sqrt[n]{\prod_{i&#x3D;1}^n{a_i}}}<br>$$<br>能取得最大值.</p>
+<p><strong>下面进行相关证明</strong></p>
+<p>已知和一定, 即<br>$$<br>sum &#x3D; {\sum^n_{i&#x3D;1}{a_i}}<br>$$<br>是定值</p>
+<p>显然, 由算数几何均值不等式成立的条件, 当且仅当<br>$$<br>∀a_i &#x3D; ∀a_j &#x3D; {\frac{\sum^n_{i&#x3D;1}{a_i}}n} &#x3D; t(i,j ∈ n)<br>$$<br>时成立, 这里t表示临时变量, 下文代指均值</p>
+<p>因此,  问题转换为, &#x3D;&#x3D;如何确定一个n, 使得等号成立&#x3D;&#x3D;</p>
+<p>设我们所求值为f(n)<br>$$<br>f(n) &#x3D; {\prod_{i&#x3D;1}^n{a_i}}<br>$$<br>对于计算几何均值不等式处理, 可以得到<br>$$<br>f(n) &#x3D; {\prod_{i&#x3D;1}^n{a_i}} &#x3D; {(\frac{\sum^n_{i&#x3D;1}{a_i}}n)}^n<br>$$<br>整理并替换变量, 可以得到<br>$$<br>f(x) &#x3D; {(\frac{sum}x)}^x<br>$$<br>因此, 问题转换为, &#x3D;&#x3D;f(x) 何时取得最大值&#x3D;&#x3D;</p>
+<p>经过求导, 可以得到<br>$$<br>g(x) &#x3D; {(ln^{f(x)})}’ &#x3D; ln^{sum} - (ln^{x} + 1)<br>$$<br>令g(x)等于0, 可得<br>$$<br>x &#x3D; \frac {sum}{e}<br>$$<br>即, &#x3D;&#x3D;sum分成n项, 每项为e&#x3D;&#x3D;</p>
+<p>因为, e取2.7, 取整可以取到2或3, 即每项为2或3</p>
+<p>为了确定每项取值为2还是3, 对以下式子求单调性<br>$$<br>m(x) &#x3D; {x}^{\frac{sum}x}<br>$$<br>求得, m(x)在x &#x3D; e处取最值, e在2,3之间, 那显然, 不能判断每项取值为2或3</p>
+<p>不过, 由此我们可以推出, m(x)的单调性与sum无关</p>
+<p>&#x3D;&#x3D;因此, 对于任意sum, 我们的结论是一样的&#x3D;&#x3D;</p>
+<p>这里, 设sum &#x3D; 6</p>
+<p>每项取2, 可以得 2 * 2 * 2 &#x3D; 8</p>
+<p>每项取3, 可以得 3 * 3 &#x3D; 9</p>
+<p>因此, 可得结论如下</p>
+<p>&#x3D;&#x3D;故每项取3&#x3D;&#x3D;</p>
+<blockquote>
+<p>共n &#x3D; (sum&#x2F;3)项(n向上取整)</p>
+<p>不足n项时</p>
+<p>如果 sum % 3 &#x3D;&#x3D; 1, 取n - 1项, 最后一项为4</p>
+<p>如果 sum % 3 &#x3D;&#x3D; 2, 取n 项, 最后一项为2</p>
+</blockquote>
+<p>代码如下</p>
+<div class="highlight-box"autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" contenteditable="true"data-rel="JAVA"><figure class="iseeu highlight /java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Solution</span> &#123;</span><br><span class="line"></span><br><span class="line">     <span class="type">long</span> <span class="variable">mod</span> <span class="operator">=</span> (<span class="type">long</span>)(<span class="number">1e9</span> + <span class="number">7</span>);</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">    <span class="keyword">public</span> <span class="type">int</span> <span class="title function_">cuttingRope</span><span class="params">(<span class="type">int</span> n)</span> &#123;</span><br><span class="line">         <span class="keyword">if</span> (n == <span class="number">1</span> || n == <span class="number">2</span>) <span class="keyword">return</span> <span class="number">1</span>;</span><br><span class="line">        <span class="keyword">if</span> (n == <span class="number">3</span>)<span class="keyword">return</span> <span class="number">2</span>;</span><br><span class="line">        <span class="type">int</span> <span class="variable">k</span> <span class="operator">=</span> n / <span class="number">3</span>;</span><br><span class="line">        <span class="keyword">if</span> (k * <span class="number">3</span> &lt; n) k++;</span><br><span class="line">        <span class="type">long</span> <span class="variable">ans</span> <span class="operator">=</span> <span class="number">1</span>;</span><br><span class="line">        <span class="keyword">for</span> (<span class="type">int</span> <span class="variable">i</span> <span class="operator">=</span> <span class="number">0</span>; i &lt; k - <span class="number">2</span>; i++) &#123;</span><br><span class="line">            ans = (ans * <span class="number">3</span>) % mod;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">if</span> (n % <span class="number">3</span> == <span class="number">1</span>)&#123;</span><br><span class="line">            ans = (ans * <span class="number">4</span>) % mod;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">if</span> (n % <span class="number">3</span> == <span class="number">2</span>)&#123;</span><br><span class="line">            ans = (ans * <span class="number">6</span>) % mod;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">if</span> (n % <span class="number">3</span> == <span class="number">0</span>)&#123;</span><br><span class="line">            ans = (ans * <span class="number">9</span>) % mod;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> (<span class="type">int</span>) ans;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></div>
+
+
+      
+    </div>
+    
+      <footer class="article-footer">
+        完
+      </footer>
+    
+  </div>
+  
+    
+<nav id="article-nav">
+  <div class="article-nav-block">
+    
+  </div>
+  <div class="article-nav-block">
+    
+      <a href="/2023/04/24/%E6%89%8BQ%E4%BA%8C%E9%9D%A2/" id="article-nav-older" class="article-nav-link-wrap">
+        <div class="article-nav-title">鹅的鹅的二面</div>
+        <strong class="article-nav-caption"></strong>
+      </a>
+    
+  </div>
+</nav>
+
+    <link rel="stylesheet" href="/css/gitment.css"> 
+<script src="/js/gitment.js"></script>
+
+<div id="gitmentContainer"></div>
+
+<script>
+var gitment = new Gitment({
+  owner: '',
+  repo: '',
+  oauth: {
+    client_id: '',
+    client_secret: '',
+  },
+})
+gitment.render('gitmentContainer')
+</script>
+
+  
+  
+</article>
+</section>
+        <aside id="sidebar">
+  
+    <div class="widget-box">
+  <div class="avatar-box">
+    <img class="avatar" src="/images/default-avatar.jpg" title="图片来自网络"></img>
+    <h3 class="avatar-name">
+      
+        安安
+      
+    </h3>
+    <p class="avatar-slogan">
+      正在摸鱼的安卓实习生
+    </p>
+  </div>
+</div>
+
+
+  
+    
+
+  
+    
+
+  
+    
+  
+    
+  <div class="widget-box">
+    <h3 class="widget-title">Archives</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/05/">May 2023</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/04/">April 2023</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/03/">March 2023</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/02/">February 2023</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/10/">October 2022</a></li></ul>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-box">
+    <h3 class="widget-title">Recent Posts</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2023/05/04/%E5%89%91%E6%8C%87offer-%E5%89%AA%E7%BB%B3%E5%AD%90/">剑指offer 剪绳子</a>
+          </li>
+        
+          <li>
+            <a href="/2023/04/24/%E6%89%8BQ%E4%BA%8C%E9%9D%A2/">鹅的鹅的二面</a>
+          </li>
+        
+          <li>
+            <a href="/2023/04/24/QuickSort/">快速排序模版</a>
+          </li>
+        
+          <li>
+            <a href="/2023/04/24/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/">面试相关的操作系统题目</a>
+          </li>
+        
+          <li>
+            <a href="/2023/04/24/Handler%E6%9C%BA%E5%88%B6/">关于handler机制</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+      <div class="widget-box">
+    <h3 class="widget-title">友链</h3>
+    <div class="widget">
+      
+    </div>
+  </div>
+
+  
+</aside>
+      </div>
+      <footer id="footer">
+  <div class="foot-box global-width">
+    &copy; 2023 John Doe &nbsp;&nbsp;
+    Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+    &nbsp;|&nbsp;主题 <a target="_blank" rel="noopener" href="https://github.com/yiluyanxia/hexo-theme-antiquity">antiquity</a>
+    <br>
+    <script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+    <span id="busuanzi_container_site_pv">不蒜子告之   阁下是第<span id="busuanzi_value_site_pv"></span>个访客</span>
+  </div>
+</footer>
+      <script src="https://code.jquery.com/jquery-2.0.3.min.js"></script>
+<script>
+if (!window.jQuery) {
+var script = document.createElement('script');
+script.src = "/js/jquery-2.0.3.min.js";
+document.body.write(script);
+}
+</script>
+
+  
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+
+  
+<script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+
+
+<script src="/js/script.js"></script>
+
+
+
+
+    </div>
+    <nav id="mobile-nav" class="mobile-nav-box">
+  <div class="mobile-nav-img mobile-nav-top"></div>
+  
+    <a href="/" class="mobile-nav-link">首页</a>
+  
+    <a href="/archives" class="mobile-nav-link">归档</a>
+  
+  <div class="mobile-nav-img  mobile-nav-bottom"></div>
+</nav>    
+  </div>
+</body>
+</html>
